@@ -1,0 +1,6 @@
+export {MainPage} from './mainPage/ui/mainPage'
+export {SocietyPage} from './societyPage/ui/SocietyPage'
+export {DictionaryPage} from './dictionaryPage/ui/DictionaryPage'
+// export {} from './'
+// export {} from './'
+// export {} from './'

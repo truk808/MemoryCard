@@ -1,0 +1,53 @@
+.header {
+  background-color: var(--main-color-default);
+  display: flex;
+
+  align-items: center;
+  column-gap: 16px;
+  box-shadow: 0 1px 1px 0.2px rgba(0, 0, 0, 0.25);
+}
+
+.header_itemContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 100px;
+}
+
+.header_logoNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 100px;
+}
+
+.header_notificationsProfile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 30px;
+}
+
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 25px;
+}
+
+.logo_icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 75px;
+}
+
+.logo_text {
+  font-weight: bold;
+  font-style: normal;
+  font-size: 50px;
+  color: var(--text-color-default);
+}

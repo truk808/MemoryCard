@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../../../app/store';
 
-export const useGroupSelector = () => {
-    const groupsDispatch = useDispatch<AppDispatch>();
+export const useCardSelector = () => {
+    const cardsDispatch = useDispatch<AppDispatch>();
 
-    const groups = useSelector((state: RootState) => state.group.groups);
+    const cards = useSelector((state: RootState) => state.card.cards);
 
-    return { groups, groupsDispatch };
+    return { cards, cardsDispatch };
 };

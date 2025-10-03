@@ -1,87 +1,94 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-export interface Group {
+
+export interface Card {
     id: number;
     user_id: number;
     name: string;
-    img: any,
     description: string;
+    level: number;
+    tags: string[];
     create_at: string;
 }
 
-interface GroupState {
-    groups: Group[];
+interface CardState {
+    cards: Card[];
 }
 
-const photo = '/cat.png'
-
-const initialState: GroupState = {
-    groups: [
+const initialState: CardState = {
+    cards: [
         {
             id: 1,
             user_id: 1,
             name: 'Unity',
-            img: photo,
             description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            level: 0,
+            tags: ['#Повторение', '#глаголы'],
             create_at: '2022-03-01',
         },
         {
             id: 1,
             user_id: 1,
             name: 'Unity',
-            img: photo,
             description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            level: 0,
+            tags: ['#Повторение', '#глаголы'],
             create_at: '2022-03-01',
         },
         {
             id: 1,
             user_id: 1,
             name: 'Unity',
-            img: photo,
             description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            level: 0,
+            tags: ['#Повторение', '#глаголы'],
             create_at: '2022-03-01',
         },
         {
             id: 1,
             user_id: 1,
             name: 'Unity',
-            img: photo,
             description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            level: 0,
+            tags: ['#Повторение', '#глаголы'],
             create_at: '2022-03-01',
         },
         {
             id: 1,
             user_id: 1,
             name: 'Unity',
-            img: photo,
             description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            level: 0,
+            tags: ['#Повторение', '#глаголы'],
             create_at: '2022-03-01',
         },
         {
             id: 1,
             user_id: 1,
             name: 'Unity',
-            img: photo,
             description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            level: 0,
+            tags: ['#Повторение', '#глаголы'],
             create_at: '2022-03-01',
         },
         {
             id: 1,
             user_id: 1,
             name: 'Unity',
-            img: photo,
             description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            level: 0,
+            tags: ['#Повторение', 'глаголы'],
             create_at: '2022-03-01',
         },
     ],
 };
 
-export const groupSlice = createSlice({
-    name: 'group',
+export const cardSlice = createSlice({
+    name: 'card',
     initialState,
     reducers: {
 
     },
 });
 
-export const { } = groupSlice.actions;
-export const groupReducer = groupSlice.reducer;
+export const { } = cardSlice.actions;
+export const cardReducer = cardSlice.reducer;

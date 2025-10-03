@@ -1,0 +1,42 @@
+@import '../../../../shared/styles/variables';
+
+.card {
+  padding: 30px;
+
+  max-height: 250px;
+  max-width: 400px;
+  background-color: var(--main-color-default);
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}
+
+.cardInfo {
+
+}
+
+.title {
+  color: var(--text-color-default);
+  font-size: 29px;
+  font-weight: 500;
+}
+
+.description {
+  margin: 10px 0 25px;
+  overflow-wrap: break-word;
+  color: var(--text-additional-color-default);
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.tagList {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.tag {
+  max-width: 150px;
+  padding: 5px;
+  background-color: var(--highlighted-color-default);
+  color: white;
+  border-radius: 35px;
+}

@@ -9,6 +9,12 @@
   align-items: center;
 }
 
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .iconText {
   display: flex;
   align-items: center;
@@ -16,6 +22,7 @@
 }
 
 .icon {
+  margin-right: 10px;
   transform: rotate(270deg);
   transition: 0.4s;
 }
@@ -25,12 +32,13 @@
 }
 
 .title {
+  display: flex;
   font-weight: 600;
   font-size: 40px;
   color: var(--text-color-default)
 }
 
-.buttonWrapper {
+.featuresList {
   width: 370px;
   height: 46px;
 }

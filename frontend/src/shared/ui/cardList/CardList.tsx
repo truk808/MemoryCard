@@ -7,7 +7,7 @@ interface CardListProps<T> {
     isShow?: boolean;
 }
 
-export function CardList<T>({items, renderItem, isShow}: CardListProps<T>) {
+export function CardList<T>({items, renderItem, isShow=true}: CardListProps<T>) {
     return (
         <div className={[styles.CardList, isShow && styles.active].join(' ')}>
             {

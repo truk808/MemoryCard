@@ -1,0 +1,35 @@
+@import '../../../shared/styles/variables';
+
+.search {
+  max-width: 700px;
+  padding: 15px;
+  background-color: var(--main-color-default);
+
+  display: flex;
+  align-items: center;
+
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+
+  font-size: 40px;
+}
+
+.icon {
+  margin: auto 25px auto 0;
+
+  transition: 0.3s;
+}
+
+.input {
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.active {
+  transform: scale(1.3);
+
+  svg path {
+    fill: black;
+  }
+}

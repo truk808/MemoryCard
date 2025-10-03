@@ -5,7 +5,7 @@ export type NavItem = {
     name: string;
 }
 
-export const NavItems: NavItem[] = [
+export const navItems: NavItem[] = [
     {
         href: MAIN_ROUTES,
         name: 'Главная',

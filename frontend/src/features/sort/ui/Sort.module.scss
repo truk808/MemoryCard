@@ -1,0 +1,42 @@
+@import '../../../shared/styles/variables';
+
+.sort {
+  display: flex;
+  align-items: center;
+  column-gap: 30px;
+
+  font-size: 25px;
+}
+
+.sort_text {
+  font-weight: 500;
+  color: var(--text-color-default)
+}
+
+.sort_itemList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 30px;
+}
+
+.sort_button {
+  min-width: 267px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--main-color-default);
+
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+
+  cursor: pointer;
+  color: var(--text-additional-color-default);
+}
+
+.active {
+  color: var(--highlighted-color-default);
+  border: 1px solid var(--highlighted-color-default);
+}

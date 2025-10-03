@@ -43,6 +43,28 @@ export const GlobalSvgSelector = ({svgName}: Props) => {
                         fill="black"/>
                 </svg>
             )
+        case 'search':
+            return (
+                <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_65_447)">
+                        <path
+                            d="M51.6837 50.1497L37.7108 36.1768C41.1927 32.331 43.3355 27.2502 43.3355 21.6667C43.3333 9.71967 33.6137 0 21.6667 0C9.71967 0 0 9.71967 0 21.6667C0 33.6137 9.71967 43.3333 21.6667 43.3333C27.2502 43.3333 32.331 41.1927 36.1768 37.7087L50.1497 51.6815L51.6837 50.1497ZM21.6667 41.1667C10.9157 41.1667 2.16667 32.4177 2.16667 21.6667C2.16667 10.9157 10.9157 2.16667 21.6667 2.16667C32.4177 2.16667 41.1667 10.9157 41.1667 21.6667C41.1667 32.4177 32.4198 41.1667 21.6667 41.1667Z"
+                            fill="#858585"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_65_447">
+                            <rect width="52" height="52" fill="white"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            )
+        case 'arrow-down':
+            return (
+                <svg width="51" height="26" viewBox="0 0 51 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M49 2L25.5 24L2 2" stroke="#6B7280" stroke-width="4" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+            )
         default:
             return null;
     }

@@ -1,6 +1,6 @@
 import React, {ReactElement} from 'react';
 import '../styles/index.scss'
-import '../styles/variables.scss';
+import '../../shared/styles/variables.scss';
 import {Header} from "../../widgets/header";
 import AppRouter from "../routes/AppRouter";
 

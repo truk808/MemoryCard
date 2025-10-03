@@ -1,0 +1,44 @@
+
+.button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 0.4s;
+
+
+  border-radius: 10px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.blue {
+  border: 2.5px solid blue;
+  color: blue;
+}
+
+.blue:hover {
+  background-color: #0000ff;
+  color: white;
+}
+
+.orange {
+  border: 2.5px solid orange;
+  color: orange;
+}
+
+.orange:hover {
+  background-color: orange;
+  color: white;
+}
+
+.red {
+  border: 2.5px solid red;
+  color: red;
+}
+
+.red:hover {
+  background-color: red;
+  color: white;
+}

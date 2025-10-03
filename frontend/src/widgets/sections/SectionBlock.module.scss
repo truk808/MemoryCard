@@ -1,0 +1,36 @@
+.sectionBlock {
+  width: 100%;
+  margin: 25px 0;
+}
+
+.sectionBlockContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.iconText {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.icon {
+  transform: rotate(270deg);
+  transition: 0.4s;
+}
+
+.active {
+  transform: rotate(360deg);
+}
+
+.title {
+  font-weight: 600;
+  font-size: 40px;
+  color: var(--text-color-default)
+}
+
+.buttonWrapper {
+  width: 370px;
+  height: 46px;
+}

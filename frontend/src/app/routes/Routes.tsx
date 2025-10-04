@@ -1,6 +1,5 @@
-import {MainPage, SocietyPage, DictionaryPage, GroupPage} from "../../pages/index";
+import {MainPage, SocietyPage, DictionaryPage, GroupPage, ModulePage} from "../../pages";
 import {DICTIONARY_ROUTES, GROUP_ROUTE, MAIN_ROUTES, MODULE_ROUTE, SOCIETY_ROUTES} from "../../shared/routes/const";
-import ModulePage from "../../pages/modulePage";
 
 export const routes = [
     {
@@ -20,7 +19,7 @@ export const routes = [
         element: <GroupPage/>,
     },
     {
-        path: MODULE_ROUTE,
+        path: `${MODULE_ROUTE}/:id`,
         element: <ModulePage/>,
     },
     {

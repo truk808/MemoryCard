@@ -22,6 +22,7 @@ export const MainPage = () => {
                 features={[<Button color={'blue'}>Добавить группу</Button>]}
             >
                 <CardList
+                    quantityColumns={3}
                     isShow={isShowGroupContent}
                     items={groups}
                     renderItem={group => <GroupCard group={group}/>}

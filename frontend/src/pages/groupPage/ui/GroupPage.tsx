@@ -1,10 +1,12 @@
 import React from 'react';
 import {Section} from "../../../widgets";
-import {Button} from "../../../shared";
+import {Button, CardList, Tabs} from "../../../shared";
 import {TrainModeList} from "../../../features";
-
+import {ModuleCard, TermCard, useModuleSelector, useTermCardSelector} from "../../../entities";
 
 export const GroupPage = () => {
+    const {modules, modulesDispatch} = useModuleSelector()
+
     return (
         <div>
             <Section
@@ -17,7 +19,23 @@ export const GroupPage = () => {
                     <Button color={'red'}> Удалить </Button>,
                 ]}
             >
-                <TrainModeList />
+                <Tabs titles={['Модули', 'статистика', 'что']}>
+                    {[
+                        <>
+                            <TrainModeList/>
+                            <CardList
+                                items={modules}
+                                renderItem={module => <ModuleCard module={module}/>}
+                            />
+                        </>,
+                        <>
+                            <div>Здесь пусто!</div>
+                        </>,
+                        <>
+                            <div>Здесь что!</div>
+                        </>
+                    ]}
+                </Tabs>
             </Section>
         </div>
     );

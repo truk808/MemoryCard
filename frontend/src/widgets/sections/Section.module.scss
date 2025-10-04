@@ -27,6 +27,13 @@
   transition: 0.4s;
 }
 
+.description {
+  color: var(--text-additional-color-default);
+  font-size: 32px;
+  font-weight: 400;
+  margin: 15px 0
+}
+
 .active {
   transform: rotate(360deg);
 }
@@ -39,6 +46,8 @@
 }
 
 .featuresList {
+  column-gap: 16px;
+  display: flex;
   width: 370px;
   height: 46px;
 }

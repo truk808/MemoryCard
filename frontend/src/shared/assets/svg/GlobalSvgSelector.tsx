@@ -1,10 +1,7 @@
 import React from 'react';
+import {SvgSelectorProps} from "./type";
 
-interface Props {
-    svgName: string;
-}
-
-export const GlobalSvgSelector = ({svgName}: Props) => {
+export const GlobalSvgSelector = ({svgName}: SvgSelectorProps) => {
     switch (svgName) {
         case 'logo':
             return (

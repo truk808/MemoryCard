@@ -1,5 +1,5 @@
 import {MainPage, SocietyPage, DictionaryPage, GroupPage, ModulePage} from "../../pages";
-import {DICTIONARY_ROUTES, GROUP_ROUTE, MAIN_ROUTES, MODULE_ROUTE, SOCIETY_ROUTES} from "../../shared/routes/const";
+import {DICTIONARY_ROUTES, GROUP_ROUTE, MAIN_ROUTES, MODULE_ROUTE, SOCIETY_ROUTES} from "../../shared";
 
 export const routes = [
     {

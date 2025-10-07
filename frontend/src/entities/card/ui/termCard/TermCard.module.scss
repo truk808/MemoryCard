@@ -1,9 +1,13 @@
 @import '../../../../shared/styles/variables';
 
 .card {
-  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
+  padding: 30px;
   max-height: 250px;
+  min-height: 200px;
   max-width: 400px;
   background-color: var(--main-color-default);
   border-radius: $border-radius;
@@ -29,13 +33,18 @@
 }
 
 .tagList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   font-size: 20px;
   font-weight: 400;
+  margin-top: auto;
 }
 
 .tag {
+  margin-right: 10px;
   max-width: 150px;
-  padding: 5px;
+  padding: 7px 10px;
   background-color: var(--highlighted-color-default);
   color: white;
   border-radius: 35px;

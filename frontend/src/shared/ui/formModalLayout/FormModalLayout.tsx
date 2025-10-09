@@ -8,18 +8,30 @@ interface ItemManagerProps{
     submitText: string;
     children?: React.ReactNode;
     save: () => void;
+
+    closeModal: () => void;
 }
 
-export const FormModalLayout: FC<ItemManagerProps> = ({isOpen, title, submitText, children, save}) => {
+export const FormModalLayout: FC<ItemManagerProps> = ({isOpen,
+                                                          title,
+                                                          submitText,
+                                                          children,
+                                                          save,
+                                                          closeModal}) => {
     return (
-        <Modal isOpen={isOpen}>
+        <Modal isOpen={isOpen} closeModal={closeModal}>
             <div className={styles.formModalLayout}>
                 <h2 className={styles.title}> {title} </h2>
                 <div className={styles.children}>
                     {children}
                 </div>
                 <div className={styles.button}>
-                    <Button color={'blue'}> {submitText} </Button>
+                    <Button
+                        color={'blue'}
+                        onClick={save}
+                    >
+                        {submitText}
+                    </Button>
                 </div>
             </div>
         </Modal>

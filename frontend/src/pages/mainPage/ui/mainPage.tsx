@@ -1,25 +1,40 @@
 import React from 'react';
-import {FilterBar} from "../../../widgets";
-import {Section} from "../../../widgets/";
-import {Group, useGroupSelector, Module, useModuleSelector} from "../../../entities";
-import {GroupCard} from "../../../entities";
-import {ModuleCard} from "../../../entities";
+import {FilterBar, Section} from "../../../widgets";
+import {
+    GroupCard,
+    ModuleCard,
+    selectAllGroups,
+    selectAllModules,
+} from "../../../entities";
 import {Button, CardList} from "../../../shared";
+import {GroupManager} from "../../../features";
+import {useSelector} from "react-redux";
 
 export const MainPage = () => {
+    const [isOpenGroupManager, setIsOpenGroupManager] = React.useState(false);
     const [isShowGroupContent, setShowGroupContent] = React.useState(false);
     const [isShowModuleContent, setShowModuleContent] = React.useState(false);
-    const {groups, groupsDispatch} = useGroupSelector()
-    const {modules, modulesDispatch} = useModuleSelector()
+
+    const modules = useSelector(selectAllModules);
+    const groups = useSelector(selectAllGroups);
 
     return (
         <div>
+            <GroupManager
+                closeModal={() => setIsOpenGroupManager(false)}
+                isOpen={isOpenGroupManager}
+                mode="create"
+            />
             <FilterBar/>
             <Section
                 isShowContent={isShowGroupContent}
                 setIsShowContent={setShowGroupContent}
                 title={'Мои  группы'}
-                features={[<Button color={'blue'}>Добавить группу</Button>]}
+                features={
+                    [<Button color={'blue'} onClick={() => {
+                        setIsOpenGroupManager(true)
+                    }}>Добавить группу</Button>
+                    ]}
             >
                 <CardList
                     quantityColumns={3}

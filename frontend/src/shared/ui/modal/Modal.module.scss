@@ -20,8 +20,8 @@
 
 .modalContent {
   background-color: var(--body-background-default);
-  height: 700px;
-  width: 500px;
+  max-height: 90vh;
+  max-width: 30wh;
   position: absolute;
   z-index: -1;
   padding: 24px;

@@ -1,0 +1,15 @@
+.textArea {
+  width: 100%;
+  min-height: 80px;
+  resize: vertical;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 25px;
+  font-weight: 400;
+  color: var(--text-color-default);
+
+  ::placeholder {
+    color: var(--text-additional-color-default);
+  }
+}

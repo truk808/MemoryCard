@@ -2,20 +2,48 @@ import React from 'react';
 import {Section} from "../../../widgets";
 import {Button, CardList, Tabs} from "../../../shared";
 import {TrainModeList} from "../../../features";
-import {ModuleCard, TermCard, useModuleSelector, useTermCardSelector} from "../../../entities";
+import {
+    Group,
+    ModuleCard,
+    selectGroupById, selectModulesByGroupId,
+    TermCard,
+    useGroupSelector,
+    useModuleSelector,
+    useTermCardSelector
+} from "../../../entities";
+import {GroupManager} from "../../../features/groupManager/ui/GroupManager";
+import {useLocation} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../app/store";
+import {getRelatedIdsByEntityId} from "../../../shared/lib/getItemIdsByEntityId";
 
 export const GroupPage = () => {
-    const {modules, modulesDispatch} = useModuleSelector()
+    const groupId = +useLocation().pathname.split("/")[2];
+    const group = useSelector(selectGroupById(groupId))[0];
+
+    const groupModule = useSelector((state: RootState) => state.groupModule.groupModules);
+    const moduleIds = getRelatedIdsByEntityId(groupId, groupModule, 'group_id', 'module_id')
+    const modules = useSelector(selectModulesByGroupId(moduleIds))
+
+    const [isOpenGroupManager, setIsOpenGroupManager] = React.useState(false);
 
     return (
         <div>
+            <GroupManager
+                mode={'edit'}
+                item={{
+                    name: group.name,
+                    description : group.description,
+                    selectedModules: [{item: modules[0], isSelected: true}],
+                }}
+                isOpen={isOpenGroupManager}
+                closeModal={() =>setIsOpenGroupManager(false)}
+            />
             <Section
-                title={'Unity'}
-                description={'Unity — это кроссплатформенная среда разработки (игровой движок), позволяющая' +
-                    ' создавать 2D- и 3D-игры, приложения, симуляторы и другой интерактивный контент для более ' +
-                    'чем 25 платформ, включая ПК, мобильные устройства, игровые консоли, VR/AR и интернет.'}
+                title={group.name}
+                description={group.description}
                 features={[
-                    <Button color={'blue'}> Редактировать </Button>,
+                    <Button onClick={() => setIsOpenGroupManager(true)} color={'blue'}> Редактировать </Button>,
                     <Button color={'red'}> Удалить </Button>,
                 ]}
             >

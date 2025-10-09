@@ -16,7 +16,7 @@ export const ModuleCard: FC<ModuleCardProps> = ({module}) => {
                     <img src='/Frame.svg' alt=""/>
                 </div>
                 <div className={styles.cardInfo}>
-                    <h2 className={styles.title}> ООП </h2>
+                    <h2 className={styles.title}> {module.name} </h2>
                     <p className={styles.text}> карт много </p>
                 </div>
             </div>

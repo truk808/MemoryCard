@@ -17,8 +17,8 @@ export const Tooltip:FC<TooltipProps> = ({content, children}) => {
     return (
         <div
             className={styles.wrapper}
-            onMouseEnter={() => setIsVisible(true)}
-            onMouseLeave={() => setIsVisible(false)}
+            // onMouseEnter={() => setIsVisible(true)}
+            // onMouseLeave={() => setIsVisible(false)}
         >
             {children}
             {

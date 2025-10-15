@@ -2,19 +2,50 @@ import React from 'react';
 import styles from './DictionaryPage.module.scss'
 import {Section} from "../../../widgets";
 import {Button, CardList} from "../../../shared";
-import {TermCard, useTermCardSelector} from "../../../entities";
-import {Search} from "../../../features";
+import {selectAllCards, TermCard} from "../../../entities";
+import {CardManager} from "../../../features";
+import {useSelector} from "react-redux";
+import {TagManager} from "../../../features/tagManager/ui/TagManager";
 
 export const DictionaryPage = () => {
-    const {termCards, termCardsDispatch} = useTermCardSelector()
+    const [isOpenModuleManager, setIsOpenModuleManager] = React.useState(false);
+    const [isOpenTagManager, setIsOpenTagManager] = React.useState(false);
+    const termCards = useSelector(selectAllCards);
+
+
 
     return (
         <div className={styles.dictionaryPage}>
+            <TagManager
+                mode={'create'}
+                isOpen={isOpenTagManager}
+                closeModal={() => setIsOpenTagManager(false)}
+            />
+            <CardManager
+                mode={'create'}
+                isOpen={isOpenModuleManager}
+                closeModal={() => setIsOpenModuleManager(false)}
+            />
             <div className={styles.content}>
-                <Search/>
+                {/*<Search/>*/}
                 <Section
                     title={'Словарь'}
-                    features={[<Button color={'blue'}> Добавить карточку </Button>]}
+                    features={
+                        [
+                            <Button
+                                color={'blue'}
+                                onClick={() => {setIsOpenTagManager(true)}}
+                            >
+                                Тег
+                            </Button>,
+                            <Button
+                                color={'blue'}
+                                onClick={() => {setIsOpenModuleManager(true)}}
+                            >
+                                Добавить карточку
+                            </Button>,
+                        ]
+                    }
                 >
                     <CardList
                         items={termCards}

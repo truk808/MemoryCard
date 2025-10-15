@@ -15,11 +15,11 @@ export const TermCard: FC<CardProps> = ({card}) => {
                     {card.name}
                 </h2>
                 <p>
-                    <Tooltip content={card.description}>
+                    {/*<Tooltip content={card.description}>*/}
                         <TruncatedText maxLength={200}>
                             {card.description}
                         </TruncatedText>
-                    </Tooltip>
+                    {/*</Tooltip>*/}
                 </p>
             </div>
             <div className={styles.tagList}>

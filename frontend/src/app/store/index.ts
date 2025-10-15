@@ -5,6 +5,8 @@ import {moduleReducer} from "../../entities/module/model/slice";
 import {moduleCardReducer} from "../../entities/moduleCard/model/slice";
 import {cardReducer} from "../../entities/card/model/slice";
 import {userReducer} from "../../entities/user/model/slise";
+import {tagReducer} from "../../entities/tag/model/slice";
+import {cardTagReducer} from "../../entities/cardTag/model/slice";
 
 export const store = configureStore({
     reducer: {
@@ -14,6 +16,8 @@ export const store = configureStore({
         module: moduleReducer,
         moduleCard: moduleCardReducer,
         card: cardReducer,
+        cardTag: cardTagReducer,
+        tag: tagReducer,
     },
 });
 

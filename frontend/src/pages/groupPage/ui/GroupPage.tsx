@@ -1,19 +1,10 @@
 import React from 'react';
-import {Section} from "../../../widgets";
-import {Button, CardList, Tabs} from "../../../shared";
-import {TrainModeList} from "../../../features";
-import {
-    Group,
-    ModuleCard,
-    selectGroupById, selectModulesByGroupId,
-    TermCard,
-    useGroupSelector,
-    useModuleSelector,
-    useTermCardSelector
-} from "../../../entities";
-import {GroupManager} from "../../../features/groupManager/ui/GroupManager";
 import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {Section} from "../../../widgets";
+import {Button, CardList, Tabs} from "../../../shared";
+import {GroupManager, TrainModeList} from "../../../features";
+import {ModuleCard, selectGroupById, selectModulesByGroupId,} from "../../../entities";
 import {RootState} from "../../../app/store";
 import {getRelatedIdsByEntityId} from "../../../shared/lib/getItemIdsByEntityId";
 
@@ -33,11 +24,11 @@ export const GroupPage = () => {
                 mode={'edit'}
                 item={{
                     name: group.name,
-                    description : group.description,
-                    selectedModules: [{item: modules[0], isSelected: true}],
+                    description: group.description,
+                    selectedModuleIds: moduleIds,
                 }}
                 isOpen={isOpenGroupManager}
-                closeModal={() =>setIsOpenGroupManager(false)}
+                closeModal={() => setIsOpenGroupManager(false)}
             />
             <Section
                 title={group.name}

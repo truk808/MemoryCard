@@ -1,8 +1,8 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import styles from './GroupManager.module.scss'
-import {BaseManagerProps, FormModalLayout, Input, ItemSelected} from "../../../shared";
+import {BaseManagerProps, FormModalLayout, Input} from "../../../shared";
 import {SelectEntityList} from "../../selectEntityList/ui/SelectEntityList";
-import {Module, selectAllModules, useModuleSelector} from "../../../entities";
+import {selectAllModules} from "../../../entities";
 import {useItemForm} from "../../../shared/hooks/useItemForm";
 import TextArea from "../../../shared/ui/textArea/TextArea";
 import {useSelector} from "react-redux";
@@ -10,13 +10,13 @@ import {useSelector} from "react-redux";
 interface GroupForm {
     name: string;
     description: string;
-    selectedModules: ItemSelected<Module>[];
+    selectedModuleIds: number[];
 }
 
 const initGroupForm = {
     name: '',
     description: '',
-    selectedModules: []
+    selectedModuleIds: []
 }
 
 export const GroupManager: FC<BaseManagerProps<GroupForm>> = ({
@@ -32,19 +32,7 @@ export const GroupManager: FC<BaseManagerProps<GroupForm>> = ({
         isEditGroup && item ? item : initGroupForm
     );
 
-    useEffect(() => {
-        const arr: ItemSelected<Module>[] = []
-        modules.forEach((module) => {
-            arr.push({
-                item: module,
-                isSelected: false,
-            })
-        })
-
-        handleChange('selectedModules', arr)
-    }, []);
-
-    const handleSubmit = () => {
+    function handleSubmit (){
         if (isEditGroup) {
             console.log('Редактировать:', form);
         } else {
@@ -52,7 +40,15 @@ export const GroupManager: FC<BaseManagerProps<GroupForm>> = ({
         }
         resetForm();
         // closeModal();
-    };
+    }
+
+    function handleToggleModule(id: number) {
+        if (form.selectedModuleIds.includes(id)) {
+            handleChange('selectedModuleIds', form.selectedModuleIds.filter(itemId => itemId !== id));
+        } else {
+            handleChange('selectedModuleIds', [...form.selectedModuleIds, id])
+        }
+    }
 
     return (
         <FormModalLayout
@@ -77,8 +73,11 @@ export const GroupManager: FC<BaseManagerProps<GroupForm>> = ({
                 />
             </div>
             <SelectEntityList
-                selectedList={form.selectedModules}
-                getItemName={(module: Module) => module.name}
+                items={modules}
+                selectedIds={form.selectedModuleIds}
+                onToggle={id => handleToggleModule(id)}
+                getItemName={(module) => module.name}
+                getItemId={(module) => module.id}
             />
         </FormModalLayout>
     );

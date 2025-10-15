@@ -1,17 +1,14 @@
 import React from 'react';
 import {FilterBar, Section} from "../../../widgets";
-import {
-    GroupCard,
-    ModuleCard,
-    selectAllGroups,
-    selectAllModules,
-} from "../../../entities";
+import {GroupCard, ModuleCard, selectAllGroups, selectAllModules,} from "../../../entities";
 import {Button, CardList} from "../../../shared";
-import {GroupManager} from "../../../features";
+import {GroupManager, ModuleManager} from "../../../features";
 import {useSelector} from "react-redux";
 
 export const MainPage = () => {
     const [isOpenGroupManager, setIsOpenGroupManager] = React.useState(false);
+    const [isOpenModuleManager, setIsOpenModuleManager] = React.useState(false);
+
     const [isShowGroupContent, setShowGroupContent] = React.useState(false);
     const [isShowModuleContent, setShowModuleContent] = React.useState(false);
 
@@ -20,6 +17,11 @@ export const MainPage = () => {
 
     return (
         <div>
+            <ModuleManager
+                closeModal={() => setIsOpenModuleManager(false)}
+                isOpen={isOpenModuleManager}
+                mode={'create'}
+            />
             <GroupManager
                 closeModal={() => setIsOpenGroupManager(false)}
                 isOpen={isOpenGroupManager}
@@ -29,12 +31,19 @@ export const MainPage = () => {
             <Section
                 isShowContent={isShowGroupContent}
                 setIsShowContent={setShowGroupContent}
-                title={'Мои  группы'}
+                title={'Мои группы'}
                 features={
-                    [<Button color={'blue'} onClick={() => {
-                        setIsOpenGroupManager(true)
-                    }}>Добавить группу</Button>
-                    ]}
+                    [
+                        <Button
+                            color={'blue'}
+                            onClick={() => {
+                                setIsOpenGroupManager(true)
+                            }}
+                        >
+                            Добавить группу
+                        </Button>
+                    ]
+                }
             >
                 <CardList
                     quantityColumns={3}
@@ -47,7 +56,18 @@ export const MainPage = () => {
                 isShowContent={isShowModuleContent}
                 setIsShowContent={setShowModuleContent}
                 title={'Мои  модули'}
-                features={[<Button color={'blue'}>Добавить Модуль</Button>]}
+                features={
+                    [
+                        <Button
+                            color={'blue'}
+                            onClick={() => {
+                                setIsOpenModuleManager(true)
+                            }}
+                        >
+                            Добавить Модуль
+                        </Button>
+                    ]
+                }
             >
                 <CardList
                     isShow={isShowModuleContent}

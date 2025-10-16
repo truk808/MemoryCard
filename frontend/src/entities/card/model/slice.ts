@@ -7,7 +7,6 @@ export interface Card {
     description: string;
     sentence: string;
     level: number;
-    tags: string[];
     create_at: string;
 }
 
@@ -24,7 +23,6 @@ const initialState: CardState = {
             description: 'один',
             sentence: '',
             level: 0,
-            tags: ['#аглиский', '#числа'],
             create_at: '2022-10-01',
         },
         {
@@ -34,7 +32,6 @@ const initialState: CardState = {
             description: 'два',
             sentence: '',
             level: 0,
-            tags: ['#аглиский', '#числа'],
             create_at: '2022-10-01',
         },
         {
@@ -44,7 +41,6 @@ const initialState: CardState = {
             description: 'три',
             sentence: '',
             level: 0,
-            tags: ['#аглиский', '#числа'],
             create_at: '2022-10-01',
         },
         {
@@ -54,7 +50,6 @@ const initialState: CardState = {
             description: 'четыре',
             sentence: '',
             level: 0,
-            tags: ['#аглиский', '#числа'],
             create_at: '2022-10-01',
         },
         {
@@ -64,7 +59,6 @@ const initialState: CardState = {
             description: 'пять',
             sentence: '',
             level: 0,
-            tags: ['#аглиский', '#числа'],
             create_at: '2022-10-01',
         },
         {
@@ -74,7 +68,6 @@ const initialState: CardState = {
             description: 'шесть',
             sentence: '',
             level: 0,
-            tags: ['#аглиский', '#числа'],
             create_at: '2022-10-01',
         },
         {
@@ -84,7 +77,6 @@ const initialState: CardState = {
             description: 'семь',
             sentence: '',
             level: 0,
-            tags: ['#аглиский', '#числа'],
             create_at: '2022-10-01',
         },
         {
@@ -94,7 +86,6 @@ const initialState: CardState = {
             description: 'восемь',
             sentence: '',
             level: 0,
-            tags: ['#аглиский', '#числа'],
             create_at: '2022-10-01',
         },
         {
@@ -104,7 +95,6 @@ const initialState: CardState = {
             description: 'раздел механики, изучающий причины механического движения тел, то есть силы, которые вызывают изменение скорости или направления движения. В отличие от кинематики, которая лишь описывает само движение, динамика связывает движение с воздействующими на тело силами, массой, импульсом и энергией. Основа динамики — три закона Ньютона, которые описывают взаимодействие сил и изменение состояния движения тел. ',
             sentence: '',
             level: 0,
-            tags: ['#физика', '#динамика'],
             create_at: '2022-10-01',
         },
         {
@@ -114,7 +104,6 @@ const initialState: CardState = {
             description: 'мера взаимодействия тел, вызывающая изменение их скорости или деформацию',
             sentence: '',
             level: 0,
-            tags: ['#физика', '#динамика'],
             create_at: '2022-10-01',
         },
         {
@@ -124,7 +113,6 @@ const initialState: CardState = {
             description: 'мера инертности тела, показывающая, насколько трудно изменить его скорость',
             sentence: '',
             level: 0,
-            tags: ['#физика', '#динамика'],
             create_at: '2022-10-01',
         },
         {
@@ -134,7 +122,6 @@ const initialState: CardState = {
             description: 'векторная величина, равная произведению массы тела на его скорость.',
             sentence: '',
             level: 0,
-            tags: ['#физика', '#динамика'],
             create_at: '2022-10-01',
         },
         {
@@ -144,7 +131,6 @@ const initialState: CardState = {
             description: 'система, в которой тело остается в состоянии покоя или равномерного прямолинейного движения, если на него не действуют силы или сумма сил равна нулю. ',
             sentence: '',
             level: 0,
-            tags: ['#физика', '#динамика'],
             create_at: '2022-10-01',
         },
         {
@@ -154,7 +140,6 @@ const initialState: CardState = {
             description: 'В ИСО тело сохраняет состояние покоя или равномерного прямолинейного движения, если на него не действуют внешние силы или сумма сил равна нулю. ',
             sentence: '',
             level: 0,
-            tags: ['#физика', '#динамика', 'закон Ньютона'],
             create_at: '2022-10-01',
         },
         {
@@ -164,7 +149,6 @@ const initialState: CardState = {
             description: ' Ускорение тела прямо пропорционально равнодействующей всех сил и обратно пропорционально его массе (формула: \\(m\\vec{a}=\\vec{F}\\)). ',
             sentence: '',
             level: 0,
-            tags: ['#физика', '#динамика', 'закон Ньютона'],
             create_at: '2022-10-01',
         },
         {
@@ -174,7 +158,6 @@ const initialState: CardState = {
             description: 'Силы, с которыми тела действуют друг на друга, равны по модулю и противоположны по направлению, а также лежат на одной прямой. ',
             sentence: '',
             level: 0,
-            tags: ['#физика', '#динамика', 'закон Ньютона'],
             create_at: '2022-10-01',
         },
         {
@@ -184,7 +167,6 @@ const initialState: CardState = {
             description: 'lore,m',
             sentence: '',
             level: 0,
-            tags: ['#тег', '#свег'],
             create_at: '2022-10-01',
         },
 
@@ -195,8 +177,21 @@ const initialState: CardState = {
 export const cardSlice = createSlice({
     name: 'card',
     initialState,
-    reducers: {},
+    reducers: {
+        addCard(state, action) {
+            state.cards.push(action.payload);
+        },
+        changeCard(state, action) {
+            const index = state.cards.findIndex(card => card.id === action.payload.id);
+            if (index !== -1) {
+                state.cards[index] = action.payload;
+            }
+        },
+        removeCard(state, action) {
+            state.cards.filter((card) => card.id === action.payload.id);
+        }
+    },
 });
 
-export const {} = cardSlice.actions;
+export const { addCard, removeCard, changeCard } = cardSlice.actions;
 export const cardReducer = cardSlice.reducer;

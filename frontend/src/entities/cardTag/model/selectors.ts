@@ -1,8 +1,8 @@
 import {RootState} from "../../../app/store";
 import {getItemById, getItems, getItemsByEntityIds} from "../../../shared";
 
-export const selectModuleState = (state: RootState) => state.module.modules;
+export const selectCardTagState = (state: RootState) => state.cardTag.cardTags;
 
-export const selectAllModules = getItems(selectModuleState);
-export const selectModuleById = (id: number) => getItemById(selectModuleState, id);
-export const selectModulesByGroupId = (id: number[]) => getItemsByEntityIds(selectModuleState, id);
+export const selectAllCardTags = getItems(selectCardTagState);
+// export const selectModuleById = (id: number) => getItemById(selectCardTagState, id);
+// export const selectModulesByGroupId = (id: number[]) => getItemsByEntityIds(selectCardTagState, id);

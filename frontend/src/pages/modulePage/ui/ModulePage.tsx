@@ -1,12 +1,14 @@
 import {Section} from "../../../widgets";
 import {Button, CardList, Tabs} from "../../../shared";
 import {ModuleManager, TrainModeList} from "../../../features";
-import {selectCardsByGroupId, selectModuleById, TermCard} from "../../../entities";
+import {selectModulesByGroupId, selectModuleById, TermCard, selectCardsByTagId, CardWithTags} from "../../../entities";
 import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../app/store";
 import {getRelatedIdsByEntityId} from "../../../shared/lib/getItemIdsByEntityId";
-import React from "react";
+import React, {useMemo} from "react";
+import {selectAllTags} from "../../../entities/tag/model/selectors";
+import {selectAllCardTags} from "../../../entities/cardTag/model/selectors";
 
 
 export const ModulePage = () => {
@@ -17,7 +19,31 @@ export const ModulePage = () => {
 
     const moduleCard = useSelector((state: RootState) => state.moduleCard.moduleCards);
     const cardIds = getRelatedIdsByEntityId(moduleId, moduleCard, 'module_id', 'card_id');
-    const termCards = useSelector(selectCardsByGroupId(cardIds))
+    const termCards = useSelector(selectCardsByTagId(cardIds))
+
+    const tags = useSelector(selectAllTags);
+    const cardTags = useSelector(selectAllCardTags);
+
+    const cardsWithTags: CardWithTags[] = termCards.map((card) => {
+        const relatedTagIds = cardTags
+            .filter(ct => ct.card_id === card.id)
+            .map(ct => ct.tag_id);
+
+        const cardTagsList = tags.filter(tag => relatedTagIds.includes(tag.id));
+
+        return {
+            ...card,
+            tags: cardTagsList,
+        };
+    });
+
+    const moduleInfo = useMemo(() => {
+        return {
+            id: module.id,
+            name: module.name,
+            selectedCardIds: cardIds,
+        };
+    }, [module]);
 
     return (
         <div>
@@ -25,10 +51,7 @@ export const ModulePage = () => {
                 closeModal={() => setIsOpenModuleManager(false)}
                 isOpen={isOpenModuleManager}
                 mode={'edit'}
-                item={{
-                    name: module.name,
-                    selectedCardIds: cardIds
-                }}
+                item={moduleInfo}
             />
             <Section
                 title={module.name}
@@ -42,8 +65,8 @@ export const ModulePage = () => {
                         <>
                             <TrainModeList/>
                             <CardList
-                                items={termCards}
-                                renderItem={card => <TermCard card={card}/>}
+                                items={cardsWithTags}
+                                renderItem={cardsWithTags => <TermCard card={cardsWithTags}/>}
                             />
                         </>,
                         <>

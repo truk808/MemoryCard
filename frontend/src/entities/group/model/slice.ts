@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
+
 export interface Group {
     id: number;
     user_id: number;
@@ -79,9 +80,20 @@ export const groupSlice = createSlice({
     name: 'group',
     initialState,
     reducers: {
-
+        addGroup(state, action) {
+            state.groups.push(action.payload);
+        },
+        changeGroup(state, action) {
+            const index = state.groups.findIndex(g => g.id === action.payload.id);
+            if (index !== -1) {
+                state.groups[index] = action.payload;
+            }
+        },
+        removeGroup(state, action) {
+            state.groups.filter((group) => group.id === action.payload.id);
+        }
     },
 });
 
-export const { } = groupSlice.actions;
+export const {addGroup, changeGroup, removeGroup} = groupSlice.actions;
 export const groupReducer = groupSlice.reducer;

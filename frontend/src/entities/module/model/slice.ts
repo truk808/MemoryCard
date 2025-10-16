@@ -101,9 +101,20 @@ export const moduleSlice = createSlice({
     name: 'module',
     initialState,
     reducers: {
-
+        addModule(state, action) {
+            state.modules.push(action.payload);
+        },
+        changeModule(state, action) {
+            const index = state.modules.findIndex(g => g.id === action.payload.id);
+            if (index !== -1) {
+                state.modules[index] = action.payload;
+            }
+        },
+        removeModule(state, action) {
+            state.modules.filter((group) => group.id === action.payload.id);
+        }
     },
 });
 
-export const { } = moduleSlice.actions;
+export const { addModule, removeModule, changeModule } = moduleSlice.actions;
 export const moduleReducer = moduleSlice.reducer;

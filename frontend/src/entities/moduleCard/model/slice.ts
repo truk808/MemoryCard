@@ -98,8 +98,18 @@ const initialState: ModuleCardState = {
 const moduleCardSlice = createSlice({
     name: "moduleCard",
     initialState,
-    reducers: {}
+    reducers: {
+        addModuleCard: (state, action) => {
+            state.moduleCards.push(action.payload);
+        },
+        removeModuleCard(state, action) {
+            state.moduleCards = state.moduleCards.filter((groupModule) => groupModule.id === action.payload.id);
+        },
+        removeAllByModuleId(state, action) {
+            state.moduleCards = state.moduleCards.filter((groupModule) => groupModule.module_id === action.payload.module_id);
+        }
+    }
 })
 
-export const {} = moduleCardSlice
+export const {removeAllByModuleId, removeModuleCard, addModuleCard} = moduleCardSlice.actions;
 export const moduleCardReducer = moduleCardSlice.reducer

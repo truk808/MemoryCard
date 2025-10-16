@@ -13,6 +13,9 @@ export * from './module/model/selectors'
 
 export {useTermCardSelector} from './card/model/hooks/useCustomSelector'
 export type {Card} from './card/model/slice'
+export type {CardWithTags} from './card/model/types'
 export * from './group/model/selectors'
 export {TermCard} from './card/ui/termCard/TermCard'
 export * from './card/model/selectors'
+
+export type {Tag} from './tag/model/slice'

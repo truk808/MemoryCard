@@ -204,9 +204,17 @@ export const cardTagSlice = createSlice({
     name: 'cardTag',
     initialState,
     reducers: {
-
+        addCardTag: (state, action) => {
+            state.cardTags.push(action.payload);
+        },
+        removeCardTag(state, action) {
+            state.cardTags = state.cardTags.filter((cardTag) => cardTag.id === action.payload.id);
+        },
+        removeAllByCardId(state, action) {
+            state.cardTags = state.cardTags.filter((cardTag) => cardTag.card_id === action.payload.card_id);
+        }
     },
 });
 
-export const { } = cardTagSlice.actions;
+export const { addCardTag, removeCardTag, removeAllByCardId } = cardTagSlice.actions;
 export const cardTagReducer = cardTagSlice.reducer;

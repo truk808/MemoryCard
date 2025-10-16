@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-export interface GroupModule extends Record<string, number>{
+export interface GroupModule extends Record<string, number> {
     id: number;
     group_id: number;
     module_id: number;
@@ -34,9 +34,17 @@ const groupModuleSlice = createSlice({
     name: "groupModule",
     initialState,
     reducers: {
-
+        addGroupModule: (state, action) => {
+            state.groupModules.push(action.payload);
+        },
+        removeGroupModule(state, action) {
+            state.groupModules = state.groupModules.filter((groupModule) => groupModule.id === action.payload.id);
+        },
+        removeAllByGroupId(state, action) {
+            state.groupModules = state.groupModules.filter((groupModule) => groupModule.group_id === action.payload.group_id);
+        }
     }
 })
 
-export const { } = groupModuleSlice;
+export const {addGroupModule, removeGroupModule, removeAllByGroupId} = groupModuleSlice.actions;
 export const groupModuleReducer = groupModuleSlice.reducer;

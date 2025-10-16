@@ -2,9 +2,12 @@ import React, {FC} from 'react';
 import styles from './TermCard.module.scss'
 import {Card} from '../../model/slice'
 import {Tooltip, TruncatedText} from "../../../../shared";
+import {Tag} from "../../../tag/model/slice";
+import {TagBadge} from "../../../tag/ui/tag/Tag";
+import {CardWithTags} from "../../model/types";
 
 interface CardProps {
-    card: Card
+    card: CardWithTags;
 }
 
 export const TermCard: FC<CardProps> = ({card}) => {
@@ -24,9 +27,7 @@ export const TermCard: FC<CardProps> = ({card}) => {
             </div>
             <div className={styles.tagList}>
                 {card.tags.map(tag => (
-                    <p className={styles.tag}>
-                        {tag}
-                    </p>
+                    <TagBadge tag={tag} />
                 ))}
             </div>
         </div>

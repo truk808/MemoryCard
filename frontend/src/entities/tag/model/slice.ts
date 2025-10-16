@@ -54,9 +54,20 @@ export const tagSlice = createSlice({
     name: 'tag',
     initialState,
     reducers: {
-
+        addTag(state, action) {
+            state.tags.push(action.payload);
+        },
+        changeTag(state, action) {
+            const index = state.tags.findIndex(tag => tag.id === action.payload.id);
+            if (index !== -1) {
+                state.tags[index] = action.payload;
+            }
+        },
+        removeTag(state, action) {
+            state.tags.filter((tag) => tag.id === action.payload.id);
+        }
     },
 });
 
-export const { } = tagSlice.actions;
+export const { addTag, removeTag, changeTag } = tagSlice.actions;
 export const tagReducer = tagSlice.reducer;

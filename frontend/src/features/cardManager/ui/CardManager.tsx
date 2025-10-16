@@ -1,16 +1,18 @@
 import React, {FC} from 'react';
 import {BaseManagerProps, FormModalLayout, Input} from "../../../shared";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useItemForm} from "../../../shared/hooks/useItemForm";
 import styles from "../../groupManager/ui/GroupManager.module.scss";
 import TextArea from "../../../shared/ui/textArea/TextArea";
 import {SelectEntityList} from "../../selectEntityList/ui/SelectEntityList";
 import {selectAllTags} from "../../../entities/tag/model/selectors";
+import {Card, Module} from "../../../entities";
+import {addModule, changeModule} from "../../../entities/module/model/slice";
+import {addModuleCard, removeAllByModuleId} from "../../../entities/moduleCard/model/slice";
+import {addCard} from "../../../entities/card/model/slice";
+import {addCardTag} from "../../../entities/cardTag/model/slice";
 
-interface CardForm {
-    name: string;
-    description: string;
-    sentence: string;
+type CardForm = Partial<Pick<Card, 'id' | 'name' | 'description' | 'level' | 'sentence'>> & {
     selectedTagIds: number[];
 }
 
@@ -26,21 +28,53 @@ export const CardManager: FC<BaseManagerProps<CardForm>> = ({
                                                                 closeModal,
                                                                 mode,
                                                                 item,
+
                                                             }) => {
-    const isEditCard = mode === 'edit';
+    const dispatchCard= useDispatch()
     const tags = useSelector(selectAllTags);
+    const isEditCard = mode === 'edit';
 
     const {form, handleChange, resetForm} = useItemForm<CardForm>(
         initCardForm && item ? item : initCardForm
     );
 
     function handleSubmit() {
-        if (isEditCard) {
-            console.log('Редактировать:', form);
-        } else {
-            console.log('Создать:', form);
+        const now = new Date().toISOString();
+        const card: Card = {
+            id: isEditCard && item?.id ? item.id : Date.now(),
+            user_id: 1,
+            name: form.name ?? '',
+            description: form.description ?? '',
+            sentence: form.sentence ?? '',
+            level: isEditCard && item?.level ? item?.level : 0,
+            create_at: now,
         }
-        resetForm();
+
+        if (isEditCard) {
+            // dispatchModule(changeModule(module));
+            // dispatchModuleCard(removeAllByModuleId(module.id));
+            // form.selectedCardIds.forEach(id => {
+            //     dispatchModuleCard(
+            //         addModuleCard({
+            //             id: Date.now() + id,
+            //             module_id: module.id,
+            //             card_id: id,
+            //         })
+            //     )
+            // })
+        } else {
+            dispatchCard(addCard(card));
+            form.selectedTagIds.forEach(id => {
+                dispatchCard(
+                    addCardTag({
+                        id: Date.now() + id,
+                        card_id: card.id,
+                        tag_id: id,
+                    })
+                )
+            })
+        }
+        // resetForm();
         // closeModal();
     }
 

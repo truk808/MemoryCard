@@ -5,4 +5,4 @@ export const selectCardState = (state: RootState) => state.card.cards;
 
 export const selectAllCards = getItems(selectCardState);
 export const selectCardById = (id: number) => getItemById(selectCardState, id);
-export const selectCardsByGroupId = (id: number[]) => getItemsByEntityIds(selectCardState, id);
+export const selectCardsByTagId = (id: number[]) => getItemsByEntityIds(selectCardState, id);

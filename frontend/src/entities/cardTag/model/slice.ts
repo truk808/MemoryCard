@@ -208,13 +208,18 @@ export const cardTagSlice = createSlice({
             state.cardTags.push(action.payload);
         },
         removeCardTag(state, action) {
-            state.cardTags = state.cardTags.filter((cardTag) => cardTag.id === action.payload.id);
+            state.cardTags = state.cardTags.filter((cardTag) =>
+                !(cardTag.card_id === action.payload.card_id && cardTag.id === action.payload.tag_id)
+            );
         },
-        removeAllByCardId(state, action) {
-            state.cardTags = state.cardTags.filter((cardTag) => cardTag.card_id === action.payload.card_id);
+        removeAllTagsByCardId(state, action) {
+            state.cardTags = state.cardTags.filter((cardTag) =>
+                cardTag.card_id !== action.payload.id
+            );
+            console.log(action.payload, state.cardTags);
         }
     },
 });
 
-export const { addCardTag, removeCardTag, removeAllByCardId } = cardTagSlice.actions;
+export const { addCardTag, removeCardTag, removeAllTagsByCardId } = cardTagSlice.actions;
 export const cardTagReducer = cardTagSlice.reducer;

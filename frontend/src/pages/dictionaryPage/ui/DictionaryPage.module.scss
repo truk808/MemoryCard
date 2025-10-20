@@ -1,3 +1,5 @@
+@import '../../../shared/styles/variables';
+
 .dictionaryPage {
   display: flex;
   column-gap: 16px;
@@ -15,4 +17,12 @@
   background-color: #a0a0a0;
   width: 500px;
   height: 650px;
+}
+
+.search {
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: $box-shadow;
+  background-color: var(--main-color-default);
+  max-width: 50%;
 }

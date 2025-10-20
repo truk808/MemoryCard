@@ -43,7 +43,7 @@ export function SelectEntityList<T>({
                                 title={getItemName(item)}
                                 key={index}
                                 onClick={() => onToggle(getItemId(item))}
-                                checked={selectedIds.includes(getItemId(item))}
+                                checked={selectedIds && selectedIds.includes(getItemId(item))}
                             />
                         ))
                         :

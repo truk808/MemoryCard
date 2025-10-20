@@ -7,3 +7,5 @@ export const ABOUT_ROUTE = '/about'
 export const GROUP_ROUTE = '/group'
 export const MODULE_ROUTE = '/module'
 export const CARD_ROUTE = '/termCard'
+export const TRAINING_ROUTE = '/training'
+

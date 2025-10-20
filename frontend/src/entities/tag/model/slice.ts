@@ -64,7 +64,7 @@ export const tagSlice = createSlice({
             }
         },
         removeTag(state, action) {
-            state.tags.filter((tag) => tag.id === action.payload.id);
+            state.tags = state.tags.filter((tag) => tag.id !== action.payload.id);
         }
     },
 });

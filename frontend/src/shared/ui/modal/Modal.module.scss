@@ -11,6 +11,7 @@
   transition: 0.5s;
   pointer-events: none;
   opacity: 0;
+  z-index: 1000;
 }
 
 .modal.active {
@@ -21,12 +22,11 @@
 .modalContent {
   background-color: var(--body-background-default);
   max-height: 90vh;
-  max-width: 30wh;
-  position: absolute;
-  z-index: -1;
+  max-width: 30vw;
+  position: relative;
+  z-index: 1001;
   padding: 24px;
   border-radius: 4px;
-
   transform: scale(0.5);
   transition: 0.4s all;
 }

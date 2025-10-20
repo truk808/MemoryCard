@@ -6,7 +6,7 @@ export const FilterBar = () => {
     return (
         <div className={styles.filterBar}>
             {/*<Search/>*/}
-            <Sort/>
+            {/*<Sort/>*/}
         </div>
     );
 };

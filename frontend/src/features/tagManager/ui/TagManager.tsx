@@ -1,11 +1,15 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useMemo} from 'react';
 import styles from './TagManager.module.scss'
 import {BaseManagerProps, FormModalLayout, Input} from "../../../shared";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectAllTags} from "../../../entities/tag/model/selectors";
 import {useItemForm} from "../../../shared/hooks/useItemForm";
+import {Group, Tag} from "../../../entities";
+import {addGroup, changeGroup} from "../../../entities/group/model/slice";
+import {addGroupModule, removeAllByGroupId} from "../../../entities/groupModule/model/slice";
+import {addTag, removeTag} from "../../../entities/tag/model/slice";
 
-interface CardForm {
+type TagForm = Partial<Pick<Tag, 'id' | 'name'>> & {
     name: string;
 }
 
@@ -13,27 +17,50 @@ const initCardForm = {
     name: '',
 }
 
-export const TagManager: FC<BaseManagerProps<CardForm>> = ({
+export const TagManager: FC<BaseManagerProps<TagForm>> = ({
                                                                isOpen = false,
                                                                closeModal,
                                                                mode,
                                                                item,
                                                            }) => {
-    const isEditTag = mode === 'edit';
     const tags = useSelector(selectAllTags);
 
-    const {form, handleChange, resetForm} = useItemForm<CardForm>(
+    useEffect(() => {
+        console.log(tags)
+    }, [tags]);
+
+    const dispatchTag = useDispatch()
+    const isEditTag = mode === 'edit';
+
+    const {form, handleChange, resetForm} = useItemForm<TagForm>(
         initCardForm && item ? item : initCardForm
     );
 
     function handleSubmit() {
-        if (isEditTag) {
-            console.log('Редактировать:', form);
-        } else {
-            console.log('Создать:', form);
+
+        const tag: Tag= {
+            id: isEditTag && item?.id ? item.id : Date.now(),
+            user_id: 1,
+            name: `#${form.name}` ?? '',
         }
-        resetForm();
-        // closeModal();
+
+
+        if (isEditTag) {
+            // dispatchGroup(changeGroup(group));
+            //
+            // dispatchGroupModule(removeAllByGroupId(item?.id));
+            // form.selectedModuleIds.forEach(id => {
+            //     dispatchGroupModule(
+            //         addGroupModule({
+            //             id: Date.now() + id,
+            //             group_id: group.id,
+            //             module_id: id,
+            //         })
+            //     )
+            // })
+        } else {
+            dispatchTag(addTag(tag));
+        }
     }
 
     return (
@@ -58,6 +85,7 @@ export const TagManager: FC<BaseManagerProps<CardForm>> = ({
                             <p> {tag.name} </p>
                             <p
                                 onClick={() => {
+                                    dispatchTag(removeTag(tag));
                                 }}
                                 className={styles.delete}
                             >

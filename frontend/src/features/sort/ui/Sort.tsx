@@ -1,12 +1,21 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from './Sort.module.scss'
 
 const sortItem = ['алфавиту', 'созданию']
 
-export const Sort = () => {
+interface SortProps<T> {
+    items: T[]
+    setSortItems: (items: T[]) => void
+    filter: (item: T, value: string) => boolean
+    // value
+}
+
+export function Sort<T> ({items, setSortItems, filter}: SortProps<T> ){
     const [sortActive, setSortActive] = React.useState<string>('')
 
-    function handleSortChange (sortItem: string) {
+    function handleSortChange(sortItem: string) {
+        const newItems = items.filter(item => filter(item, sortActive))
+        setSortItems(newItems)
         if (sortActive === sortItem) {
             setSortActive('')
         } else {

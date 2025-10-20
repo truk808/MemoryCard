@@ -66,7 +66,7 @@ export const ModulePage = () => {
                             <TrainModeList/>
                             <CardList
                                 items={cardsWithTags}
-                                renderItem={cardsWithTags => <TermCard card={cardsWithTags}/>}
+                                renderItem={cardsWithTags => <TermCard onEdit={() => {}} onDelete={() => {} } card={cardsWithTags}/>}
                             />
                         </>,
                         <>

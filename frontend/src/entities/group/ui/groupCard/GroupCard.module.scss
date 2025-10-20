@@ -44,3 +44,31 @@
   font-size: 22px;
   font-weight: 500;
 }
+
+.info {
+  margin-left: auto;
+  display: flex;
+  column-gap: 10px;
+  //flex-direction: column;
+}
+
+.rating_additions {
+  //display: flex;
+  //flex-direction: column;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.additions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.node {
+  display: none;
+}

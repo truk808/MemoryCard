@@ -11,7 +11,7 @@ import {addGroupModule, removeAllByGroupId} from "../../../entities/groupModule/
 
 const photo = '/cat.png'
 
-export type GroupForm = Partial<Pick<Group, 'id' | 'name' | 'description'>> & {
+export type GroupForm = Partial<Pick<Group, 'id' | 'name' | 'description' | 'module_quantity'>> & {
     selectedModuleIds: number[];
 };
 
@@ -43,6 +43,7 @@ export const GroupManager: FC<BaseManagerProps<GroupForm>> = ({
             user_id: 1,
             name: form.name ?? '',
             img: photo,
+            module_quantity: isEditGroup && item?.module_quantity ? item?.module_quantity : 0,
             description: form.description ?? '',
             create_at: now,
         }

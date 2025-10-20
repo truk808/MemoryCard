@@ -1,22 +1,22 @@
-import React, {use, useEffect} from 'react';
+import React, {useMemo} from 'react';
 import styles from './DictionaryPage.module.scss'
 import {Section} from "../../../widgets";
 import {Button, CardList} from "../../../shared";
-import {Card, CardWithTags, selectAllCards, selectCardsByTagId, Tag, TermCard} from "../../../entities";
-import {CardManager} from "../../../features";
-import { useSelector} from "react-redux";
+import {CardWithTags, selectAllCards, TermCard} from "../../../entities";
+import {CardManager, Search} from "../../../features";
+import {useSelector} from "react-redux";
 import {TagManager} from "../../../features/tagManager/ui/TagManager";
-import {selectAllTags, selectTagsByCardId} from "../../../entities/tag/model/selectors";
-import {CardTag} from "../../../entities/cardTag/model/slice";
+import {selectAllTags} from "../../../entities/tag/model/selectors";
 import {selectAllCardTags} from "../../../entities/cardTag/model/selectors";
 
 export const DictionaryPage = () => {
-    const [isOpenModuleManager, setIsOpenModuleManager] = React.useState(false);
+    const [isOpenCardManager, setIsOpenCardManager] = React.useState(false);
     const [isOpenTagManager, setIsOpenTagManager] = React.useState(false);
 
     const termCards = useSelector(selectAllCards);
     const tags = useSelector(selectAllTags);
     const cardTags = useSelector(selectAllCardTags);
+
 
     const cardsWithTags: CardWithTags[] = termCards.map((card) => {
         const relatedTagIds = cardTags
@@ -31,7 +31,22 @@ export const DictionaryPage = () => {
         };
     });
 
+    const [searchCards, setSearchCards] = React.useState(cardsWithTags);
     // const cardTags = useSelector(selectCardsByTagId());
+
+
+    // Редактирование карты
+    const [editCard, setEditCard] = React.useState<CardWithTags | undefined>(undefined);
+
+    const editCardInfo = useMemo(() => {
+        return {
+            id: editCard?.id,
+            name: editCard?.name,
+            description: editCard?.description,
+            sentence: editCard?.sentence,
+            selectedTagIds: editCard?.tags.map(tag => tag.id),
+        }
+    }, [editCard]);
 
     return (
         <div className={styles.dictionaryPage}>
@@ -41,35 +56,61 @@ export const DictionaryPage = () => {
                 closeModal={() => setIsOpenTagManager(false)}
             />
             <CardManager
-                mode={'create'}
-                isOpen={isOpenModuleManager}
-                closeModal={() => setIsOpenModuleManager(false)}
+                mode={editCard === undefined ? 'create' : 'edit'}
+                item={editCard === undefined ? undefined : editCardInfo}
+                isOpen={isOpenCardManager}
+                closeModal={
+                    () => {
+                        setIsOpenCardManager(false);
+                        setEditCard(undefined);
+                    }
+                }
             />
             <div className={styles.content}>
-                {/*<Search/>*/}
                 <Section
                     title={'Словарь'}
                     features={
                         [
                             <Button
                                 color={'blue'}
-                                onClick={() => {setIsOpenTagManager(true)}}
+                                onClick={() => {
+                                    setIsOpenTagManager(true)
+                                }}
                             >
                                 Тег
                             </Button>,
                             <Button
                                 color={'blue'}
-                                onClick={() => {setIsOpenModuleManager(true)}}
+                                onClick={() => {
+                                    setIsOpenCardManager(true)
+                                }}
                             >
                                 Добавить карточку
                             </Button>,
                         ]
                     }
                 >
+                    <div className={styles.search}>
+                        <Search
+                            items={cardsWithTags}
+                            setSearchItems={setSearchCards}
+                            filter={(item, value) =>
+                                item.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+                            }
+                        />
+                    </div>
                     <CardList
-                        items={cardsWithTags}
+                        items={cardsWithTags} // Пофиксить
                         renderItem={(cardsWithTag) => {
-                            return <TermCard card={cardsWithTag} />;
+                            return <TermCard
+                                onEdit={() => {
+                                    setEditCard(cardsWithTag);
+                                    setIsOpenCardManager(true)
+                                }}
+                                onDelete={() => {
+                                }}
+                                card={cardsWithTag}
+                            />;
                         }}
                     />
                 </Section>

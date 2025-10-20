@@ -42,6 +42,7 @@ const groupModuleSlice = createSlice({
         },
         removeAllByGroupId(state, action) {
             state.groupModules = state.groupModules.filter((groupModule) => groupModule.group_id === action.payload.group_id);
+
         }
     }
 })

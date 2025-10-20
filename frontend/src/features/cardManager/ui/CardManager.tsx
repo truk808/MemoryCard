@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {BaseManagerProps, FormModalLayout, Input} from "../../../shared";
 import {useDispatch, useSelector} from "react-redux";
 import {useItemForm} from "../../../shared/hooks/useItemForm";
@@ -6,15 +6,18 @@ import styles from "../../groupManager/ui/GroupManager.module.scss";
 import TextArea from "../../../shared/ui/textArea/TextArea";
 import {SelectEntityList} from "../../selectEntityList/ui/SelectEntityList";
 import {selectAllTags} from "../../../entities/tag/model/selectors";
-import {Card, Module} from "../../../entities";
-import {addModule, changeModule} from "../../../entities/module/model/slice";
-import {addModuleCard, removeAllByModuleId} from "../../../entities/moduleCard/model/slice";
-import {addCard} from "../../../entities/card/model/slice";
-import {addCardTag} from "../../../entities/cardTag/model/slice";
+import {Card} from "../../../entities";
+import {addCard, changeCard} from "../../../entities/card/model/slice";
+import {addCardTag, removeAllTagsByCardId} from "../../../entities/cardTag/model/slice";
 
 type CardForm = Partial<Pick<Card, 'id' | 'name' | 'description' | 'level' | 'sentence'>> & {
     selectedTagIds: number[];
 }
+
+interface CardManagerProps extends BaseManagerProps<CardForm> {
+    item?: any;
+}
+
 
 const initCardForm = {
     name: '',
@@ -23,14 +26,35 @@ const initCardForm = {
     selectedTagIds: []
 }
 
-export const CardManager: FC<BaseManagerProps<CardForm>> = ({
-                                                                isOpen = false,
-                                                                closeModal,
-                                                                mode,
-                                                                item,
+export const CardManager: FC<CardManagerProps> = ({
+                                                      isOpen = false,
+                                                      closeModal,
+                                                      mode,
+                                                      item,
 
-                                                            }) => {
-    const dispatchCard= useDispatch()
+                                                  }) => {
+
+    useEffect(() => {
+        if (!isOpen) {
+            resetForm();
+        }
+    }, [isOpen]);
+
+    useEffect(() => {
+        if (item) {
+            console.log(item);
+            handleChange('name', item.name);
+            handleChange('sentence', item.sentence);
+            handleChange('description', item.description);
+            handleChange('selectedTagIds', item.selectedTagIds);
+            console.log('selectedTagIds ', item.selectedTagIds)
+        }
+
+    }, [item]);
+
+    const dispatchCard = useDispatch()
+    const dispatchCardTag = useDispatch()
+
     const tags = useSelector(selectAllTags);
     const isEditCard = mode === 'edit';
 
@@ -50,18 +74,21 @@ export const CardManager: FC<BaseManagerProps<CardForm>> = ({
             create_at: now,
         }
 
+
         if (isEditCard) {
-            // dispatchModule(changeModule(module));
-            // dispatchModuleCard(removeAllByModuleId(module.id));
-            // form.selectedCardIds.forEach(id => {
-            //     dispatchModuleCard(
-            //         addModuleCard({
-            //             id: Date.now() + id,
-            //             module_id: module.id,
-            //             card_id: id,
-            //         })
-            //     )
-            // })
+            dispatchCard(changeCard(card));
+
+            dispatchCardTag(removeAllTagsByCardId(card));
+
+            form.selectedTagIds.forEach(id => {
+                dispatchCardTag(addCardTag({
+                    id: Date.now() + id,
+                    card_id: card.id,
+                    tag_id: id
+                }));
+            });
+
+
         } else {
             dispatchCard(addCard(card));
             form.selectedTagIds.forEach(id => {

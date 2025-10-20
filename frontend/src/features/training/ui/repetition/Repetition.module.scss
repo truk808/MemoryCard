@@ -1,0 +1,54 @@
+@import '../../../../shared/styles/variables';
+
+.repetition {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 600px;
+  background-color: var(--main-color-default);
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}
+
+.helper {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.title {
+  color: var(--text-color-default);
+  text-align: center;
+  font-size: 48px;
+  font-weight: 600;
+}
+
+
+.arrowsContainer {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+
+.arrowLeft,
+.arrowRight {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}

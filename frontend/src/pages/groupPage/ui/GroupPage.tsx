@@ -3,7 +3,7 @@ import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {Section} from "../../../widgets";
 import {Button, CardList, Tabs} from "../../../shared";
-import {GroupManager, TrainModeList} from "../../../features";
+import {GroupManager, LinearGraph, PerformanceList, TrainingTable, TrainModeList} from "../../../features";
 import {ModuleCard, selectGroupById, selectModulesByGroupId,} from "../../../entities";
 import {RootState} from "../../../app/store";
 import {getRelatedIdsByEntityId} from "../../../shared/lib/getItemIdsByEntityId";
@@ -53,7 +53,17 @@ export const GroupPage = () => {
                             />
                         </>,
                         <>
-                            <div>Здесь пусто!</div>
+                            <LinearGraph />
+                            <div style={{    // Переделать
+                                margin: '65px 0',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                gap: '70px'
+                            }}>
+                                <PerformanceList />
+                                <PerformanceList />
+                            </div>
+                            <TrainingTable />
                         </>,
                         <>
                             <div>Здесь что!</div>

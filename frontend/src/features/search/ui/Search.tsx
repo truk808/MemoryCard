@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import styles from './Search.module.scss'
 import {GlobalSvgSelector, Input} from "../../../shared";
 
@@ -9,15 +9,21 @@ interface SearchProps<T> {
     mode?: 'default' | 'compact'
 }
 
-export function Search<T>({items, setSearchItems, mode='default', filter}: SearchProps<T>) {
+export function Search<T>({items, setSearchItems, mode = 'default', filter}: SearchProps<T>) {
     const [value, setValue] = React.useState<string>('');
     const isDefault = mode === 'default';
 
     function handleChange(value: string) {
-        const searchItems = items.filter(item => filter(item, value));
-        setSearchItems(searchItems)
+        if (value === '') {
+            setSearchItems(items)
+        } else {
+            const searchItems = items.filter(item => filter(item, value));
+            setSearchItems(searchItems)
+        }
         setValue(value);
+
     }
+
 
     return (
         <div className={styles.search}>

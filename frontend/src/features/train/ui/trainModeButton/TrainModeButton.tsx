@@ -3,7 +3,7 @@ import styles from './TrainModeButton.module.scss'
 import {TrainSvgSelector} from "../../../../shared";
 
 interface TrainModeButtonProps {
-    typeTrainMode: "repetition" | "memorization" | "test" | "pair"
+    typeTrainMode: "repetition" | "memorization" | "test" | "match"
     children?: React.ReactNode
 }
 

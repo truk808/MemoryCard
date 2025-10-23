@@ -4,9 +4,10 @@ import {Group} from "../../model/slice";
 import {NavLink} from "react-router-dom";
 import {GlobalSvgSelector, GROUP_ROUTE} from "../../../../shared";
 import {GroupWithPublication} from "../../model/types";
+import {Publication} from "../../../publication/model/slice";
 
 type GroupCardProps = {
-    group: Group | GroupWithPublication;
+    group: Group | Publication;
     variant?: "default" | "publication";
 }
 
@@ -28,7 +29,7 @@ export const GroupCard: FC<GroupCardProps> = ({group, variant='default'}) => {
                         <div className={styles.nickname_moduleQuantity}>
                             <p className={styles.nickname}>
                                 {isPublication && "nickname" in group && (
-                                    <p className={styles.nickname}>{group.nickname} rerrrr</p>
+                                    <p className={styles.nickname}>{group.nickname}</p>
                                 )}
                             </p>
                             <p className={styles.moduleQuantity}>
@@ -36,23 +37,23 @@ export const GroupCard: FC<GroupCardProps> = ({group, variant='default'}) => {
                             </p>
                         </div>
                         <div className={styles.rating_additions}>
-                            {isPublication && "rating" in group && (
+                            {isPublication && "rating_avg" in group && (
                                 <div className={styles.rating}>
                                     <div className={styles.icon}>
                                         <GlobalSvgSelector svgName={'star'}/>
                                     </div>
                                     <p>
-                                        {group.rating} 10
+                                        {group.rating_avg}
                                     </p>
                                 </div>
                             )}
-                            {isPublication && "additions" in group && (
+                            {isPublication && "additions_count" in group && (
                                 <div className={styles.additions}>
                                     <div className={styles.icon}>
                                         <GlobalSvgSelector svgName={'additions'}/>
                                     </div>
                                     <p>
-                                        {group.additions} 12111
+                                        {group.additions_count}
                                     </p>
                                 </div>
                             )}

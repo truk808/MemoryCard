@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {EntityType, Status} from "./type";
+import {Group} from "../../group/model/slice";
 
 
 export interface Publication {
+    id: number;
     publication_id: number,
     entity_type: EntityType,
     entity_id: number,
@@ -14,17 +16,27 @@ export interface Publication {
     rating_count: number,
     additions_count: number,
 
+    name: string;
+    img: any,
+    module_quantity: number;
+    description: string;
+    create_at: string;
 }
 
 interface PublicationState {
     publications: Publication[];
 }
 
-const photo = '/Frame'
+
+const photo1 = './d.png'
+const fakeGroup = {
+
+}
 
 const initialState: PublicationState = {
     publications: [
         {
+            id: 1,
             publication_id: 1,
             entity_type: 'group',
             entity_id: 10,
@@ -35,6 +47,107 @@ const initialState: PublicationState = {
             rating_avg: 10,
             rating_count: 2,
             additions_count: 2,
+
+            name: 'Испанский',
+            img: photo1,
+            module_quantity: 0,
+            description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            create_at: '2022-03-01',
+        },
+        {
+            id: 2,
+            publication_id: 1,
+            entity_type: 'group',
+            entity_id: 10,
+            user_id: 2,
+            nickname: 'samura_chinck',
+            status: 'published',
+            created_at: '2000-01-01',
+            rating_avg: 10,
+            rating_count: 2,
+            additions_count: 2,
+
+            name: 'Испанский',
+            img: photo1,
+            module_quantity: 0,
+            description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            create_at: '2022-03-01',
+        },
+        {
+            id: 3,
+            publication_id: 1,
+            entity_type: 'group',
+            entity_id: 10,
+            user_id: 2,
+            nickname: 'samura_chinck',
+            status: 'published',
+            created_at: '2000-01-01',
+            rating_avg: 10,
+            rating_count: 2,
+            additions_count: 2,
+
+            name: 'Испанский',
+            img: photo1,
+            module_quantity: 0,
+            description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            create_at: '2022-03-01',
+        },
+        {
+            id: 4,
+            publication_id: 1,
+            entity_type: 'group',
+            entity_id: 10,
+            user_id: 2,
+            nickname: 'samura_chinck',
+            status: 'published',
+            created_at: '2000-01-01',
+            rating_avg: 10,
+            rating_count: 2,
+            additions_count: 2,
+
+            name: 'Испанский',
+            img: photo1,
+            module_quantity: 0,
+            description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            create_at: '2022-03-01',
+        },
+        {
+            id: 5,
+            publication_id: 1,
+            entity_type: 'group',
+            entity_id: 10,
+            user_id: 2,
+            nickname: 'samura_chinck',
+            status: 'published',
+            created_at: '2000-01-01',
+            rating_avg: 10,
+            rating_count: 2,
+            additions_count: 2,
+
+            name: 'Испанский',
+            img: photo1,
+            module_quantity: 0,
+            description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            create_at: '2022-03-01',
+        },
+        {
+            id: 6,
+            publication_id: 1,
+            entity_type: 'group',
+            entity_id: 10,
+            user_id: 2,
+            nickname: 'samura_chinck',
+            status: 'published',
+            created_at: '2000-01-01',
+            rating_avg: 10,
+            rating_count: 2,
+            additions_count: 2,
+
+            name: 'Испанский',
+            img: photo1,
+            module_quantity: 0,
+            description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+            create_at: '2022-03-01',
         },
     ],
 };

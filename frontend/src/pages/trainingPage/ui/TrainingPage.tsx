@@ -35,7 +35,7 @@ export const TrainingPage = () => {
     switch (type) {
         case 'repetition':
             return <Repetition/>;
-        case 'memorize':
+        case 'memorization':
             return <Memorize/>;
         case 'test':
             return <Test/>;

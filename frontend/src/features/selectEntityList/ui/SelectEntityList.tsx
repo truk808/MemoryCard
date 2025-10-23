@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styles from './SelectEntityList.module.scss'
 import {CheckButton} from "../../../shared";
-import {Search} from "../../search/ui/Search";
+import {Search} from "../../../shared/ui/search/Search";
 
 interface SelectEntityListProps<T> {
     items: T[];
@@ -25,16 +25,22 @@ export function SelectEntityList<T>({
         setFilteredItems(items);
     }, [items]);
 
+    // const [searchValue, setSearchValue] = React.useState('');
+    // const filteredCards = React.useMemo(() => {
+    //     const normalized = searchValue.toLowerCase();
+    //     return items.filter(g => g.name.toLowerCase().includes(normalized));
+    // }, [items, searchValue]);
+
     return (
         <div className={styles.SelectEntityList}>
-            <Search
-                items={items}
-                setSearchItems={setFilteredItems}
-                filter={(item: T, value: string) =>
-                    getItemName(item).toLowerCase().includes(value.toLowerCase())
-                }
-                mode={'compact'}
-            />
+            {/*<Search*/}
+            {/*    items={items}*/}
+            {/*    setSearchItems={setFilteredItems}*/}
+            {/*    filter={(item: T, value: string) =>*/}
+            {/*        getItemName(item).toLowerCase().includes(value.toLowerCase())*/}
+            {/*    }*/}
+            {/*    mode={'compact'}*/}
+            {/*/>*/}
             <div className={styles.list}>
                 {
                     filteredItems.length !== 0 ?

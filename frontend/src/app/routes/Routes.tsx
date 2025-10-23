@@ -1,5 +1,14 @@
 import {MainPage, SocietyPage, DictionaryPage, GroupPage, ModulePage, TrainingPage} from "../../pages";
-import {DICTIONARY_ROUTES, GROUP_ROUTE, MAIN_ROUTES, MODULE_ROUTE, SOCIETY_ROUTES, TRAINING_ROUTE} from "../../shared";
+import {
+    DICTIONARY_ROUTES,
+    GROUP_ROUTE,
+    MAIN_ROUTES,
+    MODULE_ROUTE,
+    PROFILE_ROUTE,
+    SOCIETY_ROUTES,
+    TRAINING_ROUTE
+} from "../../shared";
+import ProfilePage from "../../pages/profilePage/ui/ProfilePage";
 
 export const routes = [
     {
@@ -33,5 +42,9 @@ export const routes = [
     {
         path: `${TRAINING_ROUTE}`,
         element: <TrainingPage/>,
+    },
+    {
+        path: `${PROFILE_ROUTE}`,
+        element: <ProfilePage/>,
     },
 ]

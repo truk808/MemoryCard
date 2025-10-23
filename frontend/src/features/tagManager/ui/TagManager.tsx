@@ -5,11 +5,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectAllTags} from "../../../entities/tag/model/selectors";
 import {useItemForm} from "../../../shared/hooks/useItemForm";
 import {Group, Tag} from "../../../entities";
-import {addGroup, changeGroup} from "../../../entities/group/model/slice";
-import {addGroupModule, removeAllByGroupId} from "../../../entities/groupModule/model/slice";
 import {addTag, removeTag} from "../../../entities/tag/model/slice";
+import {handleSubmit} from "../model/services";
 
-type TagForm = Partial<Pick<Tag, 'id' | 'name'>> & {
+export type TagForm = Partial<Pick<Tag, 'id' | 'name'>> & {
     name: string;
 }
 
@@ -24,51 +23,33 @@ export const TagManager: FC<BaseManagerProps<TagForm>> = ({
                                                                item,
                                                            }) => {
     const tags = useSelector(selectAllTags);
-
-    useEffect(() => {
-        console.log(tags)
-    }, [tags]);
-
-    const dispatchTag = useDispatch()
+    const dispatch = useDispatch()
     const isEditTag = mode === 'edit';
 
     const {form, handleChange, resetForm} = useItemForm<TagForm>(
         initCardForm && item ? item : initCardForm
     );
 
-    function handleSubmit() {
+    function onDelete (tag: Tag) {
+        dispatch(removeTag(tag));
+    };
 
-        const tag: Tag= {
-            id: isEditTag && item?.id ? item.id : Date.now(),
-            user_id: 1,
-            name: `#${form.name}` ?? '',
-        }
-
-
-        if (isEditTag) {
-            // dispatchGroup(changeGroup(group));
-            //
-            // dispatchGroupModule(removeAllByGroupId(item?.id));
-            // form.selectedModuleIds.forEach(id => {
-            //     dispatchGroupModule(
-            //         addGroupModule({
-            //             id: Date.now() + id,
-            //             group_id: group.id,
-            //             module_id: id,
-            //         })
-            //     )
-            // })
-        } else {
-            dispatchTag(addTag(tag));
-        }
+    function onSubmit() {
+        handleSubmit(dispatch, form, mode, item);
+        resetForm();
+        closeModal();
     }
+
+    useEffect(() => {
+        console.log(tags)
+    }, [tags]);
 
     return (
         <FormModalLayout
             title={isEditTag ? "Редактировать тэг" : "Создать тэг"}
             submitText={isEditTag ? "Редактировать" : "Создать"}
             isOpen={isOpen}
-            save={() => handleSubmit()}
+            save={() => onSubmit()}
             closeModal={closeModal}
         >
             <div className={styles.input}>
@@ -84,9 +65,7 @@ export const TagManager: FC<BaseManagerProps<TagForm>> = ({
                         <div className={styles.tagContainer}>
                             <p> {tag.name} </p>
                             <p
-                                onClick={() => {
-                                    dispatchTag(removeTag(tag));
-                                }}
+                                onClick={() => onDelete(tag)}
                                 className={styles.delete}
                             >
                                 удалить
@@ -94,9 +73,7 @@ export const TagManager: FC<BaseManagerProps<TagForm>> = ({
                         </div>
                     ))
                 }
-
             </div>
-
         </FormModalLayout>
     );
 };

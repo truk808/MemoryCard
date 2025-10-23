@@ -1,6 +1,6 @@
 import React, {FC, ReactNode} from 'react';
 import styles from './Section.module.scss'
-import {Button, CardList, GlobalSvgSelector} from "../../shared";
+import {Button, CardList, GlobalSvgSelector} from "../../index";
 
 interface SectionBlockProps {
     children: React.ReactNode;

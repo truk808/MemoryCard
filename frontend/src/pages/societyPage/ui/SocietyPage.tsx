@@ -1,10 +1,14 @@
 import React from 'react';
 import styles from './SocietyPage.module.scss'
 import {Section} from "../../../widgets";
-import {Tabs} from "../../../shared";
-import {Search} from "../../../features";
+import {CardList, Tabs} from "../../../shared";
+import {selectAllPublications, selectPublications} from "../../../entities/publication/model/selectors";
+import {useSelector} from "react-redux";
+import {GroupCard} from "../../../entities";
 
 export const SocietyPage = ({}) => {
+    const publications = useSelector(selectAllPublications);
+
 
 
     return (
@@ -17,10 +21,16 @@ export const SocietyPage = ({}) => {
                 <Tabs titles={['Популярные', 'Мои Группы']}>
                     {[
                         <div>
-                            {/*<Search />*/}
+                            <CardList
+                                items={publications}
+                                renderItem={(group) => <GroupCard group={group} variant={'publication'} />}
+                            />
                         </div>,
                         <div>
-
+                            <CardList
+                                items={publications}
+                                renderItem={(group) => <GroupCard group={group} variant={'publication'} />}
+                            />
                         </div>,
                     ]}
                 </Tabs>

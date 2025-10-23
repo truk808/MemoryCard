@@ -35,7 +35,7 @@ export const TrainSvgSelector = ({svgName}: SvgSelectorProps) => {
                             fill="black"/>
                     </svg>
                 );
-            case "pair":
+            case "match":
                 return (
                     <svg width="63" height="63" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_150_43)">

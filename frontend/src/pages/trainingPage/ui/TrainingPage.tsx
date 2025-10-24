@@ -1,49 +1,39 @@
-import React, {useEffect} from 'react';
-import {useSearchParams} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {selectAllCards} from "../../../entities";
-import {selectAllModuleCards} from "../../../entities/moduleCard/model/selectModuleCards";
-import {Match, Memorize, Repetition, Test} from "../../../features";
+import { useParams, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectCardById } from "../../../entities";
+import { TrainingSession } from "../../../features/training/ui/TrainingSession";
+import { Card } from "../../../entities";
 
-// /training?type=test&group=5&modules=12,14,18
+export function TrainingPage() {
+    const [loading, setLoading] = useState(true);
+    const [search] = useSearchParams();
 
-export const TrainingPage = () => {
-    const [params] = useSearchParams()
+    const type = search.get("type"); // repetition / memorization / test / match
+    const moduleIds = search.get("modules")?.split(",").map(Number) || [];
 
-    const type = params.get('type')
-    const groupId = params.get('group')
-    const moduleIds = params.get('modules')?.split(',')
-
-    // запрос на сервер за карточками
-    const termCards = useSelector(selectAllCards)
-    const cardModules = useSelector(selectAllModuleCards)
-
-    // moduleIds.forEach(id => {
-    //
-    // })
-
-    //
-
+    // временные данные (заглушка)
+    const cards: Card[] = [];
+    cards.push(useSelector(selectCardById(1))[0]);
+    cards.push(useSelector(selectCardById(2))[0]);
+    cards.push(useSelector(selectCardById(3))[0]);
+    cards.push(useSelector(selectCardById(4))[0]);
+    cards.push(useSelector(selectCardById(5))[0]);
+    cards.push(useSelector(selectCardById(6))[0]);
 
     useEffect(() => {
-        // params.forEach(par =>
-        //     console.log(par)
-        // )
-        console.log(moduleIds)
-    })
+        // (async () => {
+        //     const res = await fetch(`/api/training/init?type=${type}&modules=${moduleIds.join(",")}`);
+        //     const data = await res.json();
+        //     setCards(data.cards);
+        //     setLoading(false);
+        // })();
+        setLoading(false);
+    }, [type]);
 
-    switch (type) {
-        case 'repetition':
-            return <Repetition/>;
-        case 'memorization':
-            return <Memorize/>;
-        case 'test':
-            return <Test/>;
-        case 'match':
-            return <Match/>;
-        default:
-            return <div> нет TrainingPage </div>
-    }
+    if (loading) return <div>Loading...</div>;
 
+    if (!type) return <div>Ошибка: тип тренировки не указан</div>;
 
-};
+    return <TrainingSession type={type} cards={cards} moduleIds={moduleIds}/>;
+}

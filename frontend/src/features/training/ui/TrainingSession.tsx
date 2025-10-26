@@ -13,7 +13,7 @@ interface TrainingSessionProps {
     moduleIds: number[];
 }
 
-export const TrainingSession: FC<TrainingSessionProps> = ({type, cards, moduleIds}) => {
+export const  TrainingSession: FC<TrainingSessionProps> = ({type, cards, moduleIds}) => {
     const training = useTraining(cards, type, moduleIds);
     const [isModalOpen, setIsModalOpen] = useState(false);
 

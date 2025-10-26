@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useMemo} from 'react';
 import styles from './SelectEntityList.module.scss'
-import {CheckButton} from "../../../shared";
-import {Search} from "../../../shared/ui/search/Search";
+import {CheckButton, Search} from "../../../shared";
 
 interface SelectEntityListProps<T> {
     items: T[];
@@ -18,33 +17,24 @@ export function SelectEntityList<T>({
                                         getItemId,
                                         onToggle,
                                     }: SelectEntityListProps<T>) {
+    const [searchValue, setSearchValue] = React.useState('');
 
-    const [filteredItems, setFilteredItems] = useState<T[]>(items);
-
-    useEffect(() => {
-        setFilteredItems(items);
-    }, [items]);
-
-    // const [searchValue, setSearchValue] = React.useState('');
-    // const filteredCards = React.useMemo(() => {
-    //     const normalized = searchValue.toLowerCase();
-    //     return items.filter(g => g.name.toLowerCase().includes(normalized));
-    // }, [items, searchValue]);
+    const filteredModules = useMemo(() => {
+        const normalized = searchValue.toLowerCase();
+        return items.filter(module => getItemName(module).toLowerCase().includes(normalized));
+    }, [items, searchValue]);
 
     return (
         <div className={styles.SelectEntityList}>
-            {/*<Search*/}
-            {/*    items={items}*/}
-            {/*    setSearchItems={setFilteredItems}*/}
-            {/*    filter={(item: T, value: string) =>*/}
-            {/*        getItemName(item).toLowerCase().includes(value.toLowerCase())*/}
-            {/*    }*/}
-            {/*    mode={'compact'}*/}
-            {/*/>*/}
+            <Search
+                mode={'compact'}
+                value={searchValue}
+                onChange={setSearchValue}
+            />
             <div className={styles.list}>
                 {
-                    filteredItems.length !== 0 ?
-                        filteredItems.map((item, index) => (
+                    filteredModules.length !== 0 ?
+                        filteredModules.map((item, index) => (
                             <CheckButton
                                 title={getItemName(item)}
                                 key={index}

@@ -1,5 +1,5 @@
 import {useLocation} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectGroupById, selectModulesByGroupId} from "../../../../entities";
 import {RootState} from "../../../../app/store";
 import {getRelatedIdsByEntityId} from "../../../../shared/lib/getItemIdsByEntityId";
@@ -16,12 +16,14 @@ export function useGroupSectionLogic() {
     const [isOpenGroupManager, setIsOpenGroupManager] = React.useState(false);
 
     const groupInfo = useMemo(() => {
-        return {
-            id: group.id,
-            name: group.name,
-            description: group.description,
-            selectedModuleIds: moduleIds,
-        };
+        if (group) {
+            return {
+                id: group.id,
+                name: group.name,
+                description: group.description,
+                selectedModuleIds: moduleIds,
+            }
+        }
     }, [group, moduleIds]);
 
     return {

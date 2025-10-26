@@ -1,8 +1,16 @@
 import React from 'react';
 import {useGroupSectionLogic} from "../model/hooks/useGroupSectionLogic";
-import {GroupManager, LinearGraph, PerformanceList, TrainingTable, TrainModeList} from "../../../features";
+import {
+    GroupManager,
+    GroupRemoveButton,
+    LinearGraph,
+    PerformanceList,
+    TrainingTable,
+    TrainModeList
+} from "../../../features";
 import {ModuleCard} from "../../../entities";
-import {Button, CardList, Section, Tabs} from "../../../shared";
+import {Button, CardList, MAIN_ROUTES, Section, Tabs} from "../../../shared";
+import {NavLink} from "react-router-dom";
 
 export const GroupSection = () => {
     const {
@@ -15,6 +23,8 @@ export const GroupSection = () => {
         isOpenGroupManager,
         moduleIds,
     } = useGroupSectionLogic()
+
+    if (!group) return <div>Группа не найдена</div>;
 
     return (
         <div>
@@ -29,7 +39,9 @@ export const GroupSection = () => {
                 description={group.description}
                 features={[
                     <Button onClick={() => setIsOpenGroupManager(true)} color={'blue'}> Редактировать </Button>,
-                    <Button color={'red'}> Удалить </Button>,
+                    <NavLink to={MAIN_ROUTES}>
+                       <GroupRemoveButton groupId={groupId}/>
+                    </NavLink>,
                 ]}
             >
                 <Tabs titles={['Модули', 'статистика', 'что']}>

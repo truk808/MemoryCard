@@ -111,7 +111,7 @@ export const moduleSlice = createSlice({
             }
         },
         removeModule(state, action) {
-            state.modules.filter((group) => group.id === action.payload.id);
+            state.modules = state.modules.filter((group) => group.id !== action.payload);
         }
     },
 });

@@ -1,11 +1,12 @@
-import {addGroup, changeGroup, Group} from "../../../entities/group/model/slice";
+import {addGroup, changeGroup, Group, removeGroup} from "../../../entities/group/model/slice";
 import {addGroupModule, removeAllByGroupId} from "../../../entities/groupModule/model/slice";
 import {GroupForm} from "../ui/GroupManager";
 import {ManagerMode} from "../../../shared";
 import {Dispatch} from "react";
 import {UnknownAction} from "@reduxjs/toolkit";
 
-export const handleSubmitGroup = (dispatch:  Dispatch<UnknownAction>, form: GroupForm, mode: ManagerMode, item?: GroupForm) => {
+export const handleSubmitGroup =
+    (dispatch:  Dispatch<UnknownAction>, form: GroupForm, mode: ManagerMode, item?: GroupForm) => {
     const isEdit = mode === "edit";
     const now = new Date().toISOString();
 

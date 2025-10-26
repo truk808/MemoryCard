@@ -188,7 +188,7 @@ export const cardSlice = createSlice({
             }
         },
         removeCard(state, action) {
-            state.cards.filter((card) => card.id === action.payload.id);
+            state.cards = state.cards.filter((card) => card.id !== action.payload);
         }
     },
 });

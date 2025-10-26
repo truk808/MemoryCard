@@ -4,8 +4,12 @@ import {useDictionaryLogic} from "../model/hooks/useDictionaryLogic";
 import {CardManager, TagManager} from "../../../features";
 import {TermCard} from "../../../entities";
 import {Button, CardList, Search, Section} from "../../../shared";
+import {handleDeleteCard} from "../../../features/cardRemove/model/services/handleDeleteCard";
+import {useDispatch} from "react-redux";
 
 export const DictionarySection = () => {
+    const dispatch = useDispatch();
+
     const {
         filteredCards,
         editCardInfo,
@@ -69,7 +73,7 @@ export const DictionarySection = () => {
                                 setEditCard(card);
                                 setIsOpenCardManager(true);
                             }}
-                            onDelete={() => {}}
+                            onDelete={() => handleDeleteCard(dispatch, card.id)}
                         />
                     )}
                 />

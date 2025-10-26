@@ -12,7 +12,7 @@ export function TrainingPage() {
     const type = search.get("type"); // repetition / memorization / test / match
     const moduleIds = search.get("modules")?.split(",").map(Number) || [];
 
-    // временные данные (заглушка)
+    //
     const cards: Card[] = [];
     cards.push(useSelector(selectCardById(1))[0]);
     cards.push(useSelector(selectCardById(2))[0]);

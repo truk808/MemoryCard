@@ -33,11 +33,13 @@ export function useModuleSectionLogic() {
     });
 
     const moduleInfo = useMemo(() => {
-        return {
-            id: module.id,
-            name: module.name,
-            selectedCardIds: cardIds,
-        };
+        if (module) {
+            return {
+                id: module.id,
+                name: module.name,
+                selectedCardIds: cardIds,
+            };
+        }
     }, [module]);
 
     return {

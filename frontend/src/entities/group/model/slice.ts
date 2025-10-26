@@ -98,7 +98,7 @@ export const groupSlice = createSlice({
             }
         },
         removeGroup(state, action) {
-            state.groups.filter((group) => group.id === action.payload.id);
+            state.groups = state.groups.filter((group) => group.id !== action.payload);
         }
     },
 });

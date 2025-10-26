@@ -1,8 +1,9 @@
 import React from 'react';
 import {TermCard} from "../../../entities";
-import {ModuleManager, TrainModeList} from "../../../features";
-import {Button, CardList, Section, Tabs} from "../../../shared";
+import {ModuleManager, ModuleRemoveButton, TrainModeList} from "../../../features";
+import {Button, CardList, MAIN_ROUTES, Section, Tabs} from "../../../shared";
 import {useModuleSectionLogic} from "../model/hooks/useModuleSectionLogic";
+import {NavLink} from "react-router-dom";
 
 export const ModuleSection = () => {
     const {
@@ -18,6 +19,7 @@ export const ModuleSection = () => {
         termCards
     } = useModuleSectionLogic()
 
+    if (!module) return <div>Модуль не найден</div>;
 
     return (
         <div>
@@ -31,7 +33,10 @@ export const ModuleSection = () => {
                 title={module.name}
                 features={[
                     <Button color={'blue'} onClick={() => setIsOpenModuleManager(true)}> Редактировать </Button>,
-                    <Button color={'red'}> Удалить </Button>
+                    <NavLink to={MAIN_ROUTES}>
+                        <ModuleRemoveButton moduleId={moduleId}></ModuleRemoveButton>
+                    </NavLink>,
+
                 ]}
             >
                 <Tabs titles={['Модули', 'Статистика', 'tvft']}>

@@ -17,7 +17,7 @@ export const ModuleCard: FC<ModuleCardProps> = ({module}) => {
                 </div>
                 <div className={styles.cardInfo}>
                     <h2 className={styles.title}> {module.name} </h2>
-                    <p className={styles.text}> карт много </p>
+                    {/*<p className={styles.text}> карт много </p>*/}
                 </div>
             </div>
         </NavLink>

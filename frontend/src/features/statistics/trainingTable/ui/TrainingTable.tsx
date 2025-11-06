@@ -1,5 +1,8 @@
 import React from 'react';
 import styles from './TrainingTable.module.scss';
+import {selectTrainingTable} from "../model/selectors";
+import {useSelector} from "react-redux";
+import {TrainingSession} from "../model/slice";
 
 const data = [
     { id: 1, name: 'Заучивание', modules: 'ООП, ООП1', cards: 120, correct: '100(83%)', errors: '20(17%)', time: '4м 32сек', date: '01.01.2025' },
@@ -8,6 +11,11 @@ const data = [
 ];
 
 export const TrainingTable = () => {
+
+    const dataTable: TrainingSession[] = useSelector(selectTrainingTable);
+
+    console.log(dataTable);
+
     return (
         <div className={styles.tableWrapper}>
             <table className={styles.table}>
@@ -24,16 +32,16 @@ export const TrainingTable = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {data.map((row, i) => (
+                {dataTable.map((data: TrainingSession, i) => (
                     <tr key={i}>
-                        <td>{row.id}</td>
-                        <td>{row.name}</td>
-                        <td>{row.cards}</td>
-                        <td>{row.modules}</td>
-                        <td className={styles.correct}>{row.correct}</td>
-                        <td className={styles.errors}>{row.errors}</td>
-                        <td>{row.time}</td>
-                        <td>{row.date}</td>
+                        <td>{data.id}</td>
+                        <td>{data.trainingType}</td>
+                        <td>{data.module.join(',')}</td>
+                        <td>{data.cardsTotal}</td>
+                        <td className={styles.correct}>{data.correct}</td>
+                        <td className={styles.errors}>{data.incorrect}</td>
+                        <td>{data.timeSpent}</td>
+                        <td>{data.date}</td>
                     </tr>
                 ))}
                 </tbody>

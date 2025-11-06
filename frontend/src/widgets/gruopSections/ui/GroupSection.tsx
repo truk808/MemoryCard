@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useGroupSectionLogic} from "../model/hooks/useGroupSectionLogic";
 import {
     GroupManager,
-    GroupRemoveButton,
-    LinearGraph,
+    GroupRemoveButton, LinearGraph,
     PerformanceList,
     TrainingTable,
     TrainModeList
@@ -28,6 +27,8 @@ export const GroupSection = () => {
 
     return (
         <div>
+            {/*<TrainingTable/>*/}
+            {/*<LinearGraph/>*/}
             <GroupManager
                 mode={'edit'}
                 item={groupInfo}
@@ -40,7 +41,7 @@ export const GroupSection = () => {
                 features={[
                     <Button onClick={() => setIsOpenGroupManager(true)} color={'blue'}> Редактировать </Button>,
                     <NavLink to={MAIN_ROUTES}>
-                       <GroupRemoveButton groupId={groupId}/>
+                        <GroupRemoveButton groupId={groupId}/>
                     </NavLink>,
                 ]}
             >
@@ -61,8 +62,8 @@ export const GroupSection = () => {
                                 justifyContent: 'space-between',
                                 gap: '70px'
                             }}>
-                                <PerformanceList/>
-                                <PerformanceList/>
+                                {/*<PerformanceList/>*/}
+                                {/*<PerformanceList/>*/}
                             </div>
                             <TrainingTable/>
                         </>,

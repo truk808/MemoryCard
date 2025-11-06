@@ -7,11 +7,13 @@ export {ModuleManager} from './moduleManager/ui/ModuleManager'
 export {ModuleRemoveButton} from './moduleRemove/ui/ModuleRemoveButton'
 export {CardManager} from './cardManager/ui/CardManager'
 export {TagManager} from './tagManager/ui/TagManager'
-export {LinearGraph} from './linearGraph/ui/LinearGraph'
-export {PerformanceList} from './performanceList/ui/PerformanceList'
-export {TrainingTable} from './trainingTable/ui/TrainingTable'
+
+export {LinearGraph} from './statistics/linearGraph/ui/LinearGraph'
+export {PerformanceList} from './statistics/performanceList/ui/PerformanceList'
+export {TrainingTable} from './statistics/trainingTable/ui/TrainingTable'
 
 export {Repetition} from './training/ui/repetition/Repetition'
 export {Memorize} from './training/ui/memorize/Memorize'
 export {Test} from './training/ui/test/Test'
 export {Match} from './training/ui/match/Match'
+

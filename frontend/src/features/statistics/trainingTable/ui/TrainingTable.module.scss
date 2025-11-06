@@ -1,11 +1,13 @@
+@import '../../../../shared/styles/variables';
+
 .tableWrapper {
   width: 100%;
   overflow-x: auto;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   padding: 16px;
 
+  box-shadow: $box-shadow;
   color: var(--text-color-default);
   text-align: center;
   font-size: 29px;
@@ -25,9 +27,11 @@
       text-align: center;
       padding: 12px 16px;
       font-weight: 600;
-      color: #555;
       border-bottom: 1px solid #e5e7eb;
       white-space: nowrap;
+
+      color: var(--text-color-default);
+      font-size: 29px;
     }
   }
 
@@ -36,14 +40,14 @@
       transition: background-color 0.2s ease;
 
       &:hover {
-        background-color: #f7faff;
+        background-color: #bababa;
       }
 
       td {
         padding: 12px 16px;
         border-bottom: 1px solid #eaeaea;
-        font-size: 13.5px;
-        color: #333;
+        font-size: 32px;
+        color: var(--text-additional-color-default);
       }
 
       &:last-child td {
@@ -53,14 +57,13 @@
   }
 }
 
-/* ✅ Цветовые состояния */
 .correct {
-  color: #16a34a; // зелёный
+  color: #16a34a;
   font-weight: 600;
 }
 
 .errors {
-  color: #dc2626; // красный
+  color: #dc2626;
   font-weight: 600;
 }
 

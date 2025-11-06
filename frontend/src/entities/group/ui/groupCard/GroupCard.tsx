@@ -32,9 +32,9 @@ export const GroupCard: FC<GroupCardProps> = ({group, variant='default'}) => {
                                     <p className={styles.nickname}>{group.nickname}</p>
                                 )}
                             </p>
-                            <p className={styles.moduleQuantity}>
+                           {/* <p className={styles.moduleQuantity}>
                                 модулей: {group.module_quantity}
-                            </p>
+                            </p>*/}
                         </div>
                         <div className={styles.rating_additions}>
                             {isPublication && "rating_avg" in group && (

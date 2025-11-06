@@ -1,0 +1,53 @@
+.sectionBlock {
+  width: 100%;
+  margin: 25px 0;
+}
+
+.sectionBlockContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.iconText {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.icon {
+  margin-right: 10px;
+  transform: rotate(270deg);
+  transition: 0.4s;
+}
+
+.description {
+  color: var(--text-additional-color-default);
+  font-size: 32px;
+  font-weight: 400;
+  margin: 15px 0
+}
+
+.active {
+  transform: rotate(360deg);
+}
+
+.title {
+  display: flex;
+  font-weight: 600;
+  font-size: 40px;
+  color: var(--text-color-default)
+}
+
+.featuresList {
+  column-gap: 16px;
+  display: flex;
+  width: 370px;
+  height: 46px;
+}

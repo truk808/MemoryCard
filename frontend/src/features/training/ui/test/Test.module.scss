@@ -1,0 +1,59 @@
+@import '../../../../shared/styles/variables';
+
+.test {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.card {
+  position: relative;
+  max-width: 60%;
+  max-height: 50%;
+  background-color: var(--main-color-default);
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.helper {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+.title {
+  color: var(--text-color-default);
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.inputContainer {
+  width: 350px;
+  display: flex;
+  justify-content: center;
+
+  input {
+    width: 100%;
+    height: 45px;
+    font-size: 18px;
+    border-radius: $border-radius;
+    border: 1px solid var(--border-color);
+    padding: 0 12px;
+    outline: none;
+    background-color: var(--background-color-light);
+    color: var(--text-color-default);
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      border-color: var(--accent-color);
+    }
+  }
+}

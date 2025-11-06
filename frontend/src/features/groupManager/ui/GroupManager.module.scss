@@ -1,0 +1,21 @@
+@import '../../../shared/styles/variables';
+
+.input {
+  padding: 10px;
+  margin: 20px 0;
+  color: var(--text-color-default);
+  background: var(--main-color-default);
+  border-radius: 15px;
+  box-shadow: $box-shadow;
+}
+
+.inputWrapper {
+  padding: 10px;
+  margin: 20px 0;
+  width: 100%;
+  min-height: 80px;
+  background: var(--main-color-default);
+  border-radius: 15px;
+  box-shadow: $box-shadow;
+  border: none;
+}

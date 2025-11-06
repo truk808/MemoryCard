@@ -1,0 +1,13 @@
+.CardList {
+  margin: 20px 0;
+  max-height: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 37px;
+  transition: max-height 0.5s ease;
+}
+
+.active {
+  max-height: 10000px;
+}

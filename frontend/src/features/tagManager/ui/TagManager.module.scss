@@ -1,0 +1,55 @@
+@import '../../../shared/styles/variables';
+
+.input {
+  padding: 10px;
+  margin: 20px 0;
+  color: var(--text-color-default);
+  background: var(--main-color-default);
+  border-radius: 15px;
+  box-shadow: $box-shadow;
+}
+
+.tagContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 25px;
+  gap: 20px;
+}
+
+.list {
+  margin: 20px 0;
+  color: var(--text-color-default);
+  background: var(--main-color-default);
+  border-radius: 15px;
+  box-shadow: $box-shadow;
+
+  max-height: 400px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 15px;
+
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #a8a8a8 transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #a8a8a8;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #888;
+  }
+}
+
+.delete {
+  color: red;
+  cursor: pointer;
+}

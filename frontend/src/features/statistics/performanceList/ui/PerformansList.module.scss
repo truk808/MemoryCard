@@ -1,0 +1,34 @@
+@import '../../../../shared/styles/variables';
+
+.performanceList {
+  padding: 32px;
+  gap: 10px;
+  width: 100%;
+  max-width: 830px;
+  border-radius: $border-radius;
+  background: var(--main-color-default);
+  box-shadow: $box-shadow;
+}
+
+.title {
+  color: var(--text-color-default);
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.itemList {
+
+}
+
+.item {
+  color: var(--text-color-default);
+  font-size: 24px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.stroke {
+  border: gray solid 1px;
+}

@@ -1,0 +1,54 @@
+@import '../../../../shared/styles/variables';
+
+.card {
+  position: relative;
+  border-radius: $border-radius;
+  padding: 20px;
+  background: var(--main-color-default);
+  box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.icon {
+  border-radius: $border-radius;
+  background-color: var(--body-background-default);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  color: var(--text-color-default);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.text {
+  color: var(--text-additional-color-default);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+}

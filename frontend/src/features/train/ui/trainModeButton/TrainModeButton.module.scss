@@ -1,0 +1,26 @@
+@import "../../../../shared/styles/variables";
+
+.button {
+  cursor: pointer;
+  width: 370px;
+  height: 150px;
+  box-shadow: $box-shadow;
+  background-color: var(--main-color-default);
+  border-radius: 35px;
+  transition: 0.4s;
+}
+
+.button:hover {
+  border: 2px solid;
+  background-color: var(--text-additional-color-default);
+}
+
+.icon {
+
+}
+
+.text {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 500;
+}

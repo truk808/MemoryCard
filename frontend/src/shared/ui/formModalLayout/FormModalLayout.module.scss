@@ -1,0 +1,19 @@
+.formModalLayout {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--text-color-default);
+}
+
+.button {
+  margin-top: 30px;
+  margin-left: auto;
+  width: 50%;
+  height: max-content;
+}

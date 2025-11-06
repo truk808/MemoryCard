@@ -1,0 +1,22 @@
+.checkButton {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 11px;
+  margin: 10px 0;
+}
+
+.button {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 25%;
+  border: 1.8px solid var(--text-color-default);
+}
+
+.title {
+  color: var(--text-color-default);
+  font-size: 25px;
+  font-weight: 400;
+}

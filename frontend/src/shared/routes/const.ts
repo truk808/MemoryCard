@@ -1,0 +1,12 @@
+export const MAIN_ROUTES = '/'
+export const SOCIETY_ROUTES = '/society'
+export const DICTIONARY_ROUTES = '/dictionary'
+export const LOGIN_ROUTE = '/login'
+export const REGISTRATION_ROUTE = '/registration'
+export const ABOUT_ROUTE = '/about'
+export const GROUP_ROUTE = '/group'
+export const MODULE_ROUTE = '/module'
+export const CARD_ROUTE = '/termCard'
+export const TRAINING_ROUTE = '/training'
+export const PROFILE_ROUTE = '/profile'
+

@@ -1,0 +1,39 @@
+$box-shadow: 0 0 1px 0.5px rgba(0, 0, 0, 0.25);
+$border-radius: 15px;
+
+$body-background-light: #F8F9FB;
+$body-background-dark: #000;
+
+$main-color-light: #ffffff;
+$main-color-dark: #000;
+
+$text-color-light: #111111;
+$text-color-dark: #000;
+
+$text-additional-color-light: #6B7280;
+$text-additional-color-dark: #000;
+
+$highlighted-color-light: #585BE9;
+$highlighted-color-dark: #000;
+
+:root {
+  --body-background-light: #{$body-background-light};
+  --body-background-dark: #{$body-background-dark};
+  --body-background-default: var(--body-background-light);
+
+  --main-color-light: #{$main-color-light};
+  --main-color-dark: #{$main-color-dark};
+  --main-color-default: var(--main-color-light);
+
+  --text-color-light: #{$text-color-light};
+  --text-color-dark: #{$text-color-dark};
+  --text-color-default: var(--text-color-light);
+
+  --text-additional-color-light: #{$text-additional-color-light};
+  --text-additional-color-dark: #{$text-additional-color-dark};
+  --text-additional-color-default: var(--text-additional-color-light);
+
+  --highlighted-color-light: #{$highlighted-color-light};
+  --highlighted-color-dark: #{$highlighted-color-dark};
+  --highlighted-color-default: var(--highlighted-color-light);
+}

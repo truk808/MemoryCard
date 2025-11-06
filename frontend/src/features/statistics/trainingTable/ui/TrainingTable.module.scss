@@ -1,0 +1,69 @@
+@import '../../../../shared/styles/variables';
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+
+  box-shadow: $box-shadow;
+  color: var(--text-color-default);
+  text-align: center;
+  font-size: 29px;
+  font-weight: 500;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: #2d2d2d;
+
+  thead {
+    background-color: var(--main-color-default);
+
+    th {
+      text-align: center;
+      padding: 12px 16px;
+      font-weight: 600;
+      border-bottom: 1px solid #e5e7eb;
+      white-space: nowrap;
+
+      color: var(--text-color-default);
+      font-size: 29px;
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #bababa;
+      }
+
+      td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #eaeaea;
+        font-size: 32px;
+        color: var(--text-additional-color-default);
+      }
+
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.correct {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.errors {
+  color: #dc2626;
+  font-weight: 600;
+}
+

@@ -1,12 +1,16 @@
-import {addGroup, changeGroup, Group, removeGroup} from "../../../entities/group/model/slice";
+import {addGroup, changeGroup, Group} from "../../../entities/group/model/slice";
 import {addGroupModule, removeAllByGroupId} from "../../../entities/groupModule/model/slice";
-import {GroupForm} from "../ui/GroupManager";
-import {ManagerMode} from "../../../shared";
-import {Dispatch} from "react";
-import {UnknownAction} from "@reduxjs/toolkit";
+import {createGroup, ManagerMode, updateGroup} from "../../../shared";
+import {AppDispatch} from "../../../app/store";
+import {GroupForm} from "./useGroupManager";
 
-export const handleSubmitGroup =
-    (dispatch:  Dispatch<UnknownAction>, form: GroupForm, mode: ManagerMode, item?: GroupForm) => {
+export const saveGroup = (
+    dispatch: AppDispatch,
+    form: GroupForm,
+    mode: ManagerMode,
+    item?: GroupForm
+) => {
+
     const isEdit = mode === "edit";
     const now = new Date().toISOString();
 
@@ -21,10 +25,15 @@ export const handleSubmitGroup =
     };
 
     if (isEdit) {
-        dispatch(changeGroup(group));
-        dispatch(removeAllByGroupId(group.id));
+        updateGroup(group.id, form).then((data: Group) => {
+            dispatch(changeGroup(data));
+            dispatch(removeAllByGroupId(data.id));
+        });
+
     } else {
-        dispatch(addGroup(group));
+        createGroup(group.name, group.description).then((date) => {
+            dispatch(addGroup(date));
+        })
     }
 
     form.selectedModuleIds.forEach(moduleId => {

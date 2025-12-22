@@ -1,18 +1,15 @@
-import React, { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {FC, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import styles from "../../groupManager/ui/GroupManager.module.scss";
-import { handleSubmitCard } from "../model/services";
-import {BaseManagerProps, FormModalLayout, Input} from "../../../shared";
+import {handleSubmitCard} from "../model/services";
+import {BaseManagerProps, FormModalLayout, Input, SelectEntityList, TextArea, useItemForm} from "../../../shared";
 import {Card, selectAllTags} from "../../../entities";
-import TextArea from "../../../shared/ui/textArea/TextArea";
-import {SelectEntityList} from "../../selectEntityList/ui/SelectEntityList";
-import {useItemForm} from "../../../shared/hooks/useItemForm";
 
 export type CardForm = Partial<Pick<Card, 'id' | 'name' | 'description' | 'level' | 'sentence'>> & {
     selectedTagIds: number[];
 }
 
-export  interface CardManagerProps extends BaseManagerProps<CardForm> {
+export interface CardManagerProps extends BaseManagerProps<CardForm> {
     item?: any;
 }
 
@@ -25,18 +22,17 @@ const initCardForm = {
 }
 
 export const CardManager: FC<CardManagerProps> = ({
-                                                                isOpen = false,
-                                                                closeModal,
-                                                                mode,
-                                                                item,
-                                                            }) => {
+                                                      isOpen = false,
+                                                      closeModal,
+                                                      mode,
+                                                      item,
+                                                  }) => {
     const dispatch = useDispatch();
     const tags = useSelector(selectAllTags);
     const isEditMode = mode === "edit";
 
     const initialFormValue = isEditMode && item ? item : initCardForm;
-    const { form, handleChange, resetForm } = useItemForm<CardForm>(initialFormValue);
-
+    const {form, handleChange, resetForm} = useItemForm<CardForm>(initialFormValue);
 
 
     const onSubmit = () => {

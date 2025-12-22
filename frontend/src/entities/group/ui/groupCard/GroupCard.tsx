@@ -58,8 +58,6 @@ export const GroupCard: FC<GroupCardProps> = ({group, variant='default'}) => {
                                 </div>
                             )}
                         </div>
-
-
                     </div>
                 </div>
             </div>

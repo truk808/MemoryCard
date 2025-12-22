@@ -1,56 +1,22 @@
 import React, {FC} from 'react';
-import {useDispatch, useSelector} from "react-redux";
 import styles from './GroupManager.module.scss'
-import {BaseManagerProps, FormModalLayout, Input} from "../../../shared";
-import {Group, selectAllModules} from "../../../entities";
-import {SelectEntityList} from "../../selectEntityList/ui/SelectEntityList";
-import {useItemForm} from "../../../shared/hooks/useItemForm";
-import TextArea from "../../../shared/ui/textArea/TextArea";
-import {handleSubmitGroup} from "../model/services";
-import {createGroup} from "../../../shared/api/groupApi";
+import {BaseManagerProps, FormModalLayout, Input, SelectEntityList, TextArea} from "../../../shared";
+import useGroupManager, {GroupForm} from "../model/useGroupManager";
 
-export type GroupForm = Partial<Pick<Group, 'id' | 'name' | 'description' | 'module_quantity'>> & {
-    selectedModuleIds: number[];
-};
-
-const initGroupForm = {
-    name: '',
-    description: '',
-    selectedModuleIds: []
-}
-
-// Переделать "Разбить файл на UseGroupManager"
 export const GroupManager: FC<BaseManagerProps<GroupForm>> = ({
                                                                   isOpen = false,
                                                                   closeModal,
                                                                   mode,
                                                                   item,
                                                               }) => {
-    const modules = useSelector(selectAllModules)
-    const dispatch = useDispatch();
-    const isEditMode = mode === 'edit';
-
-    const {form, handleChange, resetForm} = useItemForm<GroupForm>(
-        isEditMode && item ? item : initGroupForm
-    );
-
-    function onSubmit() {
-        if (form.name && form.description) {
-            createGroup(form.name, form.description).then(() => {
-                handleSubmitGroup(dispatch, form, mode, item);
-            })
-        }
-        resetForm();
-        closeModal();
-    }
-
-    function handleToggleModule(id: number) {
-        if (form.selectedModuleIds.includes(id)) {
-            handleChange('selectedModuleIds', form.selectedModuleIds.filter(itemId => itemId !== id));
-        } else {
-            handleChange('selectedModuleIds', [...form.selectedModuleIds, id])
-        }
-    }
+    const {
+        modules,
+        form,
+        handleChange,
+        isEditMode,
+        handleToggleModule,
+        onSubmit,
+    } = useGroupManager({isOpen, closeModal, mode, item})
 
     return (
         <FormModalLayout

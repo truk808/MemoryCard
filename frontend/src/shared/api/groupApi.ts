@@ -1,4 +1,4 @@
-import {$host, $authHost} from "./index"
+import {$host, $authHost} from "./axios"
 
 export const createGroup = async (name: string, description: string) => {
     const { data } = await $authHost.post('/api/group', {
@@ -16,7 +16,6 @@ export const getGroups = async () => {
 
 export const getGroupsByUser = async (userId: number) => {
     const { data } = await $authHost.get(`/api/group/user/${userId}`)
-    console.log('data', data)
     return data
 }
 

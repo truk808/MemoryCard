@@ -1,23 +1,15 @@
-import axios from "axios";
-import { InternalAxiosRequestConfig } from 'axios';
+export {registration} from './userApi'
+export {check} from './userApi'
+export {login} from './userApi'
 
-const $host = axios.create({
-    baseURL: process.env.REACT_APP_API_URL
-})
+export {createGroup} from './groupApi'
+export {getGroups} from './groupApi'
+export {getGroupsByUser} from './groupApi'
+export {updateGroup} from './groupApi'
+export {deleteGroup} from './groupApi'
 
-const $authHost = axios.create({
-    baseURL: process.env.REACT_APP_API_URL
-})
-
-const authInterceptor = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
-    return config;
-}
-
-
-$authHost.interceptors.request.use(authInterceptor)
-
-export {
-    $host,
-    $authHost,
-}
+export {createModule} from './moduleApi'
+export {getModules} from './moduleApi'
+export {getModulesByUser} from './moduleApi'
+export {updateModule} from './moduleApi'
+export {deleteModule} from './moduleApi'

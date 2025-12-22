@@ -1,11 +1,11 @@
 import {Dispatch} from "react";
 import {UnknownAction} from "@reduxjs/toolkit";
-import {ManagerMode} from "../../../shared";
+import {createModule, ManagerMode, updateModule} from "../../../shared";
 import {ModuleForm} from "../ui/ModuleManager";
 import {Module} from "../../../entities";
 import {addModule, changeModule} from "../../../entities/module/model/slice";
 import {addModuleCard, removeAllByModuleId} from "../../../entities/moduleCard/model/slice";
-export const handleSubmitModule = (dispatch: Dispatch<UnknownAction>, form: ModuleForm, mode: ManagerMode, item?: ModuleForm) => {
+export const saveModule = (dispatch: Dispatch<UnknownAction>, form: ModuleForm, mode: ManagerMode, item?: ModuleForm) => {
     const isEdit = mode === "edit";
     const now = new Date().toISOString();
 
@@ -18,10 +18,14 @@ export const handleSubmitModule = (dispatch: Dispatch<UnknownAction>, form: Modu
     };
 
     if (isEdit) {
-        dispatch(changeModule(module));
-        dispatch(removeAllByModuleId(module.id));
+        updateModule(module.id, module).then((data) => {
+            dispatch(changeModule(data));
+            dispatch(removeAllByModuleId(data.id));
+        })
     } else {
-        dispatch(addModule(module));
+        createModule(module.name).then((data) => {
+            dispatch(addModule(data));
+        });
     }
 
     form.selectedCardIds.forEach(cardId => {

@@ -1,11 +1,8 @@
-import React, { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {FC} from "react";
 import styles from "../../groupManager/ui/GroupManager.module.scss";
-import { handleSubmitModule } from "../model/services";
-import {useItemForm} from "../../../shared/hooks/useItemForm";
-import {Module, selectAllCards} from "../../../entities";
-import {BaseManagerProps, FormModalLayout, Input} from "../../../shared";
-import {SelectEntityList} from "../../selectEntityList/ui/SelectEntityList";
+import {Module} from "../../../entities";
+import {BaseManagerProps, FormModalLayout, Input, SelectEntityList} from "../../../shared";
+import {useModuleManager} from "../model/useModuleManager";
 
 export type ModuleForm = Partial<Pick<Module, "id" | "name">> & {
     selectedCardIds: number[];
@@ -22,27 +19,14 @@ export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
                                                                     mode,
                                                                     item,
                                                                 }) => {
-    const dispatch = useDispatch();
-    const cards = useSelector(selectAllCards);
-    const isEditMode = mode === "edit";
-
-    const initialFormValue = isEditMode && item ? item : initModuleForm;
-    const { form, handleChange, resetForm } = useItemForm<ModuleForm>(initialFormValue);
-
-    const onSubmit = () => {
-        handleSubmitModule(dispatch, form, mode, item);
-        resetForm();
-        closeModal();
-    };
-
-    const handleToggleCard = (id: number) => {
-        handleChange(
-            "selectedCardIds",
-            form.selectedCardIds.includes(id)
-                ? form.selectedCardIds.filter(cardId => cardId !== id)
-                : [...form.selectedCardIds, id]
-        );
-    };
+    const {
+        isEditMode,
+        onSubmit,
+        handleChange,
+        form,
+        handleToggleCard,
+        cards,
+    } = useModuleManager({isOpen, closeModal, mode, item})
 
     return (
         <FormModalLayout

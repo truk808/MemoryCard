@@ -4,9 +4,9 @@ import moduleController from "../controllers/moduleController";
 const authMiddleware = require("../middleware/authMiddleware");
 
 router.post('/', authMiddleware, moduleController.create);
-router.get('/', moduleController.getAll);
-router.get('/user/:id', moduleController.getAllByUser);
-router.put('/:id', moduleController.change);
-router.delete('/:id', moduleController.delete);
+router.get('/', authMiddleware, moduleController.getAll);
+router.get('/user/:id', authMiddleware, moduleController.getAllByUser);
+router.put('/:id', authMiddleware, moduleController.change);
+router.delete('/:id', authMiddleware, moduleController.delete);
 
 module.exports = router

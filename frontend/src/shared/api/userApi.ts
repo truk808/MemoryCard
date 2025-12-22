@@ -1,4 +1,4 @@
-import {$host, $authHost} from "./index"
+import {$host, $authHost} from "./axios"
 import { jwtDecode } from 'jwt-decode';
 
 export async function registration(email: string, password: string, nickname: string) {

@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 export interface Group {
     id: number;
@@ -88,6 +88,9 @@ export const groupSlice = createSlice({
     name: 'group',
     initialState,
     reducers: {
+        setGroups(state, action) {
+            state.groups = action.payload;
+        },
         addGroup(state, action) {
             state.groups.push(action.payload);
         },
@@ -103,5 +106,5 @@ export const groupSlice = createSlice({
     },
 });
 
-export const {addGroup, changeGroup, removeGroup} = groupSlice.actions;
+export const {setGroups, addGroup, changeGroup, removeGroup} = groupSlice.actions;
 export const groupReducer = groupSlice.reducer;

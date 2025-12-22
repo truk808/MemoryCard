@@ -34,7 +34,13 @@ const Group = db.define('group', {
     name: { type: DataTypes.STRING },
     description: { type: DataTypes.TEXT },
     img: { type: DataTypes.STRING },
-    module_count: { type: DataTypes.INTEGER, defaultValue: 0 }
+    module_count: { type: DataTypes.INTEGER, defaultValue: 0 },
+
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'user_id',
+    }
 });
 
 // const Publication = sequelize.define('publication', {
@@ -82,6 +88,10 @@ Card.belongsToMany(Module, { through: ModuleCard });
 
 Group.belongsToMany(Module, { through: GroupModule });
 Module.belongsToMany(Group, { through: GroupModule });
+
+User.hasMany(Group, { foreignKey: 'userId' });
+Group.belongsTo(User, { foreignKey: 'userId' });
+
 
 module.exports = {
     User,

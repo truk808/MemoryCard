@@ -1,16 +1,16 @@
-import {MainPage, SocietyPage, DictionaryPage, GroupPage, ModulePage, TrainingPage} from "../../pages";
+import {AuthPage, DictionaryPage, GroupPage, MainPage, ModulePage, SocietyPage, TrainingPage} from "../../pages";
 import {
     DICTIONARY_ROUTES,
-    GROUP_ROUTE,
+    GROUP_ROUTE, LOGIN_ROUTE,
     MAIN_ROUTES,
     MODULE_ROUTE,
-    PROFILE_ROUTE,
+    PROFILE_ROUTE, REGISTRATION_ROUTE,
     SOCIETY_ROUTES,
     TRAINING_ROUTE
 } from "../../shared";
 import ProfilePage from "../../pages/profilePage/ui/ProfilePage";
 
-export const routes = [
+export const authRoutes = [
     {
         path: MAIN_ROUTES,
         element: <MainPage/>,
@@ -46,5 +46,16 @@ export const routes = [
     {
         path: `${PROFILE_ROUTE}`,
         element: <ProfilePage/>,
+    },
+]
+
+export const publicRoutes = [
+    {
+        path: LOGIN_ROUTE,
+        element: <AuthPage/>,
+    },
+    {
+        path: REGISTRATION_ROUTE,
+        element: <AuthPage/>,
     },
 ]

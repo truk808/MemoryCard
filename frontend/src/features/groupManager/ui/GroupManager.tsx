@@ -7,6 +7,7 @@ import {SelectEntityList} from "../../selectEntityList/ui/SelectEntityList";
 import {useItemForm} from "../../../shared/hooks/useItemForm";
 import TextArea from "../../../shared/ui/textArea/TextArea";
 import {handleSubmitGroup} from "../model/services";
+import {createGroup} from "../../../shared/api/groupApi";
 
 export type GroupForm = Partial<Pick<Group, 'id' | 'name' | 'description' | 'module_quantity'>> & {
     selectedModuleIds: number[];
@@ -18,6 +19,7 @@ const initGroupForm = {
     selectedModuleIds: []
 }
 
+// Переделать "Разбить файл на UseGroupManager"
 export const GroupManager: FC<BaseManagerProps<GroupForm>> = ({
                                                                   isOpen = false,
                                                                   closeModal,
@@ -33,10 +35,14 @@ export const GroupManager: FC<BaseManagerProps<GroupForm>> = ({
     );
 
     function onSubmit() {
-        handleSubmitGroup(dispatch, form, mode, item);
+        if (form.name && form.description) {
+            createGroup(form.name, form.description).then(() => {
+                handleSubmitGroup(dispatch, form, mode, item);
+            })
+        }
         resetForm();
         closeModal();
-    };
+    }
 
     function handleToggleModule(id: number) {
         if (form.selectedModuleIds.includes(id)) {

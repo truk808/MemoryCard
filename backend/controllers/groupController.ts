@@ -1,5 +1,6 @@
 import {NextFunction, Request, Response} from 'express';
 import { ApiError } from "../error/ApiError";
+const {Group} = require("../models/models");
 
 class GroupController {
     async create(req: Request, res: Response, next: NextFunction) {
@@ -11,10 +12,11 @@ class GroupController {
                 return next(ApiError.badRequest("Name and userId are required"));
             }
 
-            const group = await Group.create({ name, description, userId });
+            const group = await Group.create({ name, description, img: '', userId });
 
             return res.json(group);
         } catch (e) {
+            console.log(e)
             next(ApiError.internal("Failed to create group"));
         }
     }

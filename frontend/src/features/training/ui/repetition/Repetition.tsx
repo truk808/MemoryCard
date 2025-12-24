@@ -35,12 +35,12 @@ export const Repetition: FC<RepetitionProps> = ({ currentCard, nextCard, recordA
                     onClick={() => setFlipped(prevState => !prevState)}
                 >
                     {isHelper ?
-                        currentCard?.description
+                        currentCard?.meaning
                         :
                         flipped ?
-                            currentCard?.description
+                            currentCard?.meaning
                             :
-                            currentCard?.name
+                            currentCard?.term
                     }
                 </h1>
                 <div className={styles.arrowsContainer}>

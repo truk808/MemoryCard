@@ -47,7 +47,7 @@ export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
                 items={cards}
                 selectedIds={form.selectedCardIds}
                 onToggle={handleToggleCard}
-                getItemName={(card) => card.name}
+                getItemName={(card) => card.term}
                 getItemId={card => card.id}
             />
         </FormModalLayout>

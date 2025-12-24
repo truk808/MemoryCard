@@ -35,8 +35,6 @@ class CardController {
     async getAllByUser(req: Request, res: Response, next: NextFunction) {
         try {
             const userId = req.params.id;
-
-
             const cards = await Card.findAll({
                 where: { userId }
             });

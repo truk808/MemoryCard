@@ -16,9 +16,9 @@ export const TermCard: FC<CardProps> = ({ card, onEdit, onDelete }) => {
         <div className={styles.cardWrapper}>
             <div className={styles.card}>
                 <div className={styles.cardInfo}>
-                    <h2 className={styles.title}>{card.name}</h2>
+                    <h2 className={styles.title}>{card.term}</h2>
                     <p className={styles.description}>
-                        <TruncatedText maxLength={200}>{card.description}</TruncatedText>
+                        <TruncatedText maxLength={200}>{card.meaning}</TruncatedText>
                     </p>
                     <div className={styles.tagList}>
                         {card.tags.map(tag => (

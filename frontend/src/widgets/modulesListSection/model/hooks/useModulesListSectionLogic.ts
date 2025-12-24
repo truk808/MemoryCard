@@ -10,8 +10,6 @@ export function useModulesListSectionLogic() {
     const userId = useSelector((state: RootState) => state.user.user?.id);
     const modules = useSelector(selectAllModules);
 
-    console.log(modules);
-
     const [isModuleSectionOpen, setIsModuleSectionOpen] = useState(false);
     const [isOpenModuleManager, setIsOpenModuleManager] = useState(false);
     const [searchValue, setSearchValue] = useState('');
@@ -24,21 +22,17 @@ export function useModulesListSectionLogic() {
     useEffect(() => {
         if(userId) {
             getModulesByUser(userId).then((data) => {
-                console.log("data", data);
                 dispatch(setModules(data));
             })
         }
     }, []);
 
     return {
-        // данные
         modules,
         filteredModules,
-        // сотояния
         isModuleSectionOpen,
         isOpenModuleManager,
         searchValue,
-        // функции
         setSearchValue,
         setIsModuleSectionOpen,
         setIsOpenModuleManager,

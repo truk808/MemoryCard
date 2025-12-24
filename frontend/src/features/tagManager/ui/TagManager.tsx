@@ -40,10 +40,6 @@ export const TagManager: FC<BaseManagerProps<TagForm>> = ({
         closeModal();
     }
 
-    useEffect(() => {
-        console.log(tags)
-    }, [tags]);
-
     return (
         <FormModalLayout
             title={isEditTag ? "Редактировать тэг" : "Создать тэг"}

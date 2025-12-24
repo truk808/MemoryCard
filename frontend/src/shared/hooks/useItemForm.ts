@@ -1,16 +1,26 @@
-import React from "react";
+import {useEffect, useState} from "react";
 
-export function useItemForm<T extends Record<string, any>>(initialValue: T) {
-    const [form, setForm] = React.useState<T>(initialValue);
+export function useItemForm<T>(initialValue: T) {
+    const [form, setForm] = useState<T>(initialValue);
 
-    function handleChange<K extends keyof T>(key: K, value: T[K]) {
-        setForm(prev => ({ ...prev, [key]: value }))
-    }
+    const handleChange = <K extends keyof T>(key: K, value: T[K]) => {
+        setForm(prev => ({
+            ...prev,
+            [key]: value,
+        }));
+    };
 
-    function resetForm() {
+    const resetForm = (value?: T) => {
+        setForm(value ?? initialValue);
+    };
+
+    useEffect(() => {
         setForm(initialValue);
-    }
+    }, [initialValue]);
 
-    return {form, handleChange, resetForm};
-};
-
+    return {
+        form,
+        handleChange,
+        resetForm,
+    };
+}

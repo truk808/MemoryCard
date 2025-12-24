@@ -4,10 +4,10 @@ import cardController from "../controllers/cardController";
 const authMiddleware = require("../middleware/authMiddleware");
 
 router.post('/', authMiddleware, cardController.create);
-router.get('/', cardController.getAll);
-router.get('/user/:id', cardController.getAllByUser);
-router.put('/:id', cardController.change);
-router.delete('/:id', cardController.delete);
+router.get('/' , authMiddleware, cardController.getAll);
+router.get('/user/:id', authMiddleware, cardController.getAllByUser);
+router.put('/:id', authMiddleware, cardController.change);
+router.delete('/:id', authMiddleware, cardController.delete);
 
 export default router;
 

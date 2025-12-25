@@ -3,9 +3,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectGroupById, selectModulesByGroupId} from "../../../../entities";
 import {RootState} from "../../../../app/store";
 import {getRelatedIdsByEntityId} from "../../../../shared/lib/getItemIdsByEntityId";
-import React, {useMemo} from "react";
+import React, {useEffect, useMemo} from "react";
+import {getModulesByGroup} from "../../../../shared";
 
 export function useGroupSectionLogic() {
+    const dispatch = useDispatch();
     const groupId = +useLocation().pathname.split("/")[2];
     const group = useSelector(selectGroupById(groupId))[0];
 
@@ -26,17 +28,18 @@ export function useGroupSectionLogic() {
         }
     }, [group, moduleIds]);
 
+    useEffect(() => {
+        console.log(groupModules)
+    }, [groupModules])
+
     return {
-        // данные
         groupId,
         group,
         groupModules,
         moduleIds,
         modules,
         groupInfo,
-        // сотояния
         isOpenGroupManager,
-        // функции
         setIsOpenGroupManager,
     }
 }

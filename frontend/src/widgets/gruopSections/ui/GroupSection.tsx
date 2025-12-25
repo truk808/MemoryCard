@@ -16,14 +16,16 @@ export const GroupSection = () => {
         group,
         groupInfo,
         groupId,
-        modules,
         groupModules,
         setIsOpenGroupManager,
         isOpenGroupManager,
-        moduleIds,
     } = useGroupSectionLogic()
 
+    useEffect(() => {
+        console.log(groupModules)
+    }, []);
     if (!group) return <div>Группа не найдена</div>;
+
 
     return (
         <div>
@@ -49,10 +51,10 @@ export const GroupSection = () => {
                     {[
                         <>
                             <TrainModeList/>
-                            <CardList
-                                items={modules}
-                                renderItem={module => <ModuleCard module={module}/>}
-                            />
+                            {/*<CardList*/}
+                            {/*    items={groupModules}*/}
+                            {/*    renderItem={module => <ModuleCard module={module}/>}*/}
+                            {/*/>*/}
                         </>,
                         <>
                             <LinearGraph/>

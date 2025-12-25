@@ -1,8 +1,7 @@
 import {Dispatch} from "react";
 import {UnknownAction} from "@reduxjs/toolkit";
-import {createModule, ManagerMode, updateModule} from "../../../shared";
+import {createModule, ManagerMode, Module, updateModule} from "../../../shared";
 import {ModuleForm} from "../ui/ModuleManager";
-import {Module} from "../../../entities";
 import {addModule, changeModule} from "../../../entities/module/model/slice";
 import {addModuleCard, removeAllByModuleId} from "../../../entities/moduleCard/model/slice";
 export const saveModule = (dispatch: Dispatch<UnknownAction>, form: ModuleForm, mode: ManagerMode, item?: ModuleForm) => {
@@ -14,7 +13,6 @@ export const saveModule = (dispatch: Dispatch<UnknownAction>, form: ModuleForm, 
         user_id: 1,
         name: form.name ?? "",
         icon: "/Frame.svg",
-        create_at: now,
     };
 
     if (isEdit) {

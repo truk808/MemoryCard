@@ -1,4 +1,4 @@
-import {Group} from "./slice";
+import {Group} from "./entityTypes";
 
 export type GroupWithPublication = Group & {
     nickname: string,

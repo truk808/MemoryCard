@@ -1,10 +1,11 @@
 import React, {useMemo} from "react";
 import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {CardWithTags, selectAllTags, selectCardsByTagId, selectModuleById} from "../../../../entities";
+import {selectAllTags, selectCardsByTagId, selectModuleById} from "../../../../entities";
 import {RootState} from "../../../../app/store";
 import {getRelatedIdsByEntityId} from "../../../../shared/lib/getItemIdsByEntityId";
 import {selectAllCardTags} from "../../../../entities/cardTag/model/selectors";
+import {CardWithTags} from "../../../../shared";
 
 export function useModuleSectionLogic() {
     const [isOpenModuleManager, setIsOpenModuleManager] = React.useState(false);

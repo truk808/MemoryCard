@@ -3,9 +3,9 @@ import {Match} from "./match/Match";
 import {Test} from "./test/Test";
 import {Memorize} from "./memorize/Memorize";
 import {FC, useEffect, useState} from "react";
-import {Card} from "../../../entities";
 import {useTraining} from "../model/hooks/useTrainingLogic";
 import {ModalResult} from "./modalResult/ModalResult";
+import {Card} from "../../../shared";
 
 interface TrainingSessionProps {
     type: string;

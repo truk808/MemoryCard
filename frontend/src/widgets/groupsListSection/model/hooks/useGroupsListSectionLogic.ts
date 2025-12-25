@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Group, selectAllGroups} from "../../../../entities";
+import {selectAllGroups} from "../../../../entities";
 import {RootState} from "../../../../app/store";
 import {getGroupsByUser} from "../../../../shared";
 import {setGroups} from "../../../../entities/group/model/slice";
@@ -18,14 +18,6 @@ export function useGroupsListSectionLogic() {
         const normalized = searchValue.toLowerCase();
         return groups.filter(g => g.name.toLowerCase().includes(normalized));
     }, [groups, searchValue]);
-
-    useEffect(() => {
-        if(userId) {
-            getGroupsByUser(userId).then((data) => {
-                dispatch(setGroups(data));
-            })
-        }
-    }, []);
 
     return {
         // данные

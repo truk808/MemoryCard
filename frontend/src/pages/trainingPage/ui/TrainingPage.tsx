@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCardById } from "../../../entities";
 import { TrainingSession } from "../../../features/training/ui/TrainingSession";
-import { Card } from "../../../entities";
+import {Card} from "../../../shared";
 
 export function TrainingPage() {
     const [loading, setLoading] = useState(true);

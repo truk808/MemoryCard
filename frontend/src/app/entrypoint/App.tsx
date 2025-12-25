@@ -7,10 +7,19 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../store";
 import {check} from "../../shared/api/userApi";
 import {setAuth, setUser} from "../../entities/user/model/slise";
+import {bootstrapUserData} from "../../shared/api/bootstrapApi";
+import {setGroups} from "../../entities/group/model/slice";
+import {setModules} from "../../entities/module/model/slice";
+import {setCards} from "../../entities/card/model/slice";
+import {setTags} from "../../entities/tag/model/slice";
+import {setGroupModules} from "../../entities/groupModule/model/slice";
+import {setCardTags} from "../../entities/cardTag/model/slice";
+import {setModuleCards} from "../../entities/moduleCard/model/slice";
 
 const App = () => {
     const dispatch = useDispatch<AppDispatch>()
     const user = useSelector((state: RootState) => state.user)
+    const { isAuth } = useSelector((state: RootState) => state.user);
     const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {
@@ -28,7 +37,22 @@ const App = () => {
     }, []);
 
     useEffect(() => {
-        console.log(user)
+        if (!isAuth) return;
+        bootstrapUserData().then(data => {
+            dispatch(setGroups(data.groups));
+            dispatch(setModules(data.modules));
+            dispatch(setCards(data.cards));
+            dispatch(setTags(data.tags));
+
+            dispatch(setGroupModules(data.groupModules));
+            dispatch(setModuleCards(data.moduleCards));
+            dispatch(setCardTags(data.cardTags));
+            console.log('bootstrap', data)
+        });
+    }, [isAuth]);
+
+    useEffect(() => {
+        console.log('user', user)
     }, [user]);
 
     if (loading) {

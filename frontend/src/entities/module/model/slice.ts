@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-export interface Module {
-    id: number;
-    user_id: number;
-    name: string;
-    icon: string;
-    create_at: string;
-}
+import {Module} from "../../../shared";
 
 interface ModuleState {
     modules: Module[];

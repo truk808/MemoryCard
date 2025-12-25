@@ -19,14 +19,6 @@ export function useModulesListSectionLogic() {
         return modules.filter(g => g.name.toLowerCase().includes(normalized));
     }, [modules, searchValue]);
 
-    useEffect(() => {
-        if(userId) {
-            getModulesByUser(userId).then((data) => {
-                dispatch(setModules(data));
-            })
-        }
-    }, []);
-
     return {
         modules,
         filteredModules,

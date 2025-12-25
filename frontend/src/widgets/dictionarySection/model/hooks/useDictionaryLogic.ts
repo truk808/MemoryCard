@@ -1,12 +1,9 @@
 import {useEffect, useMemo, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {selectAllCards} from "../../../../entities/card/model/selectors";
-import {selectAllTags} from "../../../../entities/tag/model/selectors";
 import {selectAllCardTags} from "../../../../entities/cardTag/model/selectors";
-import {CardWithTags} from "../../../../entities";
-import {getCardsByUser} from "../../../../shared";
 import {RootState} from "../../../../app/store";
-import {setCards} from "../../../../entities/card/model/slice";
+import {CardWithTags} from "../../../../shared";
+import {selectAllCards, selectAllTags} from "../../../../entities";
 
 export function useDictionaryLogic() {
     const dispatch = useDispatch();
@@ -31,14 +28,6 @@ export function useDictionaryLogic() {
             return {...card, tags: cardTagsList};
         });
     }, [cards, tags, cardTags]);
-
-    useEffect(() => {
-        if (userId) {
-            getCardsByUser(userId).then((data) => {
-                dispatch(setCards(data))
-            })
-        }
-    }, []);
 
     const filteredCards = useMemo(() => {
         // const normalized = searchValue.toLowerCase();

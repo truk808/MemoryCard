@@ -19,3 +19,21 @@ export {getCards} from './cardApi'
 export {getCardsByUser} from './cardApi'
 export {updateCard} from './cardApi'
 export {deleteCard} from './cardApi'
+
+export {createTag} from './tagAPi'
+export {getTagsByUser} from './tagAPi'
+export {getTags} from './tagAPi'
+export {updateTag} from './tagAPi'
+export {deleteTag} from './tagAPi'
+
+export {addModuleToGroup} from './groupModuleApi'
+export {getModulesByGroup} from './groupModuleApi'
+export {removeModuleFromGroup} from './groupModuleApi'
+
+export {addCardToModule} from './moduleCardApi'
+export {getCardsByModule} from './moduleCardApi'
+export {removeCardFromModule} from './moduleCardApi'
+
+export {addTagToCard} from './сardTagApi'
+export {getTagsByCard} from './сardTagApi'
+export {removeTagFromCard} from './сardTagApi'

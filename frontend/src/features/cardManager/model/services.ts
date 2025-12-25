@@ -1,7 +1,7 @@
 import {Dispatch} from "react";
 import {UnknownAction} from "@reduxjs/toolkit";
 import {createCard, ManagerMode, updateCard} from "../../../shared";
-import {addCard, Card, changeCard} from "../../../entities/card/model/slice";
+import {addCard, changeCard} from "../../../entities/card/model/slice";
 import {addCardTag, removeAllTagsByCardId} from "../../../entities/cardTag/model/slice";
 import {CardForm} from "./useCardManager";
 
@@ -27,7 +27,6 @@ export const saveCard =
                 dispatch(addCard(data));
             });
         }
-
 
     form.selectedTagIds.forEach(tagId => {
         dispatch(

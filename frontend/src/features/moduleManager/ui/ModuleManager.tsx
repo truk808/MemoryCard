@@ -1,7 +1,6 @@
 import React, {FC} from "react";
 import styles from "../../groupManager/ui/GroupManager.module.scss";
-import {Module} from "../../../entities";
-import {BaseManagerProps, FormModalLayout, Input, SelectEntityList} from "../../../shared";
+import {BaseManagerProps, FormModalLayout, Input, Module, SelectEntityList} from "../../../shared";
 import {useModuleManager} from "../model/useModuleManager";
 
 export type ModuleForm = Partial<Pick<Module, "id" | "name">> & {

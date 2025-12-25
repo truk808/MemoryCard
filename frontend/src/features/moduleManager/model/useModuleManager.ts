@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
-import {Module, selectAllCards} from "../../../entities";
-import {BaseManagerProps, useItemForm} from "../../../shared";
+import {selectAllCards} from "../../../entities";
+import {BaseManagerProps, Module, useItemForm} from "../../../shared";
 import {saveModule} from "./services";
 import {GroupForm} from "../../groupManager/model/useGroupManager";
 

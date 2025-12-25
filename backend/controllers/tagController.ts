@@ -39,6 +39,7 @@ class TagController {
 
             return res.json(tags);
         } catch (e) {
+            console.log(e)
             next(ApiError.internal("Failed to get tags"));
         }
     }

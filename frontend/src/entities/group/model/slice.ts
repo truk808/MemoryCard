@@ -1,14 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-
-export interface Group {
-    id: number;
-    user_id: number;
-    name: string;
-    img: any,
-    module_quantity: number;
-    description: string;
-    create_at: string;
-}
+import {Group} from "../../../shared";
 
 interface GroupState {
     groups: Group[];

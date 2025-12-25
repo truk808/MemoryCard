@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {Card, selectAllTags} from "../../../entities";
-import {BaseManagerProps, useItemForm} from "../../../shared";
+import {selectAllTags} from "../../../entities";
+import {BaseManagerProps, Card, useItemForm} from "../../../shared";
 import {saveCard} from "./services";
 
 export type CardForm = Partial<Pick<Card, 'id' | 'term' | 'meaning' | 'level' | 'example_sentence'>> & {
@@ -49,7 +49,6 @@ export const useCardManager = ({isOpen = false, mode, closeModal, item}: BaseMan
 
     useEffect(() => {
         if (item) {
-            console.log(item)
             handleChange('term', item.term);
             handleChange('example_sentence', item.example_sentence);
             handleChange('meaning', item.meaning);

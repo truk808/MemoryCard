@@ -15,6 +15,7 @@ export async function login(email: string, password: string) {
         '/api/user/login',
         {email, password}
     )
+    console.log(data)
     localStorage.setItem("token", data.token)
     return jwtDecode(data.token);
 }

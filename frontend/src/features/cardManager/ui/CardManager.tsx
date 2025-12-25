@@ -18,10 +18,6 @@ export const CardManager: FC<CardManagerProps> = ({
         handleToggleTag,
     } = useCardManager({isOpen, mode, closeModal, item})
 
-    useEffect(() => {
-        console.log(form)
-    }, []);
-
     return (
         <FormModalLayout
             title={isEditMode ? "Редактировать карту" : "Создать карту"}

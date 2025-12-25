@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Card } from "../../../../entities";
+import {Card} from "../../../../shared";
 
 export interface TrainingResult {
     [cardId: number]: boolean;

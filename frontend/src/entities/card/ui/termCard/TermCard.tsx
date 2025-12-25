@@ -1,8 +1,7 @@
 import React, {FC, useEffect} from 'react';
 import styles from './TermCard.module.scss';
-import { GlobalSvgSelector, TruncatedText } from "../../../../shared";
+import {CardWithTags, GlobalSvgSelector, TruncatedText} from "../../../../shared";
 import { TagBadge } from "../../../tag/ui/tag/Tag";
-import { CardWithTags } from "../../model/types";
 
 interface CardProps {
     card: CardWithTags;

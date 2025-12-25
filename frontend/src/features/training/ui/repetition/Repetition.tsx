@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import styles from './Repetition.module.scss'
-import {Card} from "../../../../entities";
 import {FC} from "react";
-import {GlobalSvgSelector} from "../../../../shared";
+import {Card, GlobalSvgSelector} from "../../../../shared";
 
 interface RepetitionProps {
     currentCard: Card

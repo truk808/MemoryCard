@@ -1,7 +1,6 @@
 import React, {FC, useMemo} from 'react';
 import styles from './Memorize.module.scss';
-import { GlobalSvgSelector } from '../../../../shared';
-import {Card} from "../../../../entities";
+import {Card, GlobalSvgSelector} from '../../../../shared';
 
 interface MemorizeProps {
     currentCard: Card

@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
-import {Group, selectAllModules} from "../../../entities";
-import {createGroup, useItemForm} from "../../../shared/";
+import {selectAllModules} from "../../../entities";
+import {createGroup, Group, useItemForm} from "../../../shared/";
 import {BaseManagerProps} from "../../../shared/";
 import {saveGroup} from "./services";
 
@@ -10,7 +10,7 @@ export const initGroupForm = {
     selectedModuleIds: []
 }
 
-export type GroupForm = Partial<Pick<Group, 'id' | 'name' | 'description' | 'module_quantity'>> & {
+export type GroupForm = Partial<Pick<Group, 'id' | 'name' | 'description'>> & {
     selectedModuleIds: number[];
 };
 

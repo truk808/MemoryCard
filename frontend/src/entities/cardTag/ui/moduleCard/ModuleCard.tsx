@@ -1,8 +1,7 @@
 import React, {FC} from 'react';
 import styles from './Module.module.scss'
-import {Module} from "../../../index";
 import {NavLink} from "react-router-dom";
-import {MODULE_ROUTE} from "../../../../shared";
+import {Module, MODULE_ROUTE} from "../../../../shared";
 
 interface ModuleCardProps {
     module: Module;

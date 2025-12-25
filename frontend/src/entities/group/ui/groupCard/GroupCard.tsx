@@ -1,9 +1,7 @@
 import React, {FC} from 'react';
 import styles from './GroupCard.module.scss'
-import {Group} from "../../model/slice";
 import {NavLink} from "react-router-dom";
-import {GlobalSvgSelector, GROUP_ROUTE} from "../../../../shared";
-import {GroupWithPublication} from "../../model/types";
+import {GlobalSvgSelector, Group, GROUP_ROUTE} from "../../../../shared";
 import {Publication} from "../../../publication/model/slice";
 
 type GroupCardProps = {

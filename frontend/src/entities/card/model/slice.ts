@@ -1,14 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-
-export interface Card {
-    id: number;
-    user_id: number;
-    term: string;
-    meaning: string;
-    example_sentence: string;
-    level: number;
-    create_at: string;
-}
+import {Card} from "../../../shared";
 
 interface CardState {
     cards: Card[];

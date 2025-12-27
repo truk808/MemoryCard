@@ -14,7 +14,7 @@ export function useModuleSectionLogic() {
     const module = useSelector(selectModuleById(moduleId))[0];
 
     const moduleCard = useSelector((state: RootState) => state.moduleCard.moduleCards);
-    const cardIds = getRelatedIdsByEntityId(moduleId, moduleCard, 'module_id', 'card_id');
+    const cardIds = getRelatedIdsByEntityId(moduleId, moduleCard, 'moduleId', 'cardId');
     const termCards = useSelector(selectCardsByTagId(cardIds))
 
     const tags = useSelector(selectAllTags);
@@ -22,8 +22,8 @@ export function useModuleSectionLogic() {
 
     const cardsWithTags: CardWithTags[] = termCards.map((card) => {
         const relatedTagIds = cardTags
-            .filter(ct => ct.card_id === card.id)
-            .map(ct => ct.tag_id);
+            .filter(ct => ct.cardId === card.id)
+            .map(ct => ct.tagId);
 
         const cardTagsList = tags.filter(tag => relatedTagIds.includes(tag.id));
 
@@ -41,7 +41,7 @@ export function useModuleSectionLogic() {
                 selectedCardIds: cardIds,
             };
         }
-    }, [module]);
+    }, [module, cardIds]);
 
     return {
         // данные

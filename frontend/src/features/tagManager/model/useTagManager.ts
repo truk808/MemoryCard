@@ -21,7 +21,7 @@ export const useTagManager = ({
                                   item
                               }: BaseManagerProps<TagForm>) => {
     const dispatch = useDispatch();
-    const userId = useSelector((state: RootState) => state.user.user?.id);
+    // const userId = useSelector((state: RootState) => state.user.user?.id);
     const tags = useSelector(selectAllTags);
     const isEditTag = mode === 'edit';
 
@@ -38,14 +38,6 @@ export const useTagManager = ({
         resetForm();
         closeModal();
     }
-
-    useEffect(() => {
-        if (userId) {
-            getTagsByUser(userId).then((data) => {
-                dispatch(setTags(data));
-            })
-        }
-    }, [userId])
 
     return {
         isEditTag,

@@ -1,7 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {selectAllModules} from "../../../entities";
-import {createGroup, Group, useItemForm} from "../../../shared/";
-import {BaseManagerProps} from "../../../shared/";
+import {BaseManagerProps, Group, useItemForm} from "../../../shared";
 import {saveGroup} from "./services";
 
 export const initGroupForm = {
@@ -14,9 +13,9 @@ export type GroupForm = Partial<Pick<Group, 'id' | 'name' | 'description'>> & {
     selectedModuleIds: number[];
 };
 
-const useGroupManager = ({isOpen = false, closeModal, mode, item}: BaseManagerProps<GroupForm>) => {
-    const modules = useSelector(selectAllModules)
+export const useGroupManager = ({isOpen = false, closeModal, mode, item}: BaseManagerProps<GroupForm>) => {
     const dispatch = useDispatch();
+    const modules = useSelector(selectAllModules)
     const isEditMode = mode === 'edit';
 
     const {form, handleChange, resetForm} = useItemForm<GroupForm>(
@@ -40,11 +39,9 @@ const useGroupManager = ({isOpen = false, closeModal, mode, item}: BaseManagerPr
     return {
         modules,
         isEditMode,
+        onSubmit,
         handleChange,
         form,
         handleToggleModule,
-        onSubmit,
-    };
+    }
 };
-
-export default useGroupManager;

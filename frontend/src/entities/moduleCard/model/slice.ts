@@ -104,7 +104,7 @@ const moduleCardSlice = createSlice({
             state.moduleCards = state.moduleCards.filter((groupModule) => groupModule.id === action.payload.id);
         },
         removeAllByModuleId(state, action) {
-            state.moduleCards = state.moduleCards.filter((groupModule) => groupModule.module_id === action.payload.module_id);
+            state.moduleCards = state.moduleCards.filter((groupModule) => groupModule.moduleId === action.payload.moduleId);
         }
     }
 })

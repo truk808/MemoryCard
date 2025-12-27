@@ -2,15 +2,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectAllCards} from "../../../entities";
 import {BaseManagerProps, Module, useItemForm} from "../../../shared";
 import {saveModule} from "./services";
-import {GroupForm} from "../../groupManager/model/useGroupManager";
+
+export const initModuleForm: ModuleForm = {
+    name: "",
+    selectedCardIds: [],
+};
 
 export type ModuleForm = Partial<Pick<Module, "id" | "name">> & {
     selectedCardIds: number[];
-};
-
-const initModuleForm: ModuleForm = {
-    name: "",
-    selectedCardIds: [],
 };
 
 export const useModuleManager = ({isOpen = false, closeModal, mode, item}: BaseManagerProps<ModuleForm>) => {
@@ -18,30 +17,31 @@ export const useModuleManager = ({isOpen = false, closeModal, mode, item}: BaseM
     const cards = useSelector(selectAllCards);
     const isEditMode = mode === "edit";
 
-    const initialFormValue = isEditMode && item ? item : initModuleForm;
-    const { form, handleChange, resetForm } = useItemForm<ModuleForm>(initialFormValue);
+    const { form, handleChange, resetForm } = useItemForm<ModuleForm>(
+        isEditMode && item ? item : initModuleForm
+    );
 
-    const onSubmit = () => {
+    function onSubmit() {
+        // console.log('', form.selectedCardIds)
         saveModule(dispatch, form, mode, item);
         resetForm();
         closeModal();
-    };
+    }
 
-    const handleToggleCard = (id: number) => {
-        handleChange(
-            "selectedCardIds",
-            form.selectedCardIds.includes(id)
-                ? form.selectedCardIds.filter(cardId => cardId !== id)
-                : [...form.selectedCardIds, id]
-        );
-    };
+    function handleToggleCard (id: number){
+        if (form.selectedCardIds.includes(id)) {
+            handleChange('selectedCardIds', form.selectedCardIds.filter(itemId => itemId !== id));
+        } else {
+            handleChange('selectedCardIds', [...form.selectedCardIds, id])
+        }
+    }
 
     return {
+        cards,
         isEditMode,
         onSubmit,
         handleChange,
         form,
         handleToggleCard,
-        cards,
     }
 };

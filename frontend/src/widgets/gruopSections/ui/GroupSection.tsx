@@ -17,13 +17,11 @@ export const GroupSection = () => {
         groupInfo,
         groupId,
         groupModules,
+        modules,
         setIsOpenGroupManager,
         isOpenGroupManager,
     } = useGroupSectionLogic()
 
-    useEffect(() => {
-        console.log(groupModules)
-    }, []);
     if (!group) return <div>Группа не найдена</div>;
 
 
@@ -32,10 +30,10 @@ export const GroupSection = () => {
             {/*<TrainingTable/>*/}
             {/*<LinearGraph/>*/}
             <GroupManager
+                closeModal={() => setIsOpenGroupManager(false)}
+                isOpen={isOpenGroupManager}
                 mode={'edit'}
                 item={groupInfo}
-                isOpen={isOpenGroupManager}
-                closeModal={() => setIsOpenGroupManager(false)}
             />
             <Section
                 title={group.name}
@@ -51,10 +49,10 @@ export const GroupSection = () => {
                     {[
                         <>
                             <TrainModeList/>
-                            {/*<CardList*/}
-                            {/*    items={groupModules}*/}
-                            {/*    renderItem={module => <ModuleCard module={module}/>}*/}
-                            {/*/>*/}
+                            <CardList
+                                items={modules}
+                                renderItem={module => <ModuleCard module={module}/>}
+                            />
                         </>,
                         <>
                             <LinearGraph/>

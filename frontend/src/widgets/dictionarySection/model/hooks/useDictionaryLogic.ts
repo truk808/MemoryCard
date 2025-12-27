@@ -22,8 +22,8 @@ export function useDictionaryLogic() {
     const cardsWithTags: CardWithTags[] = useMemo(() => {
         return cards.map((card) => {
             const relatedTagIds = cardTags
-                .filter(ct => ct.card_id === card.id)
-                .map(ct => ct.tag_id);
+                .filter(ct => ct.cardId === card.id)
+                .map(ct => ct.tagId);
             const cardTagsList = tags.filter(tag => relatedTagIds.includes(tag.id));
             return {...card, tags: cardTagsList};
         });

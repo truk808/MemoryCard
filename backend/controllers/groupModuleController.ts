@@ -5,25 +5,30 @@ import { ApiError } from '../error/ApiError'
 class GroupModuleController {
     async add(req: Request, res: Response, next: NextFunction) {
         try {
-            const { groupId, moduleId } = req.body
+            const { groupId, moduleId, replace = false } = req.body;
 
             if (!groupId || !moduleId) {
-                return next(ApiError.badRequest('groupId и moduleId обязательны'))
+                return next(ApiError.badRequest('groupId и moduleId обязательны'));
+            }
+
+            if (replace) {
+                await GroupModule.destroy({ where: { groupId } });
             }
 
             const exists = await GroupModule.findOne({
                 where: { groupId, moduleId }
-            })
+            });
 
             if (exists) {
-                return next(ApiError.badRequest('Модуль уже в группе'))
+                return next(ApiError.badRequest('Модуль уже в группе'));
             }
 
-            const groupModule = await GroupModule.create({ groupId, moduleId })
-            return res.json(groupModule)
+            const groupModule = await GroupModule.create({ groupId, moduleId });
+            return res.json(groupModule);
 
         } catch (e) {
-            next(ApiError.internal('Ошибка добавления модуля в группу'))
+            console.log(e);
+            next(ApiError.internal('Ошибка добавления модуля в группу'));
         }
     }
 

@@ -206,13 +206,17 @@ export const cardTagSlice = createSlice({
             state.cardTags.push(action.payload);
         },
         removeCardTag(state, action) {
-            state.cardTags = state.cardTags.filter((cardTag) =>
-                !(cardTag.card_id === action.payload.card_id && cardTag.id === action.payload.tag_id)
+            state.cardTags = state.cardTags.filter(
+                cardTag =>
+                    !(
+                        cardTag.cardId === action.payload.cardId &&
+                        cardTag.tagId === action.payload.tagId
+                    )
             );
         },
         removeAllTagsByCardId(state, action) {
             state.cardTags = state.cardTags.filter((cardTag) =>
-                cardTag.card_id !== action.payload.id
+                cardTag.cardId !== action.payload.id
             );
             console.log(action.payload, state.cardTags);
         }

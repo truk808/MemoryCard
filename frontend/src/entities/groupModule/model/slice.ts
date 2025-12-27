@@ -14,19 +14,27 @@ const groupModuleSlice = createSlice({
     initialState,
     reducers: {
         setGroupModules: (state, action) => {
-            state.groupModules = action.payload
+            state.groupModules = action.payload;
         },
+
         addGroupModule: (state, action) => {
             state.groupModules.push(action.payload);
         },
-        removeGroupModule(state, action) {
-            state.groupModules = state.groupModules.filter((groupModule) => groupModule.id === action.payload.id);
+        removeGroupModule: (state, action) => {
+            const { groupId, moduleId } = action.payload;
+            state.groupModules = state.groupModules.filter(
+                gm => !(gm.groupId === groupId && gm.moduleId === moduleId)
+            );
         },
-        removeAllByGroupId(state, action) {
-            state.groupModules = state.groupModules.filter((groupModule) => groupModule.group_id === action.payload.group_id);
+        removeAllByGroupId: (state, action) => {
+            console.log(action);
+            state.groupModules = state.groupModules.filter(
+                (groupModule) => groupModule.groupId !== action.payload.groupId
+            )
         }
-    }
+    },
 })
+
 
 export const {addGroupModule, removeGroupModule, removeAllByGroupId, setGroupModules} = groupModuleSlice.actions;
 export const groupModuleReducer = groupModuleSlice.reducer;

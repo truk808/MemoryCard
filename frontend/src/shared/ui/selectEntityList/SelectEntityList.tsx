@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import styles from './SelectEntityList.module.scss'
 import {CheckButton, Search} from "../../index";
 
@@ -25,6 +25,10 @@ export function SelectEntityList<T>({
         // return items.filter(module => getItemName(module).toLowerCase().includes(normalized));
         return items
     }, [items, searchValue]);
+
+    // useEffect(() => {
+    //     console.log('items', items, 'selectedIds', selectedIds)
+    // }, [selectedIds])
 
     return (
         <div className={styles.SelectEntityList}>

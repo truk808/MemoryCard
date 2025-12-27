@@ -7,12 +7,11 @@ import React, {useEffect, useMemo} from "react";
 import {getModulesByGroup} from "../../../../shared";
 
 export function useGroupSectionLogic() {
-    const dispatch = useDispatch();
     const groupId = +useLocation().pathname.split("/")[2];
     const group = useSelector(selectGroupById(groupId))[0];
 
     const groupModules = useSelector((state: RootState) => state.groupModule.groupModules);
-    const moduleIds = getRelatedIdsByEntityId(groupId, groupModules, 'group_id', 'module_id')
+    const moduleIds = getRelatedIdsByEntityId(groupId, groupModules, 'groupId', 'moduleId')
     const modules = useSelector(selectModulesByGroupId(moduleIds))
 
     const [isOpenGroupManager, setIsOpenGroupManager] = React.useState(false);
@@ -27,10 +26,6 @@ export function useGroupSectionLogic() {
             }
         }
     }, [group, moduleIds]);
-
-    useEffect(() => {
-        console.log(groupModules)
-    }, [groupModules])
 
     return {
         groupId,

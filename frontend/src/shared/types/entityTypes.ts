@@ -24,20 +24,20 @@ export interface Card {
 
 export interface GroupModule extends Record<string, number> {
     id: number;
-    group_id: number;
-    module_id: number;
+    groupId: number;
+    moduleId: number;
 }
 
 export interface ModuleCard extends Record<string, number> {
     id: number;
-    module_id: number;
-    card_id: number;
+    moduleId: number;
+    cardId: number;
 }
 
 export interface CardTag extends Record<string, number> {
     id: number;
-    card_id: number;
-    tag_id: number;
+    cardId: number;
+    tagId: number;
 }
 
 export interface Tag {

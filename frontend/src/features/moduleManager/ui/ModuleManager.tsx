@@ -1,16 +1,7 @@
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import styles from "../../groupManager/ui/GroupManager.module.scss";
 import {BaseManagerProps, FormModalLayout, Input, Module, SelectEntityList} from "../../../shared";
-import {useModuleManager} from "../model/useModuleManager";
-
-export type ModuleForm = Partial<Pick<Module, "id" | "name">> & {
-    selectedCardIds: number[];
-};
-
-const initModuleForm: ModuleForm = {
-    name: "",
-    selectedCardIds: [],
-};
+import {ModuleForm, useModuleManager} from "../model/useModuleManager";
 
 export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
                                                                     isOpen = false,
@@ -26,6 +17,10 @@ export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
         handleToggleCard,
         cards,
     } = useModuleManager({isOpen, closeModal, mode, item})
+
+    useEffect(() => {
+        console.log(form.selectedCardIds)
+    }, [form.selectedCardIds]);
 
     return (
         <FormModalLayout
@@ -45,9 +40,9 @@ export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
             <SelectEntityList
                 items={cards}
                 selectedIds={form.selectedCardIds}
-                onToggle={handleToggleCard}
+                onToggle={id => handleToggleCard(id)}
                 getItemName={(card) => card.term}
-                getItemId={card => card.id}
+                getItemId={(card) => card.id}
             />
         </FormModalLayout>
     );

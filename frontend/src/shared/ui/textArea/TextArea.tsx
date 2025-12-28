@@ -4,7 +4,7 @@ import styles from "./TextArea.module.scss";
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 }
 
-const TextArea: FC<TextAreaProps> = ({...props}) => {
+export const TextArea: FC<TextAreaProps> = ({...props}) => {
     return (
         <textarea
             className={styles.textArea}
@@ -12,5 +12,3 @@ const TextArea: FC<TextAreaProps> = ({...props}) => {
         />
     );
 };
-
-export default TextArea;

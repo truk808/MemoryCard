@@ -1,7 +1,6 @@
 import React, {FC, useMemo} from 'react';
 import styles from './Memorize.module.scss';
-import { GlobalSvgSelector } from '../../../../shared';
-import {Card} from "../../../../entities";
+import {Card, GlobalSvgSelector} from '../../../../shared';
 
 interface MemorizeProps {
     currentCard: Card
@@ -14,13 +13,13 @@ interface MemorizeProps {
 
 export const Memorize: FC<MemorizeProps> = ({nextCard, cards, currentCard, recordAnswer, helper, setHelper}) => {
     const options = useMemo(() => {
-        const all = cards.map(card => card.description);
-        const wrong = all.filter(m => m !== currentCard.description).sort(() => 0.5 - Math.random()).slice(0, 3);
-        return [...wrong, currentCard.description].sort(() => 0.5 - Math.random());
+        const all = cards.map(card => card.meaning);
+        const wrong = all.filter(m => m !== currentCard.meaning).sort(() => 0.5 - Math.random()).slice(0, 3);
+        return [...wrong, currentCard.meaning].sort(() => 0.5 - Math.random());
     }, [currentCard]);
 
     function onclick(option: string) {
-        if (option === currentCard.description) {
+        if (option === currentCard.meaning) {
             nextCard();
         } else {
             console.log('неправильно!')
@@ -34,7 +33,7 @@ export const Memorize: FC<MemorizeProps> = ({nextCard, cards, currentCard, recor
                     <GlobalSvgSelector svgName={'lamp'} />
                 </div>
                 <h1 className={styles.title}>
-                    { helper ? currentCard.sentence : currentCard.name}
+                    { helper ? currentCard.example_sentence : currentCard.term}
                 </h1>
             </div>
 

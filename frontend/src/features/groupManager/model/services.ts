@@ -1,37 +1,56 @@
-import {addGroup, changeGroup, Group, removeGroup} from "../../../entities/group/model/slice";
-import {addGroupModule, removeAllByGroupId} from "../../../entities/groupModule/model/slice";
-import {GroupForm} from "../ui/GroupManager";
-import {ManagerMode} from "../../../shared";
-import {Dispatch} from "react";
-import {UnknownAction} from "@reduxjs/toolkit";
+import {addGroup, changeGroup} from "../../../entities/group/model/slice";
+import {addGroupModule, removeGroupModule} from "../../../entities/groupModule/model/slice";
+import {addModuleToGroup, createGroup, ManagerMode, removeModuleFromGroup, updateGroup} from "../../../shared";
+import {AppDispatch} from "../../../app/store";
+import {GroupForm} from "./useGroupManager";
 
-export const handleSubmitGroup =
-    (dispatch:  Dispatch<UnknownAction>, form: GroupForm, mode: ManagerMode, item?: GroupForm) => {
+export const saveGroup = async (
+    dispatch: AppDispatch,
+    form: GroupForm,
+    mode: ManagerMode,
+    item?: GroupForm
+) => {
     const isEdit = mode === "edit";
-    const now = new Date().toISOString();
+    let savedGroup;
 
-    const group: Group = {
-        id: isEdit && item?.id ? item.id : Date.now(),
-        user_id: 1,
-        name: form.name ?? "",
-        img: "/cat.png",
-        module_quantity: item?.module_quantity ?? 0,
-        description: form.description ?? "",
-        create_at: now,
-    };
+    if (isEdit && item?.id) {
+        savedGroup = await updateGroup(item.id, form);
+        dispatch(changeGroup(savedGroup));
 
-    if (isEdit) {
-        dispatch(changeGroup(group));
-        dispatch(removeAllByGroupId(group.id));
+        const oldIds = item.selectedModuleIds ?? [];
+        const newIds = form.selectedModuleIds;
+
+        const toRemove = oldIds.filter(id => !newIds.includes(id));
+        for (const moduleId of toRemove) {
+            await removeModuleFromGroup(savedGroup.id, moduleId);
+            dispatch(
+                removeGroupModule({
+                    groupId: savedGroup.id,
+                    moduleId: moduleId,
+                }));
+        }
+
+        const toAdd = newIds.filter(id => !oldIds.includes(id));
+        for (const moduleId of toAdd) {
+            const data = await addModuleToGroup(savedGroup.id, moduleId);
+            dispatch(addGroupModule({
+                id: data.id,
+                groupId: savedGroup.id,
+                moduleId: moduleId,
+            }));
+        }
+
     } else {
-        dispatch(addGroup(group));
-    }
+        savedGroup = await createGroup(form.name ?? "", form.description ?? "");
+        dispatch(addGroup(savedGroup));
 
-    form.selectedModuleIds.forEach(moduleId => {
-        dispatch(addGroupModule({
-            id: Date.now() + moduleId,
-            group_id: group.id,
-            module_id: moduleId,
-        }));
-    });
+        for (const moduleId of form.selectedModuleIds) {
+            const data = await addModuleToGroup(savedGroup.id, moduleId);
+            dispatch(addGroupModule({
+                id: data.id,
+                groupId: savedGroup.id,
+                moduleId: moduleId,
+            }));
+        }
+    }
 };

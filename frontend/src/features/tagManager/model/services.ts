@@ -1,22 +1,34 @@
-import {Tag} from "../../../entities";
-import {addTag} from "../../../entities/tag/model/slice";
+import {addTag, changeTag} from "../../../entities/tag/model/slice";
 import {Dispatch} from "react";
 import {UnknownAction} from "@reduxjs/toolkit";
-import {ManagerMode} from "../../../shared";
-import {TagForm} from "../ui/TagManager";
+import {createTag, ManagerMode, updateTag, deleteTag} from "../../../shared";
+import {TagForm} from "./useTagManager";
+import {removeModule} from "../../../entities/module/model/slice";
 
-export const handleSubmit =  (dispatch:  Dispatch<UnknownAction>, form: TagForm, mode: ManagerMode, item?: TagForm) => {
+export const saveTag =  (dispatch:  Dispatch<UnknownAction>, form: TagForm, mode: ManagerMode, item?: TagForm) => {
     const isEditMode = mode === "edit";
 
-    const tag: Tag = {
+    const tag = {
         id: isEditMode && item?.id ? item.id : Date.now(),
-        user_id: 1,
         name: form.name,
     };
 
     if (isEditMode) {
-        // dispatch(changeTag(tag));
+        updateTag(tag.id, tag).then((data) => {
+            dispatch(changeTag(data));
+        })
     } else {
-        dispatch(addTag(tag));
+        createTag(tag.name).then((data) => {
+            dispatch(addTag(data));
+        })
     }
 };
+
+export const removeTag =  (dispatch:  Dispatch<UnknownAction>, tagId: number) => {
+    const confirmed = window.confirm("Удалить тэг?");
+    if (!confirmed) return;
+
+    deleteTag(tagId).then(() => {
+        dispatch(removeModule(tagId));
+    })
+}

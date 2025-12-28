@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Card } from "../../../../entities";
+import {Card} from "../../../../shared";
 
 export interface TrainingResult {
     [cardId: number]: boolean;
@@ -21,6 +21,8 @@ export function useTraining(cards: Card[], type: string | null, modules: number[
     const startTime = useRef(Date.now());
 
     const currentCard = cards[index];
+
+    // console.log(currentCard)
 
     const recordAnswer = (cardId: number, correct: boolean): void => {
         setResults((prev) => ({ ...prev, [cardId]: correct }));

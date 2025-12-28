@@ -1,20 +1,7 @@
 import React, {FC, useEffect, useMemo} from 'react';
 import styles from './TagManager.module.scss'
 import {BaseManagerProps, FormModalLayout, Input} from "../../../shared";
-import {useDispatch, useSelector} from "react-redux";
-import {selectAllTags} from "../../../entities/tag/model/selectors";
-import {useItemForm} from "../../../shared/hooks/useItemForm";
-import {Group, Tag} from "../../../entities";
-import {addTag, removeTag} from "../../../entities/tag/model/slice";
-import {handleSubmit} from "../model/services";
-
-export type TagForm = Partial<Pick<Tag, 'id' | 'name'>> & {
-    name: string;
-}
-
-const initCardForm = {
-    name: '',
-}
+import {TagForm, useTagManager} from "../model/useTagManager";
 
 export const TagManager: FC<BaseManagerProps<TagForm>> = ({
                                                                isOpen = false,
@@ -22,27 +9,14 @@ export const TagManager: FC<BaseManagerProps<TagForm>> = ({
                                                                mode,
                                                                item,
                                                            }) => {
-    const tags = useSelector(selectAllTags);
-    const dispatch = useDispatch()
-    const isEditTag = mode === 'edit';
-
-    const {form, handleChange, resetForm} = useItemForm<TagForm>(
-        initCardForm && item ? item : initCardForm
-    );
-
-    function onDelete (tag: Tag) {
-        dispatch(removeTag(tag));
-    };
-
-    function onSubmit() {
-        handleSubmit(dispatch, form, mode, item);
-        resetForm();
-        closeModal();
-    }
-
-    useEffect(() => {
-        console.log(tags)
-    }, [tags]);
+    const {
+        isEditTag,
+        onSubmit,
+        handleChange,
+        form,
+        tags,
+        onDelete,
+    } = useTagManager({isOpen, closeModal, mode, item})
 
     return (
         <FormModalLayout

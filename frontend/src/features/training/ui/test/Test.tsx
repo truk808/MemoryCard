@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import styles from './Test.module.scss';
-import { GlobalSvgSelector, Input } from '../../../../shared';
-import {Card} from "../../../../entities";
+import {Card, GlobalSvgSelector, Input} from '../../../../shared';
 
 interface TestProps {
     currentCard: Card
@@ -21,7 +20,7 @@ export const Test: FC<TestProps> = ({setHelper, helper, currentCard, nextCard, c
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if(e.key === 'Enter') {
-            if(currentCard.name === answer) {
+            if(currentCard.term === answer) {
                 nextCard()
             } else {
                 console.log('неправилно')
@@ -36,7 +35,7 @@ export const Test: FC<TestProps> = ({setHelper, helper, currentCard, nextCard, c
                     <GlobalSvgSelector svgName={'lamp'} />
                 </div>
                 <h1 className={styles.title}>
-                    { helper ? currentCard.name : currentCard.description }
+                    { helper ? currentCard.term : currentCard.meaning }
                 </h1>
             </div>
 

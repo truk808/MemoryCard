@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import styles from './Repetition.module.scss'
-import {Card} from "../../../../entities";
 import {FC} from "react";
-import {GlobalSvgSelector} from "../../../../shared";
+import {Card, GlobalSvgSelector} from "../../../../shared";
 
 interface RepetitionProps {
     currentCard: Card
@@ -35,12 +34,12 @@ export const Repetition: FC<RepetitionProps> = ({ currentCard, nextCard, recordA
                     onClick={() => setFlipped(prevState => !prevState)}
                 >
                     {isHelper ?
-                        currentCard?.description
+                        currentCard?.meaning
                         :
                         flipped ?
-                            currentCard?.description
+                            currentCard?.meaning
                             :
-                            currentCard?.name
+                            currentCard?.term
                     }
                 </h1>
                 <div className={styles.arrowsContainer}>

@@ -7,6 +7,7 @@ export {ModuleManager} from './moduleManager/ui/ModuleManager'
 export {ModuleRemoveButton} from './moduleRemove/ui/ModuleRemoveButton'
 export {CardManager} from './cardManager/ui/CardManager'
 export {TagManager} from './tagManager/ui/TagManager'
+export {Auth} from './auth/ui/Auth'
 
 export {LinearGraph} from './statistics/linearGraph/ui/LinearGraph'
 export {PerformanceList} from './statistics/performanceList/ui/PerformanceList'

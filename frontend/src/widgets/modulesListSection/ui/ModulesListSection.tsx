@@ -2,9 +2,8 @@ import React from 'react';
 import {ModuleManager} from "../../../features";
 import {Button, CardList, Search} from "../../../shared";
 import styles from "./ModuleSection.module.scss";
-import {ModuleCard, selectAllModules} from "../../../entities";
+import {ModuleCard} from "../../../entities";
 import {Section} from "../../../shared";
-import {useSelector} from "react-redux";
 import {useModulesListSectionLogic} from "../model/hooks/useModulesListSectionLogic";
 
 export const ModulesListSection = () => {

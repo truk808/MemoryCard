@@ -1,39 +1,67 @@
-import {Dispatch} from "react";
-import {UnknownAction} from "@reduxjs/toolkit";
-import {ManagerMode} from "../../../shared";
-import {addCard, changeCard} from "../../../entities/card/model/slice";
-import {addCardTag, removeAllTagsByCardId} from "../../../entities/cardTag/model/slice";
-import {CardForm} from "../ui/CardManager";
+import { Dispatch } from "react";
+import { UnknownAction } from "@reduxjs/toolkit";
+import {addTagToCard, createCard, ManagerMode, removeTagFromCard, updateCard} from "../../../shared";
+import { addCard, changeCard } from "../../../entities/card/model/slice";
+import { addCardTag, removeCardTag } from "../../../entities/cardTag/model/slice";
+import { CardForm } from "./useCardManager";
 
-export const handleSubmitCard =
-    (dispatch: Dispatch<UnknownAction>, form: CardForm, mode: ManagerMode, item?: CardForm) => {
+export const saveCard = async (
+    dispatch: Dispatch<UnknownAction>,
+    form: CardForm,
+    mode: ManagerMode,
+    item?: CardForm
+) => {
     const isEdit = mode === "edit";
-    const now = new Date().toISOString();
+    let savedCard;
 
-    const card = {
-        id: isEdit && item?.id ? item.id : Date.now(),
-        user_id: 1,
-        name: form.name ?? "",
-        description: form.description ?? "",
-        sentence: form.sentence ?? "",
-        level: item?.level ?? 0,
-        created_at: now,
-    };
+    if (isEdit && item?.id) {
+        savedCard = await updateCard(item.id, {
+            id: item.id,
+            term: form.term ?? "",
+            meaning: form.meaning ?? "",
+            example_sentence: form.example_sentence ?? "",
+            level: item.level ?? 0,
+        });
 
-    if (isEdit) {
-        dispatch(changeCard(card));
-        dispatch(removeAllTagsByCardId(card.id));
+        dispatch(changeCard(savedCard));
+
+        const oldIds = item.selectedTagIds ?? [];
+        const newIds = form.selectedTagIds;
+
+        const toRemove = oldIds.filter(id => !newIds.includes(id));
+        for (const tagId of toRemove) {
+            await removeTagFromCard(savedCard.id, tagId);
+            dispatch(removeCardTag({ cardId: savedCard.id, tagId }));
+        }
+
+        const toAdd = newIds.filter(id => !oldIds.includes(id));
+        for (const tagId of toAdd) {
+            const data = await addTagToCard(savedCard.id, tagId);
+            dispatch(addCardTag({
+                id: data.id,
+                cardId: savedCard.id,
+                tagId,
+            }));
+        }
+
     } else {
-        dispatch(addCard(card));
+        savedCard = await createCard(
+            form.term ?? "",
+            form.meaning ?? "",
+            form.example_sentence ?? ""
+        );
+
+        dispatch(addCard(savedCard));
+
+        for (const tagId of form.selectedTagIds) {
+            const data = await addTagToCard(savedCard.id, tagId);
+            dispatch(addCardTag({
+                id: data.id,
+                cardId: savedCard.id,
+                tagId,
+            }));
+        }
     }
 
-    form.selectedTagIds.forEach(tagId => {
-        dispatch(
-            addCardTag({
-                id: Date.now(),
-                card_id: card.id,
-                tag_id: tagId,
-            })
-        );
-    });
+    return savedCard;
 };

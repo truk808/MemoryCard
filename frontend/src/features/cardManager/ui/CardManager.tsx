@@ -1,74 +1,22 @@
-import React, { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {FC, useEffect} from "react";
 import styles from "../../groupManager/ui/GroupManager.module.scss";
-import { handleSubmitCard } from "../model/services";
-import {BaseManagerProps, FormModalLayout, Input} from "../../../shared";
-import {Card, selectAllTags} from "../../../entities";
-import TextArea from "../../../shared/ui/textArea/TextArea";
-import {SelectEntityList} from "../../selectEntityList/ui/SelectEntityList";
-import {useItemForm} from "../../../shared/hooks/useItemForm";
-
-export type CardForm = Partial<Pick<Card, 'id' | 'name' | 'description' | 'level' | 'sentence'>> & {
-    selectedTagIds: number[];
-}
-
-export  interface CardManagerProps extends BaseManagerProps<CardForm> {
-    item?: any;
-}
-
-
-const initCardForm = {
-    name: '',
-    description: '',
-    sentence: '',
-    selectedTagIds: []
-}
+import {FormModalLayout, Input, SelectEntityList, TextArea} from "../../../shared";
+import {CardManagerProps, useCardManager} from "../model/useCardManager";
 
 export const CardManager: FC<CardManagerProps> = ({
-                                                                isOpen = false,
-                                                                closeModal,
-                                                                mode,
-                                                                item,
-                                                            }) => {
-    const dispatch = useDispatch();
-    const tags = useSelector(selectAllTags);
-    const isEditMode = mode === "edit";
-
-    const initialFormValue = isEditMode && item ? item : initCardForm;
-    const { form, handleChange, resetForm } = useItemForm<CardForm>(initialFormValue);
-
-
-
-    const onSubmit = () => {
-        handleSubmitCard(dispatch, form, mode, item);
-        resetForm();
-        closeModal();
-    };
-
-    const handleToggleTag = (id: number) => {
-        handleChange(
-            "selectedTagIds",
-            form.selectedTagIds.includes(id)
-                ? form.selectedTagIds.filter(tagId => tagId !== id)
-                : [...form.selectedTagIds, id]
-        );
-    }
-
-    useEffect(() => {
-        if (!isOpen) resetForm();
-    }, [isOpen]);
-
-    useEffect(() => {
-        if (item) {
-            console.log(item);
-            handleChange('name', item.name);
-            handleChange('sentence', item.sentence);
-            handleChange('description', item.description);
-            handleChange('selectedTagIds', item.selectedTagIds);
-            console.log('selectedTagIds ', item.selectedTagIds)
-        }
-
-    }, [item]);
+                                                      isOpen = false,
+                                                      closeModal,
+                                                      mode,
+                                                      item,
+                                                  }) => {
+    const {
+        isEditMode,
+        onSubmit,
+        handleChange,
+        form,
+        tags,
+        handleToggleTag,
+    } = useCardManager({isOpen, mode, closeModal, item})
 
     return (
         <FormModalLayout
@@ -80,22 +28,22 @@ export const CardManager: FC<CardManagerProps> = ({
         >
             <div className={styles.input}>
                 <Input
-                    onChange={e => handleChange("name", e.target.value)}
-                    value={form.name}
+                    onChange={e => handleChange("term", e.target.value)}
+                    value={form.term}
                     placeholder="Название"
                 />
             </div>
             <div className={styles.inputWrapper}>
                 <TextArea
-                    onChange={e => handleChange("description", e.target.value)}
-                    value={form.description}
+                    onChange={e => handleChange("meaning", e.target.value)}
+                    value={form.meaning}
                     placeholder="Описание"
                 />
             </div>
             <div className={styles.inputWrapper}>
                 <TextArea
-                    onChange={e => handleChange("sentence", e.target.value)}
-                    value={form.sentence}
+                    onChange={e => handleChange("example_sentence", e.target.value)}
+                    value={form.example_sentence}
                     placeholder="Пример использования"
                 />
             </div>

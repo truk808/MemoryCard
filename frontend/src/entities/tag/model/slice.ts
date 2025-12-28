@@ -1,10 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-export interface Tag {
-    id: number;
-    user_id: number;
-    name: string;
-}
+import {Tag} from "../../../shared";
 
 interface TagState {
     tags: Tag[];
@@ -12,41 +7,41 @@ interface TagState {
 
 const initialState: TagState = {
     tags: [
-        {
-            id: 1,
-            user_id: 1,
-            name: '#аглиский',
-        },
-        {
-            id: 2,
-            user_id: 1,
-            name: '#числа',
-        },
-        {
-            id: 3,
-            user_id: 1,
-            name: '#физика',
-        },
-        {
-            id: 4,
-            user_id: 1,
-            name: '#динамика',
-        },
-        {
-            id: 5,
-            user_id: 1,
-            name: '#закон Ньютона',
-        },
-        {
-            id: 6,
-            user_id: 1,
-            name: '#тег',
-        },
-        {
-            id: 7,
-            user_id: 1,
-            name: '#свег',
-        },
+        // {
+        //     id: 1,
+        //     user_id: 1,
+        //     name: '#аглиский',
+        // },
+        // {
+        //     id: 2,
+        //     user_id: 1,
+        //     name: '#числа',
+        // },
+        // {
+        //     id: 3,
+        //     user_id: 1,
+        //     name: '#физика',
+        // },
+        // {
+        //     id: 4,
+        //     user_id: 1,
+        //     name: '#динамика',
+        // },
+        // {
+        //     id: 5,
+        //     user_id: 1,
+        //     name: '#закон Ньютона',
+        // },
+        // {
+        //     id: 6,
+        //     user_id: 1,
+        //     name: '#тег',
+        // },
+        // {
+        //     id: 7,
+        //     user_id: 1,
+        //     name: '#свег',
+        // },
     ],
 };
 
@@ -54,6 +49,9 @@ export const tagSlice = createSlice({
     name: 'tag',
     initialState,
     reducers: {
+        setTags(state, action) {
+            state.tags = action.payload;
+        },
         addTag(state, action) {
             state.tags.push(action.payload);
         },
@@ -69,5 +67,5 @@ export const tagSlice = createSlice({
     },
 });
 
-export const { addTag, removeTag, changeTag } = tagSlice.actions;
+export const { addTag, removeTag, changeTag, setTags } = tagSlice.actions;
 export const tagReducer = tagSlice.reducer;

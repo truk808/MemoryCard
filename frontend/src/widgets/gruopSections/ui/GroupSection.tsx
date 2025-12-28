@@ -48,7 +48,8 @@ export const GroupSection = () => {
                 <Tabs titles={['Модули', 'статистика', 'что']}>
                     {[
                         <>
-                            <TrainModeList/>
+                            // переделать
+                            <TrainModeList moduleIds={modules.map(module => module.id)} />
                             <CardList
                                 items={modules}
                                 renderItem={module => <ModuleCard module={module}/>}

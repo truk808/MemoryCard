@@ -22,6 +22,8 @@ export function useTraining(cards: Card[], type: string | null, modules: number[
 
     const currentCard = cards[index];
 
+    // console.log(currentCard)
+
     const recordAnswer = (cardId: number, correct: boolean): void => {
         setResults((prev) => ({ ...prev, [cardId]: correct }));
     };

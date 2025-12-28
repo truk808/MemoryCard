@@ -42,7 +42,7 @@ export const ModuleSection = () => {
                 <Tabs titles={['Модули', 'Статистика', 'tvft']}>
                     {[
                         <>
-                            <TrainModeList/>
+                            <TrainModeList moduleIds={[moduleId]} />
                             <CardList
                                 items={cardsWithTags}
                                 renderItem={cardsWithTags => <TermCard onEdit={() => {

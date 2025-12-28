@@ -44,7 +44,6 @@ export function useModuleSectionLogic() {
     }, [module, cardIds]);
 
     return {
-        // данные
         moduleId,
         module,
         moduleCard,
@@ -53,9 +52,7 @@ export function useModuleSectionLogic() {
         tags,
         cardsWithTags,
         moduleInfo,
-        // сотояния
         isOpenModuleManager,
-        // функции
         setIsOpenModuleManager,
     }
 }

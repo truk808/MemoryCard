@@ -1,8 +1,8 @@
 import {useDispatch, useSelector} from "react-redux";
 import {selectAllTags} from "../../../entities";
 import {BaseManagerProps, getTags, getTagsByUser, Tag, useItemForm} from "../../../shared";
-import {removeTag, setTags} from "../../../entities/tag/model/slice";
-import {saveTag} from "./services";
+import {setTags} from "../../../entities/tag/model/slice";
+import {removeTag, saveTag} from "./services";
 import {useEffect} from "react";
 import {RootState} from "../../../app/store";
 
@@ -30,7 +30,7 @@ export const useTagManager = ({
     );
 
     function onDelete(tag: Tag) {
-        dispatch(removeTag(tag));
+        removeTag(dispatch, tag.id)
     };
 
     function onSubmit() {

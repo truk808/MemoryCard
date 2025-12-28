@@ -66,7 +66,6 @@ class GroupModuleController {
             return res.json(modules)
 
         } catch (e) {
-            console.log(e)
             next(ApiError.internal('Ошибка получения модулей группы'))
         }
     }

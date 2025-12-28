@@ -61,24 +61,24 @@ User.hasMany(Tag); Tag.belongsTo(User);
 
 Card.belongsToMany(Tag, { through: CardTag, foreignKey: 'cardId' });
 Tag.belongsToMany(Card, { through: CardTag, foreignKey: 'tagId' });
-CardTag.belongsTo(Card, { foreignKey: 'cardId' });
-CardTag.belongsTo(Tag, { foreignKey: 'tagId' });
-Card.hasMany(CardTag, { foreignKey: 'cardId' });
-Tag.hasMany(CardTag, { foreignKey: 'tagId' });
+CardTag.belongsTo(Card, { foreignKey: 'cardId',  onDelete: 'CASCADE',});
+CardTag.belongsTo(Tag, { foreignKey: 'tagId',  onDelete: 'CASCADE'});
+Card.hasMany(CardTag, { foreignKey: 'cardId',  onDelete: 'CASCADE', hooks: true });
+Tag.hasMany(CardTag, { foreignKey: 'tagId',  onDelete: 'CASCADE', hooks: true });
 
 Module.belongsToMany(Card, { through: ModuleCard, foreignKey: 'moduleId' });
 Card.belongsToMany(Module, { through: ModuleCard, foreignKey: 'cardId' });
-ModuleCard.belongsTo(Module, { foreignKey: 'moduleId' });
-ModuleCard.belongsTo(Card, { foreignKey: 'cardId' });
-Module.hasMany(ModuleCard, { foreignKey: 'moduleId' });
-Card.hasMany(ModuleCard, { foreignKey: 'cardId' });
+ModuleCard.belongsTo(Module, { foreignKey: 'moduleId',  onDelete: 'CASCADE',});
+ModuleCard.belongsTo(Card, { foreignKey: 'cardId',  onDelete: 'CASCADE'});
+Module.hasMany(ModuleCard, { foreignKey: 'moduleId',  onDelete: 'CASCADE', hooks: true });
+Card.hasMany(ModuleCard, { foreignKey: 'cardId',  onDelete: 'CASCADE', hooks: true });
 
 Group.belongsToMany(Module, { through: GroupModule, foreignKey: 'groupId' });
 Module.belongsToMany(Group, { through: GroupModule, foreignKey: 'moduleId' });
-GroupModule.belongsTo(Group, { foreignKey: 'groupId' });
-GroupModule.belongsTo(Module, { foreignKey: 'moduleId' });
-Group.hasMany(GroupModule, { foreignKey: 'groupId' });
-Module.hasMany(GroupModule, { foreignKey: 'moduleId' });
+GroupModule.belongsTo(Group, { foreignKey: 'groupId',   onDelete: 'CASCADE' });
+GroupModule.belongsTo(Module, { foreignKey: 'moduleId',  onDelete: 'CASCADE' });
+Group.hasMany(GroupModule, {foreignKey: 'groupId', onDelete: 'CASCADE', hooks: true});
+Module.hasMany(GroupModule, { foreignKey: 'moduleId',  onDelete: 'CASCADE', hooks: true });
 
 module.exports = {
     User,

@@ -1,8 +1,9 @@
 import {addTag, changeTag} from "../../../entities/tag/model/slice";
 import {Dispatch} from "react";
 import {UnknownAction} from "@reduxjs/toolkit";
-import {createTag, ManagerMode, updateTag} from "../../../shared";
+import {createTag, ManagerMode, updateTag, deleteTag} from "../../../shared";
 import {TagForm} from "./useTagManager";
+import {removeModule} from "../../../entities/module/model/slice";
 
 export const saveTag =  (dispatch:  Dispatch<UnknownAction>, form: TagForm, mode: ManagerMode, item?: TagForm) => {
     const isEditMode = mode === "edit";
@@ -22,3 +23,12 @@ export const saveTag =  (dispatch:  Dispatch<UnknownAction>, form: TagForm, mode
         })
     }
 };
+
+export const removeTag =  (dispatch:  Dispatch<UnknownAction>, tagId: number) => {
+    const confirmed = window.confirm("Удалить тэг?");
+    if (!confirmed) return;
+
+    deleteTag(tagId).then(() => {
+        dispatch(removeModule(tagId));
+    })
+}

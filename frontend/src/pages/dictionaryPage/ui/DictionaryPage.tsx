@@ -6,10 +6,11 @@ export const DictionaryPage = () => {
 
     return (
         <div className={styles.dictionaryPage}>
-            <DictionarySection />
-            <div className={styles.translator}>
-
+            <div className={styles.dictionaryContent}>
+                <DictionarySection/>
             </div>
+            <div className={styles.translator}/>
         </div>
+
     );
 };

@@ -1,5 +1,11 @@
 @import '../../../shared/styles/variables';
 
+.dictionaryContent {
+  flex: 1;
+  min-width: 0;
+}
+
+
 .dictionaryPage {
   display: flex;
   column-gap: 16px;

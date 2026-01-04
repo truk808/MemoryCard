@@ -10,7 +10,7 @@ export const saveTag =  (dispatch:  Dispatch<UnknownAction>, form: TagForm, mode
 
     const tag = {
         id: isEditMode && item?.id ? item.id : Date.now(),
-        name: form.name,
+        name: `#${form.name}`,
     };
 
     if (isEditMode) {

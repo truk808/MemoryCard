@@ -8,22 +8,25 @@ interface CardListProps<T> {
     quantityColumns?: number;
 }
 
-export function CardList<T>({items, renderItem, isShow = true, quantityColumns}: CardListProps<T>) {
-    const gridColumns = quantityColumns ?
-        `repeat(${quantityColumns}, minmax(300px, 1fr))`
-        :
-        `repeat(auto-fill, minmax(300px, 1fr))`
+export function CardList<T>({
+                                items,
+                                renderItem,
+                                isShow = true,
+                                quantityColumns
+                            }: CardListProps<T>) {
+
+    const gridColumns = quantityColumns
+        ? `repeat(${quantityColumns}, minmax(280px, 1fr))`
+        : `repeat(auto-fill, minmax(280px, 1fr))`;
+
+    if (!isShow) return null;
 
     return (
         <div
-            className={[styles.CardList, isShow && styles.active].join(' ')}
-            style={{gridTemplateColumns: gridColumns}}
+            className={styles.CardList}
+            style={{ gridTemplateColumns: gridColumns }}
         >
-            {
-                items.map((item: T): React.ReactNode => {
-                    return renderItem(item);
-                })
-            }
+            {items.map(renderItem)}
         </div>
     );
 }

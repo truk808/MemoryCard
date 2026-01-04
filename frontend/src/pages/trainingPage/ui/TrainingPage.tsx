@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { TrainingSession } from "../../../features/training/ui/TrainingSession";
 import {selectCardsByModuleIds} from "../../../entities/training/model/selectors";
 import {useEffect} from "react";
+import {Card} from "../../../shared";
 
 export function TrainingPage() {
     const [search] = useSearchParams();
@@ -14,7 +15,7 @@ export function TrainingPage() {
 
     const cards = useSelector(
         selectCardsByModuleIds(moduleIds)
-    );
+    ).filter((card): card is Card => card !== undefined);
 
     useEffect(() => {
         console.log(cards)

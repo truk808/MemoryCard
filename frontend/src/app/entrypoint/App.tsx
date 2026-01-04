@@ -19,7 +19,7 @@ import {setModuleCards} from "../../entities/moduleCard/model/slice";
 const App = () => {
     const dispatch = useDispatch<AppDispatch>()
     const user = useSelector((state: RootState) => state.user)
-    const { isAuth } = useSelector((state: RootState) => state.user);
+    const {isAuth} = useSelector((state: RootState) => state.user);
     const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {
@@ -74,7 +74,10 @@ const App = () => {
     return (
         <>
             <Header/>
-            <AppRouter/>
+            <div className="container">
+                <AppRouter/>
+            </div>
+
         </>
     );
 };

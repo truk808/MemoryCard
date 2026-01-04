@@ -36,7 +36,6 @@ export const useTagManager = ({
     function onSubmit() {
         saveTag(dispatch, form, mode, item);
         resetForm();
-        closeModal();
     }
 
     return {

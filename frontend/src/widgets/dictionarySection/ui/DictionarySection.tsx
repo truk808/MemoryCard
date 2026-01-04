@@ -6,6 +6,8 @@ import {TermCard} from "../../../entities";
 import {Button, CardList, Search, Section} from "../../../shared";
 import {handleDeleteCard} from "../../../features/cardRemove/model/services/handleDeleteCard";
 import {useDispatch} from "react-redux";
+import {Dropdown} from "../../../shared/ui/dropdown/Dropdown";
+import {ToggleButton} from "../../../shared/ui/toggleButton/ToggleButton";
 
 export const DictionarySection = () => {
     const dispatch = useDispatch();
@@ -21,6 +23,15 @@ export const DictionarySection = () => {
         setIsOpenTagManager,
         searchValue,
         setSearchValue,
+
+        tagItems,
+        selectedTagIds,
+        setSelectedTagIds,
+
+        onlyWithoutModules,
+        setOnlyWithoutModules,
+        onlyWithoutTags,
+        setOnlyWithoutTags,
     } = useDictionaryLogic();
 
     return (
@@ -59,9 +70,33 @@ export const DictionarySection = () => {
                     </Button>,
                 ]}
             >
-                <div className={styles.search}>
-                    <Search value={searchValue} onChange={setSearchValue} />
+                <div className={styles.filter}>
+                    <div className={styles.search}>
+                        <Search value={searchValue} onChange={setSearchValue}/>
+                    </div>
+                    <div>
+                        <ToggleButton
+                            active={onlyWithoutModules}
+                            onClick={() => setOnlyWithoutModules(prev => !prev)}
+                        >
+                            Карты без модулей
+                        </ToggleButton>
+
+                        <ToggleButton
+                            active={onlyWithoutTags}
+                            onClick={() => setOnlyWithoutTags(prev => !prev)}
+                        >
+                            Карты без тегов
+                        </ToggleButton>
+                    </div>
+                    <Dropdown
+                        items={tagItems}
+                        onChange={setSelectedTagIds}
+                        placeholder={'Теги'}
+                        selectedIds={selectedTagIds}
+                    />
                 </div>
+
 
                 <CardList
                     items={filteredCards}

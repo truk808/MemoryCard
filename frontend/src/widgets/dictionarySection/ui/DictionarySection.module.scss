@@ -1,5 +1,10 @@
 @import '../../../shared/styles/variables';
 
+.filter {
+  display: flex;
+  justify-content: space-between;
+}
+
 .search {
   padding: 10px;
   border-radius: 15px;

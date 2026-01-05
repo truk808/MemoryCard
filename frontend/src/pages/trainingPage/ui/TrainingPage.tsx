@@ -5,6 +5,7 @@ import {selectCardsByModuleIds} from "../../../entities/training/model/selectors
 import {useEffect} from "react";
 import {Card} from "../../../shared";
 
+// переделать
 export function TrainingPage() {
     const [search] = useSearchParams();
 
@@ -13,9 +14,9 @@ export function TrainingPage() {
         ?.split(",")
         .map(Number) || [];
 
-    const cards = useSelector(
-        selectCardsByModuleIds(moduleIds)
-    ).filter((card): card is Card => card !== undefined);
+    const cards = useSelector(selectCardsByModuleIds(moduleIds)).
+    filter((card): card is Card => card !== undefined).
+    sort(() => Math.random() - 0.5);
 
     useEffect(() => {
         console.log(cards)

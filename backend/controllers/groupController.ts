@@ -1,18 +1,26 @@
 import {NextFunction, Request, Response} from 'express';
 import { ApiError } from "../error/ApiError";
 const {Group} = require("../models/models");
+const uuid = require("uuid");
+const path = require("path");
 
 class GroupController {
     async create(req: Request, res: Response, next: NextFunction) {
         try {
             const { name, description } = req.body;
             const userId = req.user!.id;
+            const { img } = req.files
+            let fileName = uuid.v4() + ".jpg"
+            img.mv(path.resolve(__dirname, '..', '..', 'static', fileName));
+
+            console.log('qwqwqwqwqwqwq', path.resolve(__dirname, 'static'))
+
 
             if (!name || !userId) {
                 return next(ApiError.badRequest("Name and userId are required"));
             }
 
-            const group = await Group.create({ name, description, img: '', userId });
+            const group = await Group.create({ name, description, img: fileName, userId });
 
             return res.json(group);
         } catch (e) {

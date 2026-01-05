@@ -1,9 +1,9 @@
 @import '../../../shared/styles/variables';
 
-.search {
-  padding: 10px;
-  border-radius: 15px;
-  box-shadow: $box-shadow;
-  background-color: var(--main-color-default);
-  max-width: 50%;
+.title {
+  display: flex;
+  margin: 25px 0;
+  font-weight: 600;
+  font-size: 40px;
+  color: var(--text-color-default)
 }

@@ -5,10 +5,11 @@ import {saveModule} from "./services";
 
 export const initModuleForm: ModuleForm = {
     name: "",
+    icon: '',
     selectedCardIds: [],
 };
 
-export type ModuleForm = Partial<Pick<Module, "id" | "name">> & {
+export type ModuleForm = Partial<Pick<Module, "id" | 'icon' | "name">> & {
     selectedCardIds: number[];
 };
 

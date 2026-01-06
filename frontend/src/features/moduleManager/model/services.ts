@@ -44,7 +44,7 @@ export const saveModule = async (
         }
 
     } else {
-        savedModule = await createModule(form.name ?? "");
+        savedModule = await createModule(form.name ?? "", form.icon ?? "");
         dispatch(addModule(savedModule));
 
         for (const cardId of form.selectedCardIds) {

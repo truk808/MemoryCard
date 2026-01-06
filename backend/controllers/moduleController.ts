@@ -5,14 +5,14 @@ const { Module } = require('../models/models');
 class ModuleController {
     async create(req: Request, res: Response, next: NextFunction) {
         try {
-            const { name } = req.body;
+            const { name, icon } = req.body;
             const userId = req.user!.id;
 
             if (!name || !userId) {
                 return next(ApiError.badRequest("Name and userId are required"));
             }
 
-            const module = await Module.create({ name, userId });
+            const module = await Module.create({ name, userId, icon });
 
             return res.json(module);
         } catch (e) {
@@ -46,7 +46,7 @@ class ModuleController {
     async change(req: Request, res: Response, next: NextFunction) {
         try {
             const moduleId = req.params.id;
-            const { name, description } = req.body;
+            const { name, icon } = req.body;
 
             const moduleItem = await Module.findByPk(moduleId);
             if (!moduleItem) {
@@ -54,7 +54,7 @@ class ModuleController {
             }
 
             if (name !== undefined) moduleItem.name = name;
-            if (description !== undefined) moduleItem.description = description;
+            if (icon !== undefined) moduleItem.icon = icon;
 
             await moduleItem.save();
 

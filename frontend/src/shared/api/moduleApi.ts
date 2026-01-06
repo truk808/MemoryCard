@@ -1,9 +1,9 @@
 import {$host, $authHost} from "./axios"
 
-export const createModule = async (name: string) => {
+export const createModule = async (name: string, icon: string) => {
     const { data } = await $authHost.post('/api/module', {
         name,
-        icon: '',
+        icon,
     })
     return data
 }
@@ -19,7 +19,7 @@ export const getModulesByUser = async (userId: number) => {
     return data
 }
 
-export const updateModule = async (id: number,payload: { name?: string }) => {
+export const updateModule = async (id: number, payload: { name?: string, icon?:string }) => {
     const { data } = await $authHost.put(`/api/module/${id}`, payload)
     return data
 }

@@ -14,7 +14,13 @@ export const saveGroup = async (
     let savedGroup;
 
     if (isEdit && item?.id) {
-        savedGroup = await updateGroup(item.id, form);
+        const formData = new FormData();
+        formData.append('name', form.name ?? '');
+        formData.append('description', form.description ?? '');
+        if (form.img) formData.append('img', form.img);
+
+        savedGroup = await updateGroup(item.id, formData);
+
         dispatch(changeGroup(savedGroup));
 
         const oldIds = item.selectedModuleIds ?? [];
@@ -41,7 +47,12 @@ export const saveGroup = async (
         }
 
     } else {
-        savedGroup = await createGroup(form.name ?? "", form.description ?? "");
+        const formData = new FormData();
+        formData.append('name', form.name ?? '');
+        formData.append('description', form.description ?? '');
+        if (form.img) formData.append('img', form.img);
+
+        savedGroup = await createGroup(formData);
         dispatch(addGroup(savedGroup));
 
         for (const moduleId of form.selectedModuleIds) {

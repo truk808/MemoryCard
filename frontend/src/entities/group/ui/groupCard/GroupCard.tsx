@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import styles from './GroupCard.module.scss'
 import {NavLink} from "react-router-dom";
 import {GlobalSvgSelector, Group, GROUP_ROUTE} from "../../../../shared";
@@ -13,11 +13,17 @@ type GroupCardProps = {
 export const GroupCard: FC<GroupCardProps> = ({group, variant='default'}) => {
     const isPublication = variant === 'publication';
 
+    useEffect(() => {
+        console.log(`${process.env.REACT_APP_API_URL}${group.img}`)
+        console.log('GroupCard')
+    }, []);
+
     return (
         <NavLink to={`${GROUP_ROUTE}/${group.id}`}>
             <div className={styles.card}>
-                <div className={styles.imgWrapper}>
-                    <img className={styles.img} src={group.img} alt=""/>
+                <div className={styles.imgWrapper}
+                    style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL}${group.img})` }}
+                >
                 </div>
                 <div className={styles.cardInfo}>
                     <h2 className={styles.title}>

@@ -1,5 +1,6 @@
 import {NextFunction, Request, Response} from 'express';
 import { ApiError } from "../error/ApiError";
+import fs from "fs";
 const {Group} = require("../models/models");
 const uuid = require("uuid");
 const path = require("path");
@@ -9,12 +10,13 @@ class GroupController {
         try {
             const { name, description } = req.body;
             const userId = req.user!.id;
-            const { img } = req.files
-            let fileName = uuid.v4() + ".jpg"
-            img.mv(path.resolve(__dirname, '..', '..', 'static', fileName));
+            const img = req.files?.img;
+            let fileName = null;
 
-            console.log('qwqwqwqwqwqwq', path.resolve(__dirname, 'static'))
-
+            if (img) {
+                fileName = uuid.v4() + ".jpg";
+                await img.mv(path.resolve(__dirname, '..', 'static', fileName));
+            }
 
             if (!name || !userId) {
                 return next(ApiError.badRequest("Name and userId are required"));
@@ -52,6 +54,7 @@ class GroupController {
         try {
             const groupId = req.params.id;
             const { name, description } = req.body;
+            const img = req.files?.img;
 
             const group = await Group.findByPk(groupId);
             if (!group) {
@@ -61,10 +64,24 @@ class GroupController {
             if (name !== undefined) group.name = name;
             if (description !== undefined) group.description = description;
 
+            if (img) {
+                if (group.img) {
+                    const oldPath = path.resolve(__dirname, "..", "static", group.img);
+                    if (fs.existsSync(oldPath)) {
+                        fs.unlinkSync(oldPath);
+                    }
+                }
+
+                const fileName = uuid.v4() + ".jpg";
+                await img.mv(path.resolve(__dirname, "..", "static", fileName));
+                group.img = fileName;
+            }
+
             await group.save();
 
             return res.json(group);
         } catch (e) {
+            console.log(e);
             next(ApiError.internal("Failed to update group"));
         }
     }

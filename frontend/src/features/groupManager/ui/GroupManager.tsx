@@ -40,6 +40,26 @@ export const GroupManager: FC<BaseManagerProps<GroupForm>> = ({
                     placeholder={'Описаие'}
                 />
             </div>
+
+            {/*переделать лабел*/}
+            <label className={styles.uploadButton}>
+                Выбрать изображение
+                <input
+                    type="file"
+                    accept="image/*"
+                    hidden
+                    onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                            handleChange('img', file);
+                        }
+                    }}
+                />
+                {form.img && (
+                    <img src={URL.createObjectURL(form.img)} alt="preview" className={styles.preview} />
+                )}
+            </label>
+
             <SelectEntityList
                 items={modules}
                 selectedIds={form.selectedModuleIds}

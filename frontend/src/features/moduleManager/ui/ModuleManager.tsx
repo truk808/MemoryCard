@@ -2,6 +2,7 @@ import React, {FC, useEffect} from "react";
 import styles from "../../groupManager/ui/GroupManager.module.scss";
 import {BaseManagerProps, FormModalLayout, Input, Module, SelectEntityList} from "../../../shared";
 import {ModuleForm, useModuleManager} from "../model/useModuleManager";
+import {SelectIcon} from "../../../shared/ui/selectIcon/SelectIcon";
 
 export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
                                                                     isOpen = false,
@@ -37,6 +38,12 @@ export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
                     placeholder="Название модуля"
                 />
             </div>
+
+            <SelectIcon
+                selectedItems={form.icon}
+                onChange={(icon) => handleChange('icon', icon)}
+            />
+
             <SelectEntityList
                 items={cards}
                 selectedIds={form.selectedCardIds}

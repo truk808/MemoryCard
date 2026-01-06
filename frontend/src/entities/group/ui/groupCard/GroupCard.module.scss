@@ -16,6 +16,12 @@
 .imgWrapper {
   height: 100%;
   margin-right: 15px;
+
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+
+  border-radius: 20%;
 }
 
 .img {

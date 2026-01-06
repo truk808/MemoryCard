@@ -6,11 +6,13 @@ import {saveGroup} from "./services";
 export const initGroupForm = {
     name: '',
     description: '',
+    img: null,
     selectedModuleIds: []
 }
 
-export type GroupForm = Partial<Pick<Group, 'id' | 'name' | 'description'>> & {
+export type GroupForm = Partial<Pick<Group, 'id' | 'name'| 'img' | 'description'>> & {
     selectedModuleIds: number[];
+    img?: File | null;
 };
 
 export const useGroupManager = ({isOpen = false, closeModal, mode, item}: BaseManagerProps<GroupForm>) => {

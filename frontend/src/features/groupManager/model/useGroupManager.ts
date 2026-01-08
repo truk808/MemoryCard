@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectAllModules} from "../../../entities";
 import {BaseManagerProps, Group, useItemForm} from "../../../shared";
 import {saveGroup} from "./services";
+import {useEffect} from "react";
 
 export const initGroupForm = {
     name: '',

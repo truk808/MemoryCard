@@ -1,14 +1,18 @@
+@import '../../../shared/styles/variables';
+
 .root {
+  min-width: 100px;
+  width: 100%;
+  //height: 100%;
   position: relative;
-  width: 260px;
-  font-size: 14px;
+  border-radius: 12px;
+  background-color: var(--main-color-default);
+  box-shadow: $box-shadow;
 }
 
 .trigger {
   width: 100%;
   padding: 8px 12px;
-  background: #fff;
-  border: 1px solid #ccc;
   border-radius: 6px;
   cursor: pointer;
 

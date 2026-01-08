@@ -38,7 +38,7 @@ export const SelectIcon: FC<SelectIconProps> = ({
                 ))}
             </div>
 
-            <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 10 }}>
+            <div className={styles.buttonContainer}>
                 <button
                     onClick={() => setPage(p => p - 1)}
                     disabled={page === 0}

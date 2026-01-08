@@ -1,6 +1,6 @@
 import React, {FC, useEffect} from 'react';
 import styles from './GroupManager.module.scss'
-import {BaseManagerProps, FormModalLayout, Input, SelectEntityList, TextArea} from "../../../shared";
+import {BaseManagerProps, FormModalLayout, ImageUpload, Input, SelectEntityList, TextArea} from "../../../shared";
 import {GroupForm, useGroupManager} from "../model/useGroupManager";
 
 export const GroupManager: FC<BaseManagerProps<GroupForm>> = ({
@@ -41,24 +41,12 @@ export const GroupManager: FC<BaseManagerProps<GroupForm>> = ({
                 />
             </div>
 
-            {/*переделать лабел*/}
-            <label className={styles.uploadButton}>
-                Выбрать изображение
-                <input
-                    type="file"
-                    accept="image/*"
-                    hidden
-                    onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                            handleChange('img', file);
-                        }
-                    }}
+            <div className={styles.imageUpload}>
+                <ImageUpload
+                    onChange={(file) => handleChange('img', file)}
+                    image={form.img}
                 />
-                {form.img && (
-                    <img src={URL.createObjectURL(form.img)} alt="preview" className={styles.preview} />
-                )}
-            </label>
+            </div>
 
             <SelectEntityList
                 items={modules}

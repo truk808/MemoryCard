@@ -19,10 +19,6 @@ export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
         cards,
     } = useModuleManager({isOpen, closeModal, mode, item})
 
-    useEffect(() => {
-        console.log(form.selectedCardIds)
-    }, [form.selectedCardIds]);
-
     return (
         <FormModalLayout
             title={isEditMode ? "Редактировать модуль" : "Создать модуль"}
@@ -38,12 +34,12 @@ export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
                     placeholder="Название модуля"
                 />
             </div>
-
-            <SelectIcon
-                selectedItems={form.icon}
-                onChange={(icon) => handleChange('icon', icon)}
-            />
-
+            <div className={styles.selectIcon}>
+                <SelectIcon
+                    selectedItems={form.icon}
+                    onChange={(icon) => handleChange('icon', icon)}
+                />
+            </div>
             <SelectEntityList
                 items={cards}
                 selectedIds={form.selectedCardIds}

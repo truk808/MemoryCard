@@ -1,7 +1,8 @@
 @import '../../styles/variables';
 
 .SelectEntityList {
-  height: 400px;
+  min-height: 20px;
+  max-height: 400px;
   display: flex;
   flex-direction: column;
   gap: 10px;

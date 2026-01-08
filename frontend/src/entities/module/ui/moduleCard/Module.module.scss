@@ -11,6 +11,7 @@
   gap: 15px;
   transition: transform 0.2s ease;
   cursor: pointer;
+  color: #000;
 
   &:hover {
     transform: translateY(-4px);
@@ -29,6 +30,9 @@
     max-width: 100%;
     height: auto;
     object-fit: contain;
+  }
+  svg {
+    stroke-width: 0.5;
   }
 }
 

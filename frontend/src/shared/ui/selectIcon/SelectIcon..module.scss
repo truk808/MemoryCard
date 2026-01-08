@@ -22,3 +22,11 @@
 .active {
   background-color: #e5f0ff;
 }
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 0;
+  margin-top: auto;
+}

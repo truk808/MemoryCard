@@ -10,7 +10,7 @@ export function useModulesListSectionLogic() {
     const userId = useSelector((state: RootState) => state.user.user?.id);
     const modules = useSelector(selectAllModules);
 
-    const [isModuleSectionOpen, setIsModuleSectionOpen] = useState(false);
+    const [isModuleSectionOpen, setIsModuleSectionOpen] = useState(true);
     const [isOpenModuleManager, setIsOpenModuleManager] = useState(false);
     const [searchValue, setSearchValue] = useState('');
 

@@ -10,7 +10,7 @@ export function useGroupsListSectionLogic() {
     const userId = useSelector((state: RootState) => state.user.user?.id);
     const groups = useSelector(selectAllGroups);
 
-    const [isGroupSectionOpen, setIsGroupSectionOpen] = React.useState(false);
+    const [isGroupSectionOpen, setIsGroupSectionOpen] = React.useState(true);
     const [isGroupManagerOpen, setIsGroupManagerOpen] = React.useState(false);
     const [searchValue, setSearchValue] = React.useState('');
 

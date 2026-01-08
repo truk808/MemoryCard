@@ -21,6 +21,7 @@ export function useGroupSectionLogic() {
             return {
                 id: group.id,
                 name: group.name,
+                img: group.img,
                 description: group.description,
                 selectedModuleIds: moduleIds,
             }

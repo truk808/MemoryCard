@@ -36,9 +36,10 @@ export const GroupsListSection = () => {
             >
                 {isGroupSectionOpen && (
                     <>
-                        <div className={styles.search}>
-                            <Search value={searchValue} onChange={setSearchValue}/>
-                        </div>
+                        {/*переделать*/}
+                        {/*<div className={styles.search}>*/}
+                        {/*    <Search value={searchValue} onChange={setSearchValue}/>*/}
+                        {/*</div>*/}
                         <CardList
                             quantityColumns={3}
                             items={filteredGroups}

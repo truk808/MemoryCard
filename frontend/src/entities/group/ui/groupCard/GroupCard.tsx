@@ -1,7 +1,7 @@
 import React, {FC, useEffect} from 'react';
 import styles from './GroupCard.module.scss'
 import {NavLink} from "react-router-dom";
-import {GlobalSvgSelector, Group, GROUP_ROUTE} from "../../../../shared";
+import {GlobalSvgSelector, Group, GROUP_ROUTE, TruncatedText} from "../../../../shared";
 import {Publication} from "../../../publication/model/slice";
 
 type GroupCardProps = {
@@ -13,11 +13,6 @@ type GroupCardProps = {
 export const GroupCard: FC<GroupCardProps> = ({group, variant='default'}) => {
     const isPublication = variant === 'publication';
 
-    useEffect(() => {
-        console.log(`${process.env.REACT_APP_API_URL}${group.img}`)
-        console.log('GroupCard')
-    }, []);
-
     return (
         <NavLink to={`${GROUP_ROUTE}/${group.id}`}>
             <div className={styles.card}>
@@ -27,7 +22,9 @@ export const GroupCard: FC<GroupCardProps> = ({group, variant='default'}) => {
                 </div>
                 <div className={styles.cardInfo}>
                     <h2 className={styles.title}>
-                        {group.name}
+                        <TruncatedText maxLength={35}>
+                            {group.name}
+                        </TruncatedText>
                     </h2>
                     <div className={styles.info}>
                         <div className={styles.nickname_moduleQuantity}>

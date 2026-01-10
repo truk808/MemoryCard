@@ -56,7 +56,7 @@ export const GroupSection = () => {
                             />
                         </>,
                         <>
-                            <LinearGraph/>
+                            {/*<LinearGraph/>*/}
                             <div style={{    // Переделать
                                 margin: '65px 0',
                                 display: 'flex',

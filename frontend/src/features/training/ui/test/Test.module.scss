@@ -12,9 +12,9 @@
 
 .card {
   position: relative;
-  max-width: 60%;
-  max-height: 50%;
   background-color: var(--main-color-default);
+  width: 300px;
+  height: 500px;
   border-radius: $border-radius;
   box-shadow: $box-shadow;
   display: flex;
@@ -23,6 +23,7 @@
 }
 
 .helper {
+  cursor: pointer;
   position: absolute;
   top: 15px;
   left: 15px;

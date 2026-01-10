@@ -37,3 +37,5 @@ export {removeCardFromModule} from './moduleCardApi'
 export {addTagToCard} from './сardTagApi'
 export {getTagsByCard} from './сardTagApi'
 export {removeTagFromCard} from './сardTagApi'
+
+export {getProgressByModule} from './linearGraphApi'

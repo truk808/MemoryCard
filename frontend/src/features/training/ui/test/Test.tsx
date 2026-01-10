@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import styles from './Test.module.scss';
 import {Card, GlobalSvgSelector, Input} from '../../../../shared';
 
@@ -13,6 +13,7 @@ interface TestProps {
 
 export const Test: FC<TestProps> = ({setHelper, helper, currentCard, nextCard, cards, recordAnswer,}) => {
     const [answer, setAnswer] = React.useState('');
+    const [isHelper, setIsHelper] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAnswer(e.target.value);
@@ -31,11 +32,11 @@ export const Test: FC<TestProps> = ({setHelper, helper, currentCard, nextCard, c
     return (
         <div className={styles.test}>
             <div className={styles.card}>
-                <div className={styles.helper}>
+                <div className={styles.helper} onClick={() =>setIsHelper(prevState => !prevState)}>
                     <GlobalSvgSelector svgName={'lamp'} />
                 </div>
                 <h1 className={styles.title}>
-                    { helper ? currentCard.term : currentCard.meaning }
+                    { isHelper ? currentCard.term : currentCard.meaning }
                 </h1>
             </div>
 

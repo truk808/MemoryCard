@@ -1,10 +1,6 @@
 import {$host, $authHost} from "./axios"
 
-export const createCard = async (
-    term: string,
-    meaning: string,
-    example_sentence: string,
-) => {
+export const createCard = async (term: string, meaning: string, example_sentence: string,) => {
     const { data } = await $authHost.post('/api/card', {
         term,
         meaning,

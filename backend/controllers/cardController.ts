@@ -5,11 +5,7 @@ import { ApiError } from "../error/ApiError";
 class CardController {
     async create(req: Request, res: Response, next: NextFunction) {
         try {
-            const {
-                term,
-                meaning,
-                example_sentence,
-            } = req.body;
+            const {term, meaning, example_sentence,} = req.body;
             const userId = req.user!.id;
             const card = await Card.create({
                 term,

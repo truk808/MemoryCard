@@ -1,7 +1,7 @@
-// /features/training/ui/ModalResult/ModalResult.tsx
 import React, { FC } from "react";
 import { Button, Modal } from "../../../../shared";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import styles from "./ModalResult.module.scss";
 
 interface ModalResultProps {
     isOpen: boolean;
@@ -24,19 +24,20 @@ export const ModalResult: FC<ModalResultProps> = ({
                                                   }) => {
     return (
         <Modal closeModal={close} isOpen={isOpen}>
-            <div className="p-4 text-center space-y-2">
-                <h3 className="text-xl font-semibold mb-2">Результаты тренировки</h3>
-                <h5>Тип: {type}</h5>
-                <h5>Карточек: {cardsCount}</h5>
-                <h5>Ошибок: {wrongCount}</h5>
-                <h5>Время: {duration} сек</h5>
-                <h5>Дата: {date}</h5>
+            <div className={styles.container}>
+                <h3 className={styles.title}>Результаты тренировки</h3>
 
-                <div className="mt-4">
+                <div className={styles.list}>
+                    <h5>Тип: {type}</h5>
+                    <h5>Карточек: {cardsCount}</h5>
+                    <h5>Ошибок: {wrongCount}</h5>
+                    <h5>Время: {duration} сек</h5>
+                    <h5>Дата: {date}</h5>
+                </div>
+
+                <div className={styles.footer}>
                     <Button onClick={close} color="blue">
-                        <NavLink to={`/`}>
-                            Далее
-                        </NavLink>
+                        <NavLink to="/">Далее</NavLink>
                     </Button>
                 </div>
             </div>

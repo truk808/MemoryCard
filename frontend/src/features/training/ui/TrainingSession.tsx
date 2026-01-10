@@ -6,6 +6,8 @@ import {FC, useEffect, useState} from "react";
 import {useTraining} from "../model/hooks/useTrainingLogic";
 import {ModalResult} from "./modalResult/ModalResult";
 import {Card} from "../../../shared";
+import {createProgress} from "../../../shared/api/linearGraphApi";
+// import { completeTraining } from "../../../shared/api/trainingApi";
 
 interface TrainingSessionProps {
     type: string;
@@ -23,17 +25,16 @@ export const  TrainingSession: FC<TrainingSessionProps> = ({type, cards, moduleI
         }
     }, [training.isFinish]);
 
-    if (isModalOpen) {
-        const correctCount = Object.values(training.results).filter(Boolean).length;
-        const wrongCount = cards.length - correctCount;
 
+    if (isModalOpen) {
+        // переделать
         return <ModalResult
             isOpen={isModalOpen}
-            close={() => setIsModalOpen(false)}
+            close={() => {}}
             type={type}
-            cardsCount={cards.length}
-            wrongCount={wrongCount}
-            duration={0}
+            cardsCount={training.cards.length}
+            wrongCount={Object.values(training.results).filter(v => !v).length}
+            duration={training.finishResults?.duration ?? 0}
             date={new Date().toLocaleString("ru-RU")}
         />
     }
@@ -49,35 +50,35 @@ export const  TrainingSession: FC<TrainingSessionProps> = ({type, cards, moduleI
                     cards={training.cards}
                 />
             );
-        case "test":
-            return (
-                <Test
-                    currentCard={training.currentCard}
-                    nextCard={training.nextCard}
-                    recordAnswer={training.recordAnswer}
-                    cards={training.cards}
-                    setHelper={() => training.setHelper}
-                    helper={training.helper}
-                />
-            );
-        case "match":
-            return (
-                <Match
-                    // cards={training.cards}
-                    // finish={training.finish}
-                />
-            );
-        case "memorization":
-            return (
-                <Memorize
-                    currentCard={training.currentCard}
-                    nextCard={training.nextCard}
-                    recordAnswer={training.recordAnswer}
-                    cards={training.cards}
-                    setHelper={() => training.setHelper}
-                    helper={training.helper}
-                />
-            );
+        // case "test":
+        //     return (
+        //         <Test
+        //             currentCard={training.currentCard}
+        //             nextCard={training.nextCard}
+        //             recordAnswer={training.recordAnswer}
+        //             cards={training.cards}
+        //             setHelper={() => training.setHelper}
+        //             helper={training.helper}
+        //         />
+        //     );
+        // case "match":
+        //     return (
+        //         <Match
+        //             // cards={training.cards}
+        //             // finish={training.finish}
+        //         />
+        //     );
+        // case "memorization":
+        //     return (
+        //         <Memorize
+        //             currentCard={training.currentCard}
+        //             nextCard={training.nextCard}
+        //             recordAnswer={training.recordAnswer}
+        //             cards={training.cards}
+        //             setHelper={() => training.setHelper}
+        //             helper={training.helper}
+        //         />
+        //     );
         default:
             return <div>Неверный тип тренировки</div>;
     }

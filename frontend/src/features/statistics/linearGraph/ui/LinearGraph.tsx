@@ -1,12 +1,29 @@
-import React from 'react';
+import React, {useEffect, useMemo} from 'react';
 import styles from './LinearGraph.module.scss'
 import {useSelector} from "react-redux";
 import {selectLinearGraph} from "../model/selectors";
 import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "recharts";
+import {RootState} from "../../../../app/store";
 
+// переделать
 export const LinearGraph = () => {
-    const graph = useSelector(selectLinearGraph)
-    console.log(graph)
+    const graph = useSelector((state: RootState) => state.linearGraph.progress)
+
+    const data = useMemo(() => {
+        return graph.map((item) => ({
+            ...item,
+            totalCards:
+                item.level0 +
+                item.level1 +
+                item.level2 +
+                item.level3,
+        }))
+    }, [graph])
+
+    useEffect(() => {
+        console.log(data);
+    }, [data]);
+
     return (<div
             className={styles.container}>
             <div className={styles.linearGraph}>
@@ -18,7 +35,7 @@ export const LinearGraph = () => {
                         maxWidth: '100%',
                     }}
                     responsive
-                    data={graph}
+                    data={data}
                     margin={{top: 5, right: 20, bottom: 5, left: 0}}
                 >
                     <CartesianGrid stroke="#aaa" strokeDasharray="5 5"/>

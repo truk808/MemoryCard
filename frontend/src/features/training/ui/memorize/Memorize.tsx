@@ -1,4 +1,4 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC, useMemo, useState} from 'react';
 import styles from './Memorize.module.scss';
 import {Card, GlobalSvgSelector} from '../../../../shared';
 
@@ -12,6 +12,8 @@ interface MemorizeProps {
 }
 
 export const Memorize: FC<MemorizeProps> = ({nextCard, cards, currentCard, recordAnswer, helper, setHelper}) => {
+    const [isHelper, setIsHelper] = useState(false);
+
     const options = useMemo(() => {
         const all = cards.map(card => card.meaning);
         const wrong = all.filter(m => m !== currentCard.meaning).sort(() => 0.5 - Math.random()).slice(0, 3);
@@ -29,11 +31,11 @@ export const Memorize: FC<MemorizeProps> = ({nextCard, cards, currentCard, recor
     return (
         <div className={styles.memorize}>
             <div className={styles.card}>
-                <div className={styles.helper} onClick={() => setHelper(!helper)}>
+                <div className={styles.helper} onClick={() =>setIsHelper(prevState => !prevState)}>
                     <GlobalSvgSelector svgName={'lamp'} />
                 </div>
                 <h1 className={styles.title}>
-                    { helper ? currentCard.example_sentence : currentCard.term}
+                    { isHelper ? currentCard.example_sentence : currentCard.term}
                 </h1>
             </div>
 

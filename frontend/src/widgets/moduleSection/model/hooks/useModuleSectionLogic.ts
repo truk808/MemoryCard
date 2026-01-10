@@ -1,12 +1,14 @@
-import React, {useMemo} from "react";
+import React, {useEffect, useMemo} from "react";
 import {useLocation} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectAllTags, selectCardsByTagId, selectModuleById} from "../../../../entities";
 import {RootState} from "../../../../app/store";
 import {getRelatedIdsByEntityId} from "../../../../shared/lib/getItemIdsByEntityId";
 import {selectAllCardTags} from "../../../../entities/cardTag/model/selectors";
-import {CardWithTags} from "../../../../shared";
+import {CardWithTags, getProgressByModule} from "../../../../shared";
+import {setProgress} from "../../../../features/statistics/linearGraph/model/slice";
 
+//переделать
 export function useModuleSectionLogic() {
     const [isOpenModuleManager, setIsOpenModuleManager] = React.useState(false);
 
@@ -42,6 +44,16 @@ export function useModuleSectionLogic() {
             };
         }
     }, [module, cardIds]);
+
+    ////переделать
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        getProgressByModule(moduleId).then((data) => {
+            dispatch(setProgress(data))
+            console.log(data)
+        })
+    }, [])
 
     return {
         moduleId,

@@ -5,7 +5,7 @@ import {Card, GlobalSvgSelector} from "../../../../shared";
 
 interface RepetitionProps {
     currentCard: Card
-    nextCard: () => void,
+    nextCard: (cardId?: number, correct?: boolean) => void,
     recordAnswer: (cardId: number, correct: boolean) => void ,
     cards: Card[],
     index: number,
@@ -16,8 +16,7 @@ export const Repetition: FC<RepetitionProps> = ({ currentCard, nextCard, recordA
     const [isHelper, setIsHelper] = useState(false);
 
     const handleKnow = (know: boolean) => {
-        recordAnswer(currentCard.id, know);
-        nextCard();
+        nextCard(currentCard.id, know);
     };
 
     return (

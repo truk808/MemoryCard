@@ -17,11 +17,7 @@ export function TrainingPage() {
     const cards = useSelector(selectCardsByModuleIds(moduleIds)).
     filter((card): card is Card => card !== undefined).
     sort(() => Math.random() - 0.5);
-
-    useEffect(() => {
-        console.log(cards)
-    }, [cards])
-
+    
     if (!type) {
         return <div>Ошибка: тип тренировки не указан</div>;
     }

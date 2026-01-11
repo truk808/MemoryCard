@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import {recomputeModuleProgress} from "../services/recomputeModuleProgress";
-const  { Module, Card, Training, TrainingModule } = require('../models/models');
+import {recomputeGroupProgress} from "../services/recomputeGroupProgress";
+const  { Module, GroupModule, Card, Training, TrainingModule } = require('../models/models');
 
 //переделать
 class TrainingController {
@@ -56,6 +57,19 @@ class TrainingController {
                 await recomputeModuleProgress(moduleId, userId, date);
             }
 
+            const groupModules = await GroupModule.findAll({
+                where: { moduleId: modules },
+                attributes: ['groupId'],
+                raw: true,
+            }) as { groupId: number }[];
+
+            const groupIds = [...new Set(groupModules.map(gm => gm.groupId))];
+
+            for (const groupId of groupIds) {
+                await recomputeGroupProgress(groupId, userId, date);
+            }
+
+
             return res.json({ status: 'the training was successfully completed' });
         } catch (e) {
             console.log(e)
@@ -95,7 +109,7 @@ class TrainingController {
                         model: Module,
                         as: 'modules',
                         attributes: ['id', 'name'],
-                        where: { id: moduleId }, // ✅ ВОТ ТУТ
+                        where: { id: moduleId },
                         through: { attributes: [] },
                     },
                 ],
@@ -108,7 +122,39 @@ class TrainingController {
         }
     }
 
+    async getByGroupId(req: Request, res: Response, next: NextFunction) {
+        try {
+            const groupId = Number(req.params.id);
 
+            if (isNaN(groupId)) {
+                return res.status(400).json({ message: 'Invalid groupId' });
+            }
+
+            const data = await Training.findAll({
+                include: [
+                    {
+                        model: Module,
+                        as: 'modules',
+                        attributes: ['id', 'name'],
+                        through: { attributes: [] },
+                        include: [
+                            {
+                                model: Group,
+                                attributes: [],
+                                where: { id: groupId },
+                                through: { attributes: [] },
+                            },
+                        ],
+                    },
+                ],
+            });
+
+            return res.json(data);
+        } catch (e) {
+            console.log(e);
+            next(e);
+        }
+    }
 }
 
 export default new TrainingController();

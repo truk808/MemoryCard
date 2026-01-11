@@ -6,13 +6,12 @@ import {FC, useEffect, useState} from "react";
 import {useTraining} from "../model/hooks/useTrainingLogic";
 import {ModalResult} from "./modalResult/ModalResult";
 import {Card} from "../../../shared";
-import {createProgress} from "../../../shared/api/linearGraphApi";
-// import { completeTraining } from "../../../shared/api/trainingApi";
 
 interface TrainingSessionProps {
     type: string;
     cards: Card[];
     moduleIds: number[];
+    entityType?: 'module' | 'group'
 }
 
 export const  TrainingSession: FC<TrainingSessionProps> = ({type, cards, moduleIds}) => {

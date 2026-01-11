@@ -19,3 +19,8 @@ export const getTrainingByModule = async (moduleId: number) => {
     const { data } = await $authHost.get(`/api/training/module/${moduleId}`);
     return data;
 };
+
+export const getTrainingByGroup = async (groupId: number) => {
+    const { data } = await $authHost.get(`/api/training/group/${groupId}`);
+    return data;
+};

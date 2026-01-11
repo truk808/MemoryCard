@@ -10,6 +10,9 @@ import {
 import {ModuleCard} from "../../../entities";
 import {Button, CardList, MAIN_ROUTES, Section, Tabs} from "../../../shared";
 import {NavLink} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../app/store";
+import {selectTrainingTable} from "../../../features/statistics/trainingTable/model/selectors";
 
 export const GroupSection = () => {
     const {
@@ -22,8 +25,11 @@ export const GroupSection = () => {
         isOpenGroupManager,
     } = useGroupSectionLogic()
 
-    if (!group) return <div>Группа не найдена</div>;
+    //переделать
+    const graph = useSelector((state: RootState) => state.linearGraph.progress)
+    const trainTable = useSelector(selectTrainingTable)
 
+    if (!group) return <div>Группа не найдена</div>;
 
     return (
         <div>
@@ -48,7 +54,7 @@ export const GroupSection = () => {
                 <Tabs titles={['Модули', 'статистика', 'что']}>
                     {[
                         <>
-                            // переделать
+                            {/*// переделать*/}
                             <TrainModeList moduleIds={modules.map(module => module.id)} />
                             <CardList
                                 items={modules}
@@ -56,17 +62,8 @@ export const GroupSection = () => {
                             />
                         </>,
                         <>
-                            {/*<LinearGraph/>*/}
-                            <div style={{    // Переделать
-                                margin: '65px 0',
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                gap: '70px'
-                            }}>
-                                {/*<PerformanceList/>*/}
-                                {/*<PerformanceList/>*/}
-                            </div>
-                            {/*<TrainingTable/>*/}
+                            <LinearGraph graph={graph}/>
+                            <TrainingTable sessions={trainTable}/>
                         </>,
                         <>
                             <div>Здесь что!</div>

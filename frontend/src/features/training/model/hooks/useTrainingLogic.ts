@@ -34,16 +34,14 @@ export function useTraining(cards: Card[], type: string, modules: number[]) {
     };
 
     const nextCard = (cardId?: number, correct?: boolean) => {
-        // Сохраняем новый результат в переменную
         const newResults = cardId !== undefined && correct !== undefined
             ? { ...results, [cardId]: correct }
             : results;
 
         if (index < cards.length - 1) {
-            setResults(newResults); // обновляем state
+            setResults(newResults);
             setIndex(prev => prev + 1);
         } else {
-            // последняя карточка — используем newResults
             finish(newResults);
         }
     };

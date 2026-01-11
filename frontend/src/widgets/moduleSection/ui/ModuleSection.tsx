@@ -6,6 +6,7 @@ import {useModuleSectionLogic} from "../model/hooks/useModuleSectionLogic";
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {selectTrainingTable} from "../../../features/statistics/trainingTable/model/selectors";
+import {RootState} from "../../../app/store";
 
 export const ModuleSection = () => {
     const {
@@ -17,6 +18,8 @@ export const ModuleSection = () => {
         cardsWithTags,
     } = useModuleSectionLogic()
 
+    // переделать
+    const graph = useSelector((state: RootState) => state.linearGraph.progress)
     const trainTable = useSelector(selectTrainingTable)
 
     if (!module) return <div>Модуль не найден</div>;
@@ -51,7 +54,7 @@ export const ModuleSection = () => {
                             />
                         </>,
                         <>
-                            <LinearGraph />
+                            <LinearGraph graph={graph} />
                             <TrainingTable sessions={trainTable} />
                         </>,
                     ]}

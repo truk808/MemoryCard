@@ -14,10 +14,19 @@ export function TrainingPage() {
         ?.split(",")
         .map(Number) || [];
 
-    const cards = useSelector(selectCardsByModuleIds(moduleIds)).
-    filter((card): card is Card => card !== undefined).
-    sort(() => Math.random() - 0.5);
-    
+    // переделать
+    // const cards = useSelector(selectCardsByModuleIds(moduleIds)).
+    // filter((card): card is Card => card !== undefined).
+    // sort(() => Math.random() - 0.5);
+
+    const cards = Array.from(
+        new Map(
+            useSelector(selectCardsByModuleIds(moduleIds))
+                .filter((card): card is Card => Boolean(card))
+                .map(card => [card.id, card])
+        ).values()
+    ).sort(() => Math.random() - 0.5);
+
     if (!type) {
         return <div>Ошибка: тип тренировки не указан</div>;
     }
@@ -31,6 +40,7 @@ export function TrainingPage() {
             type={type}
             cards={cards}
             moduleIds={moduleIds}
+            entityType={moduleIds.length > 1 ? 'group' : 'module'}
         />
     );
 }

@@ -56,7 +56,6 @@ export function useModuleSectionLogic() {
         })
         getTrainingByModule(moduleId).then(data => {
             dispatch(setSessions(data))
-            console.log(data)
         })
     }, [])
 

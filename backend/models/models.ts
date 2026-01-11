@@ -114,7 +114,7 @@ Group.hasMany(GroupModule, {foreignKey: 'groupId', onDelete: 'CASCADE', hooks: t
 Module.hasMany(GroupModule, { foreignKey: 'moduleId',  onDelete: 'CASCADE', hooks: true });
 
 Training.belongsToMany(Module, { through: TrainingModule, foreignKey: 'trainingId' });
-Training.hasMany(TrainingModule, { foreignKey: 'trainingId', onDelete: 'CASCADE' });
+Training.hasMany(TrainingModule, { foreignKey: 'trainingId', as: 'training_modules', onDelete: 'CASCADE' });
 
 module.exports = {
     User,

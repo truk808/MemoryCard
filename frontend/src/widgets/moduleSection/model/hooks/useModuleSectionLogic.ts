@@ -7,6 +7,8 @@ import {getRelatedIdsByEntityId} from "../../../../shared/lib/getItemIdsByEntity
 import {selectAllCardTags} from "../../../../entities/cardTag/model/selectors";
 import {CardWithTags, getProgressByModule} from "../../../../shared";
 import {setProgress} from "../../../../features/statistics/linearGraph/model/slice";
+import {getTrainingByModule, getTrainingByUser} from "../../../../shared/api/trainApi";
+import {setSessions} from "../../../../features/statistics/trainingTable/model/slice";
 
 //переделать
 export function useModuleSectionLogic() {
@@ -51,9 +53,14 @@ export function useModuleSectionLogic() {
     useEffect(() => {
         getProgressByModule(moduleId).then((data) => {
             dispatch(setProgress(data))
+        })
+        getTrainingByModule(moduleId).then(data => {
+            dispatch(setSessions(data))
             console.log(data)
         })
     }, [])
+
+
 
     return {
         moduleId,

@@ -11,7 +11,7 @@ const moduleCardRouter = require("./moduleCardRouter")
 const cardTagRouter = require("./cardTagRouter")
 const bootstrapRouter = require("./bootstrapRouter")
 const linearGraphRouter = require("./linearGraphRouter")
-const TrainingRouter = require("./TrainingRouter")
+const trainingRouter = require("./TrainingRouter")
 
 router.use('/user', userRouter)
 router.use('/group', groupRouter)
@@ -23,6 +23,6 @@ router.use('/module-card', moduleCardRouter)
 router.use('/card-tag', cardTagRouter)
 router.use('/bootstrap', bootstrapRouter)
 router.use('/linear-graph', linearGraphRouter)
-router.use('/training', TrainingRouter)
+router.use('/training', trainingRouter)
 
 module.exports = router

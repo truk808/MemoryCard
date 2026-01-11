@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import {recomputeModuleProgress} from "../services/recomputeModuleProgress";
-const { Card, Training, TrainingModule } = require('../models/models');
+const  { Module, Card, Training, TrainingModule } = require('../models/models');
 
 //переделать
 class TrainingController {
@@ -11,7 +11,6 @@ class TrainingController {
 
             const date = new Date().toISOString().slice(0, 10);
 
-            // 1. получаем все карты
             const cardIds = cards.map((c: any) => c.cardId);
 
             const dbCards = await Card.findAll({
@@ -19,7 +18,6 @@ class TrainingController {
                 raw: true,
             }) as { id: number; level: number }[];
 
-            // 2. считаем новые уровни
             const updates = dbCards.map(card => {
                 const result = cards.find((c: any) => c.cardId === card.id);
                 const correct = result?.correct;
@@ -31,7 +29,6 @@ class TrainingController {
                 return { id: card.id, newLevel };
             });
 
-            // 3. массово обновляем карты
             for (const u of updates) {
                 await Card.update(
                     { level: u.newLevel },
@@ -39,7 +36,6 @@ class TrainingController {
                 );
             }
 
-            // 4. сохраняем тренировку
             const training = await Training.create({
                 userId,
                 type,
@@ -49,7 +45,6 @@ class TrainingController {
                 durationSeconds: duration,
             });
 
-            // 5. связываем модули
             for (const moduleId of modules) {
                 await TrainingModule.create({
                     trainingId: training.id,
@@ -57,7 +52,6 @@ class TrainingController {
                 });
             }
 
-            // 6. пересчитываем прогресс
             for (const moduleId of modules) {
                 await recomputeModuleProgress(moduleId, userId, date);
             }
@@ -68,6 +62,53 @@ class TrainingController {
             next(e);
         }
     }
+
+    async getByUser(req: Request, res: Response, next: NextFunction) {
+        try {
+            const userId = req.user!.id;
+
+            const data = await Training.findAll({
+                where: { userId },
+                include: [
+                    {
+                        model: Module,
+                        as: 'modules',
+                        attributes: ['id', 'name'],
+                        through: { attributes: [] },
+                    },
+                ],
+            });
+            return res.json(data);
+        } catch (e) {
+            console.log(e)
+            next(e);
+        }
+    }
+
+    async getByModuleId(req: Request, res: Response, next: NextFunction) {
+        try {
+            const moduleId = Number(req.params.id);
+
+            const data = await Training.findAll({
+                include: [
+                    {
+                        model: Module,
+                        as: 'modules',
+                        attributes: ['id', 'name'],
+                        where: { id: moduleId }, // ✅ ВОТ ТУТ
+                        through: { attributes: [] },
+                    },
+                ],
+            });
+
+            return res.json(data);
+        } catch (e) {
+            console.log(e);
+            next(e);
+        }
+    }
+
+
 }
 
 export default new TrainingController();

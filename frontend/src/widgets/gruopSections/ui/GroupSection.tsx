@@ -66,7 +66,7 @@ export const GroupSection = () => {
                                 {/*<PerformanceList/>*/}
                                 {/*<PerformanceList/>*/}
                             </div>
-                            <TrainingTable/>
+                            {/*<TrainingTable/>*/}
                         </>,
                         <>
                             <div>Здесь что!</div>

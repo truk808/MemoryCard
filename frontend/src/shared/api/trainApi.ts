@@ -9,3 +9,13 @@ export const completeTraining = async (payload: {
     const { data } = await $authHost.post('/api/training/complete', payload);
     return data;
 };
+
+export const getTrainingByUser = async () => {
+    const { data } = await $authHost.get('/api/training/user');
+    return data;
+};
+
+export const getTrainingByModule = async (moduleId: number) => {
+    const { data } = await $authHost.get(`/api/training/module/${moduleId}`);
+    return data;
+};

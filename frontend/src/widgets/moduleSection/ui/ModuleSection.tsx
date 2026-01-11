@@ -1,9 +1,11 @@
 import React from 'react';
 import {TermCard} from "../../../entities";
-import {ModuleManager, ModuleRemoveButton, TrainModeList, LinearGraph} from "../../../features";
+import {ModuleManager, ModuleRemoveButton, TrainModeList, LinearGraph, TrainingTable} from "../../../features";
 import {Button, CardList, MAIN_ROUTES, Section, Tabs} from "../../../shared";
 import {useModuleSectionLogic} from "../model/hooks/useModuleSectionLogic";
 import {NavLink} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {selectTrainingTable} from "../../../features/statistics/trainingTable/model/selectors";
 
 export const ModuleSection = () => {
     const {
@@ -14,6 +16,8 @@ export const ModuleSection = () => {
         moduleId,
         cardsWithTags,
     } = useModuleSectionLogic()
+
+    const trainTable = useSelector(selectTrainingTable)
 
     if (!module) return <div>Модуль не найден</div>;
 
@@ -48,6 +52,7 @@ export const ModuleSection = () => {
                         </>,
                         <>
                             <LinearGraph />
+                            <TrainingTable sessions={trainTable} />
                         </>,
                     ]}
                 </Tabs>

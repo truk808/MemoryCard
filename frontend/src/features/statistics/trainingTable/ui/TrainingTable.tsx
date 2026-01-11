@@ -1,20 +1,24 @@
-import React from 'react';
+import React, {FC, useEffect} from 'react';
 import styles from './TrainingTable.module.scss';
 import {selectTrainingTable} from "../model/selectors";
 import {useSelector} from "react-redux";
 import {TrainingSession} from "../model/slice";
 
-const data = [
-    { id: 1, name: 'Заучивание', modules: 'ООП, ООП1', cards: 120, correct: '100(83%)', errors: '20(17%)', time: '4м 32сек', date: '01.01.2025' },
-    { id: 2, name: 'Заучивание', modules: 'ООП, ООП1', cards: 120, correct: '100(83%)', errors: '20(17%)', time: '4м 32сек', date: '01.01.2025' },
-    { id: 3, name: 'Заучивание', modules: 'ООП, ООП1', cards: 120, correct: '100(83%)', errors: '20(17%)', time: '4м 32сек', date: '01.01.2025' },
-];
+// const data = [
+//     { id: 1, name: 'Заучивание', modules: 'ООП, ООП1', cards: 120, correct: '100(83%)', errors: '20(17%)', time: '4м 32сек', date: '01.01.2025' },
+//     { id: 2, name: 'Заучивание', modules: 'ООП, ООП1', cards: 120, correct: '100(83%)', errors: '20(17%)', time: '4м 32сек', date: '01.01.2025' },
+//     { id: 3, name: 'Заучивание', modules: 'ООП, ООП1', cards: 120, correct: '100(83%)', errors: '20(17%)', time: '4м 32сек', date: '01.01.2025' },
+// ];
 
-export const TrainingTable = () => {
+interface TrainingTableProps {
+    sessions: TrainingSession[];
+}
 
-    const dataTable: TrainingSession[] = useSelector(selectTrainingTable);
+export const TrainingTable: FC<TrainingTableProps> = ({sessions}) => {
 
-    console.log(dataTable);
+    useEffect(() => {
+        console.log(sessions);
+    }, []);
 
     return (
         <div className={styles.tableWrapper}>
@@ -32,16 +36,16 @@ export const TrainingTable = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {dataTable.map((data: TrainingSession, i) => (
+                {sessions.map((data: TrainingSession, i) => (
                     <tr key={i}>
                         <td>{data.id}</td>
-                        <td>{data.trainingType}</td>
-                        <td>{data.module.join(',')}</td>
-                        <td>{data.cardsTotal}</td>
-                        <td className={styles.correct}>{data.correct}</td>
-                        <td className={styles.errors}>{data.incorrect}</td>
-                        <td>{data.timeSpent}</td>
-                        <td>{data.date}</td>
+                        <td>{data.type}</td>
+                        <td>{data.modules.map(m => m.name).join(', ')}</td>
+                        <td>{data.totalCards}</td>
+                        <td className={styles.correct}>{data.correctAnswers}</td>
+                        <td className={styles.errors}>{data.wrongAnswers}</td>
+                        <td>{data.durationSeconds}</td>
+                        <td>{data.createdAt}</td>
                     </tr>
                 ))}
                 </tbody>

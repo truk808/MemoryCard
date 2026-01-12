@@ -51,7 +51,7 @@ export const GroupSection = () => {
                     </NavLink>,
                 ]}
             >
-                <Tabs titles={['Модули', 'статистика', 'что']}>
+                <Tabs titles={['Модули', 'Статистика']}>
                     {[
                         <>
                             {/*// переделать*/}
@@ -63,11 +63,7 @@ export const GroupSection = () => {
                         </>,
                         <>
                             <LinearGraph graph={graph}/>
-                            <TrainingTable sessions={trainTable}/>
                         </>,
-                        <>
-                            <div>Здесь что!</div>
-                        </>
                     ]}
                 </Tabs>
             </Section>

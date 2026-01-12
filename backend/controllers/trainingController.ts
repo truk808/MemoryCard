@@ -57,17 +57,17 @@ class TrainingController {
                 await recomputeModuleProgress(moduleId, userId, date);
             }
 
-            const groupModules = await GroupModule.findAll({
-                where: { moduleId: modules },
-                attributes: ['groupId'],
-                raw: true,
-            }) as { groupId: number }[];
-
-            const groupIds = [...new Set(groupModules.map(gm => gm.groupId))];
-
-            for (const groupId of groupIds) {
-                await recomputeGroupProgress(groupId, userId, date);
-            }
+            // const groupModules = await GroupModule.findAll({
+            //     where: { moduleId: modules },
+            //     attributes: ['groupId'],
+            //     raw: true,
+            // }) as { groupId: number }[];
+            //
+            // const groupIds = [...new Set(groupModules.map(gm => gm.groupId))];
+            //
+            // for (const groupId of groupIds) {
+            //     await recomputeGroupProgress(groupId, userId, date);
+            // }
 
 
             return res.json({ status: 'the training was successfully completed' });

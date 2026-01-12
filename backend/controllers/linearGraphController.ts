@@ -1,16 +1,27 @@
 import { Request, Response, NextFunction } from "express";
+import {Op} from "sequelize";
 const {DailyCardStats, Module} = require('../models/models');
 
 //переделать
 class LinearGraphController {
-    async getByModule(req: Request, res: Response, next: NextFunction) {
+    async getByModules(req: Request, res: Response, next: NextFunction) {
         try {
-            const moduleId = Number(req.params.id);
-            if (isNaN(moduleId)) {
-                return res.status(400).json({ message: "Invalid moduleId" });
+            const idsParam = req.query.ids;
+
+            if (!idsParam || typeof idsParam !== "string") {
+                return res.status(400).json({ message: "Module ids are required" });
             }
 
-            const userId = req.user!.id;
+            const moduleIds = idsParam
+                .split(",")
+                .map(Number)
+                .filter(id => !isNaN(id));
+
+            if (!moduleIds.length) {
+                return res.status(400).json({ message: "Invalid module ids" });
+            }
+
+            const userId = req.user?.id;
             if (!userId) {
                 return res.status(401).json({ message: "Unauthorized" });
             }
@@ -19,9 +30,14 @@ class LinearGraphController {
                 where: {
                     user_id: userId,
                     entity_type: "module",
-                    entity_id: moduleId,
+                    entity_id: {
+                        [Op.in]: moduleIds,
+                    },
                 },
-                order: [["date", "ASC"]],
+                order: [
+                    ["entity_id", "ASC"],
+                    ["date", "ASC"],
+                ],
                 attributes: [
                     "id",
                     "user_id",
@@ -39,7 +55,7 @@ class LinearGraphController {
         } catch (err) {
             next(err);
         }
-    };
+    }
 
     async getByGroup(req: Request, res: Response, next: NextFunction) {
         try {

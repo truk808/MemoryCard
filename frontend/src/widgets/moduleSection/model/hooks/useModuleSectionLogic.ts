@@ -51,7 +51,7 @@ export function useModuleSectionLogic() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        getProgressByModule(moduleId).then((data) => {
+        getProgressByModule([moduleId]).then((data) => {
             dispatch(setProgress(data))
         })
         getTrainingByModule(moduleId).then(data => {

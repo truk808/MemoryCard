@@ -4,11 +4,8 @@ import {selectGroupById, selectModulesByGroupId} from "../../../../entities";
 import {RootState} from "../../../../app/store";
 import {getRelatedIdsByEntityId} from "../../../../shared/lib/getItemIdsByEntityId";
 import React, {useEffect, useMemo} from "react";
-import {getModulesByGroup} from "../../../../shared";
-import {getProgressByGroup} from "../../../../shared/api/linearGraphApi";
+import {getProgressByModule} from "../../../../shared";
 import {setProgress} from "../../../../features/statistics/linearGraph/model/slice";
-import {setSessions} from "../../../../features/statistics/trainingTable/model/slice";
-import {getTrainingByGroup} from "../../../../shared/api/trainApi";
 
 export function useGroupSectionLogic() {
     const groupId = +useLocation().pathname.split("/")[2];
@@ -36,12 +33,16 @@ export function useGroupSectionLogic() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        getProgressByGroup(groupId).then((data) => {
+        getProgressByModule(moduleIds).then(data => {
             dispatch(setProgress(data))
         })
-        getTrainingByGroup(groupId).then(data => {
-            dispatch(setSessions(data))
-        })
+
+        // getProgressByGroup(groupId).then((data) => {
+        //     dispatch(setProgress(data))
+        // })
+        // getTrainingByGroup(groupId).then(data => {
+        //     dispatch(setSessions(data))
+        // })
     }, [])
 
     return {

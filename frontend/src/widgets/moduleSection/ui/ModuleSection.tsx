@@ -42,7 +42,7 @@ export const ModuleSection = () => {
 
                 ]}
             >
-                <Tabs titles={['Модули', 'Статистика']}>
+                <Tabs titles={['Карточки', 'Статистика']}>
                     {[
                         <>
                             <TrainModeList moduleIds={[moduleId]} />

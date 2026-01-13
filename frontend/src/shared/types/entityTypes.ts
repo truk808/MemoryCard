@@ -3,14 +3,14 @@ export interface Group {
     name: string;
     description: string;
     img: File | null;
-    user_id: number;
+    userId: number;
 }
 
 export interface Module {
     id: number;
     name: string;
     icon: string;
-    user_id: number;
+    userId: number;
 }
 
 export interface Card {
@@ -19,7 +19,7 @@ export interface Card {
     meaning: string;
     example_sentence: string;
     level: number;
-    user_id: number;
+    userId: number;
 }
 
 export interface GroupModule extends Record<string, number> {

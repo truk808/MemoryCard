@@ -83,13 +83,23 @@ const DailyCardStats = db.define('daily_card_stats', {
     level3: { type: DataTypes.INTEGER, allowNull: false },
 });
 
+const Publication = db.define('publication', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    entityType: {type: DataTypes.ENUM('group', 'module'), allowNull: false, field: 'entity_type',},
+    entityId: {type: DataTypes.INTEGER, allowNull: false, field: 'entity_id',},
+    authorUserId: {type: DataTypes.INTEGER, allowNull: false, field: 'author_user_id'},
+    status: {type: DataTypes.ENUM('pending', 'approved', 'rejected'), defaultValue: 'approved'},
+    downloadCount: {type: DataTypes.INTEGER, defaultValue: 0, field: 'download_count',},
+});
+
+
 
 User.hasMany(Card); Card.belongsTo(User);
 User.hasMany(Module); Module.belongsTo(User);
 User.hasMany(Group); Group.belongsTo(User);
 User.hasMany(Tag); Tag.belongsTo(User);
 User.hasMany(Training); Training.belongsTo(User);
-
+User.hasMany(Publication);Publication.belongsTo(User);
 
 Card.belongsToMany(Tag, { through: CardTag, foreignKey: 'cardId' });
 Tag.belongsToMany(Card, { through: CardTag, foreignKey: 'tagId' });
@@ -112,9 +122,12 @@ GroupModule.belongsTo(Group, { foreignKey: 'groupId',   onDelete: 'CASCADE' });
 GroupModule.belongsTo(Module, { foreignKey: 'moduleId',  onDelete: 'CASCADE' });
 Group.hasMany(GroupModule, {foreignKey: 'groupId', onDelete: 'CASCADE', hooks: true});
 Module.hasMany(GroupModule, { foreignKey: 'moduleId',  onDelete: 'CASCADE', hooks: true });
+Group.hasMany(Publication, {foreignKey: 'entityId', sourceKey: 'id', constraints: true, onDelete: 'CASCADE'});
 
 Training.belongsToMany(Module, { through: TrainingModule, foreignKey: 'trainingId' });
 Training.hasMany(TrainingModule, { foreignKey: 'trainingId', as: 'training_modules', onDelete: 'CASCADE' });
+
+Publication.belongsTo(Group, {foreignKey: 'entityId', targetKey: 'id', constraints: true, onDelete: 'CASCADE',});
 
 module.exports = {
     User,
@@ -128,4 +141,5 @@ module.exports = {
     Training,
     TrainingModule,
     DailyCardStats,
+    Publication,
 };

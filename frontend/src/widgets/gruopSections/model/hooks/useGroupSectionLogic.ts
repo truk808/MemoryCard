@@ -3,11 +3,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectGroupById, selectModulesByGroupId} from "../../../../entities";
 import {RootState} from "../../../../app/store";
 import {getRelatedIdsByEntityId} from "../../../../shared/lib/getItemIdsByEntityId";
-import React, {useEffect, useMemo} from "react";
+import React, {use, useEffect, useMemo} from "react";
 import {getProgressByModule} from "../../../../shared";
 import {setProgress} from "../../../../features/statistics/linearGraph/model/slice";
+import {createPublication} from "../../../../shared/api/communityApi";
 
 export function useGroupSectionLogic() {
+    const user = useSelector((state: RootState) => state.user);
     const groupId = +useLocation().pathname.split("/")[2];
     const group = useSelector(selectGroupById(groupId))[0];
 
@@ -16,6 +18,9 @@ export function useGroupSectionLogic() {
     const modules = useSelector(selectModulesByGroupId(moduleIds))
 
     const [isOpenGroupManager, setIsOpenGroupManager] = React.useState(false);
+
+    // @ts-ignore
+    const isOwner = user.user.id === group.userId
 
     const groupInfo = useMemo(() => {
         if (group) {
@@ -35,6 +40,8 @@ export function useGroupSectionLogic() {
     useEffect(() => {
         getProgressByModule(moduleIds).then(data => {
             dispatch(setProgress(data))
+        }).catch(e => {
+            console.log(e)
         })
 
         // getProgressByGroup(groupId).then((data) => {
@@ -45,6 +52,12 @@ export function useGroupSectionLogic() {
         // })
     }, [])
 
+    ////переделать
+
+    function publish() {
+        createPublication(groupId)
+    }
+
     return {
         groupId,
         group,
@@ -54,5 +67,7 @@ export function useGroupSectionLogic() {
         groupInfo,
         isOpenGroupManager,
         setIsOpenGroupManager,
+        publish,
+        isOwner,
     }
 }

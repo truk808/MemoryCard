@@ -10,7 +10,6 @@ import {replace, useNavigate} from "react-router-dom";
 
 export const useAuth = (isLogin: boolean) => {
     const dispatch = useDispatch<AppDispatch>()
-    const user = useSelector((state: RootState) => state.user)
     const navigate = useNavigate()
 
     const [email, setEmail] = useState('')

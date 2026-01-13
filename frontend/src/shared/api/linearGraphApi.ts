@@ -4,10 +4,7 @@ import { $authHost } from "./axios";
 export const getProgressByModule = async (moduleIds: number[]) => {
     const ids = moduleIds.join(",");
 
-    const { data } = await $authHost.get(
-        `/api/linear-graph/module`,
-        { params: { ids } }
-    );
+    const { data } = await $authHost.get(`/api/linear-graph/module`, { params: { ids } });
 
     return data;
 };

@@ -1,49 +1,37 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {EntityType, Status} from "./type";
-
+import {Group} from "../../../shared";
+ // переделать
 export interface Publication {
     id: number;
-    publication_id: number,
-    entity_type: EntityType,
-    entity_id: number,
-    user_id: number,
-    nickname: string,
+    entityType: EntityType,
+    entityId: number,
+    authorUserId: number,
     status: Status,
-    created_at: string,
-    rating_avg: number,
-    rating_count: number,
-    additions_count: number,
-
-    name: string;
-    img: any,
-    module_quantity: number;
-    description: string;
-    create_at: string;
+    downloadCount: number,
+    name: string ,
+    description: string  ,
+    img: File | null,
+    userId: number,
 }
 
 interface PublicationState {
     publications: Publication[];
 }
 
-
-const photo1 = './d.png'
-const fakeGroup = {
-
-}
-
 const initialState: PublicationState = {
-    publications: [
-
-    ],
+    publications: [],
 };
 
 export const publicationSlice = createSlice({
     name: 'publication',
     initialState,
     reducers: {
-
+    setPublications: (state, action) => {
+        state.publications = action.payload;
+    }
     },
 });
 
-export const { } = publicationSlice.actions;
+export const { setPublications } = publicationSlice.actions;
 export const publicationReducer = publicationSlice.reducer;

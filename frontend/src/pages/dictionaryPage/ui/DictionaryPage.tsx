@@ -9,7 +9,7 @@ export const DictionaryPage = () => {
             <div className={styles.dictionaryContent}>
                 <DictionarySection/>
             </div>
-            <div className={styles.translator}/>
+            {/*<div className={styles.translator}/>*/}
         </div>
 
     );

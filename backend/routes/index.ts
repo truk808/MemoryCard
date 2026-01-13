@@ -12,6 +12,7 @@ const cardTagRouter = require("./cardTagRouter")
 const bootstrapRouter = require("./bootstrapRouter")
 const linearGraphRouter = require("./linearGraphRouter")
 const trainingRouter = require("./TrainingRouter")
+const communityRouter = require("./communityRouter")
 
 router.use('/user', userRouter)
 router.use('/group', groupRouter)
@@ -24,5 +25,6 @@ router.use('/card-tag', cardTagRouter)
 router.use('/bootstrap', bootstrapRouter)
 router.use('/linear-graph', linearGraphRouter)
 router.use('/training', trainingRouter)
+router.use('/community', communityRouter)
 
 module.exports = router

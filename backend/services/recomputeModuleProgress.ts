@@ -15,7 +15,6 @@ export async function recomputeModuleProgress(
 
     const cardIds = [...new Set(moduleCards.map(mc => mc.cardId))];
 
-    // если карточек нет
     if (cardIds.length === 0) {
         await DailyCardStats.upsert({
             userId,

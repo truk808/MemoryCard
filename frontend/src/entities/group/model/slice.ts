@@ -19,6 +19,9 @@ export const groupSlice = createSlice({
         addGroup(state, action) {
             state.groups.push(action.payload);
         },
+        addGroups(state, action) {
+            state.groups = [...state.groups, ...action.payload]
+        },
         changeGroup(state, action) {
             const index = state.groups.findIndex(g => g.id === action.payload.id);
             if (index !== -1) {
@@ -31,5 +34,5 @@ export const groupSlice = createSlice({
     },
 });
 
-export const {setGroups, addGroup, changeGroup, removeGroup} = groupSlice.actions;
+export const {setGroups, addGroup, changeGroup, removeGroup, addGroups} = groupSlice.actions;
 export const groupReducer = groupSlice.reducer;

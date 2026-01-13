@@ -11,7 +11,7 @@ interface TruncatedText {
 export const TruncatedText: FC<TruncatedText> = ({children, maxLength, maxLines}) => {
     let truncated = children
 
-    if (maxLength && children.length > maxLength) {
+    if (maxLength && children?.length > maxLength) {
         truncated = children.slice(0, maxLength) + '...';
     }
 

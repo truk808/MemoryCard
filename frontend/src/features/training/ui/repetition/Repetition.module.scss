@@ -16,7 +16,7 @@
   justify-content: center;
   width: 350px;
   height: 600px;
-  background-color: var(--main-color-default);
+  background-color: var(--main-color);
   border-radius: $border-radius;
   box-shadow: $box-shadow;
 }
@@ -29,7 +29,7 @@
 }
 
 .title {
-  color: var(--text-color-default);
+  color: var(--text-color);
   text-align: center;
   font-size: 48px;
   font-weight: 600;

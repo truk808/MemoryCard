@@ -10,11 +10,11 @@
 }
 
 a {
-  color: var(--text-additional-color-default)
+  color: var(--text-additional-color)
 }
 
 .active {
-  color: var(--highlighted-color-default);
+  color: var(--highlighted-color);
 }
 
 .active::after  {
@@ -22,6 +22,6 @@ a {
   display: block;
   width: 100%;
   height: 2px;
-  background-color: var(--highlighted-color-default);
+  background-color: var(--highlighted-color);
   margin-top: 2px;
 }

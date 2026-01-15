@@ -10,7 +10,7 @@
 
 .sort_text {
   font-weight: 500;
-  color: var(--text-color-default)
+  color: var(--text-color)
 }
 
 .sort_itemList {
@@ -27,16 +27,16 @@
   align-items: center;
   justify-content: center;
 
-  background-color: var(--main-color-default);
+  background-color: var(--main-color);
 
   border-radius: $border-radius;
   box-shadow: $box-shadow;
 
   cursor: pointer;
-  color: var(--text-additional-color-default);
+  color: var(--text-additional-color);
 }
 
 .active {
-  color: var(--highlighted-color-default);
-  border: 1px solid var(--highlighted-color-default);
+  color: var(--highlighted-color);
+  border: 1px solid var(--highlighted-color);
 }

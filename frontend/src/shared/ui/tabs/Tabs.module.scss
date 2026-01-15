@@ -14,16 +14,16 @@
   margin: 30px 0;
   height: 1px;
   width: 100%;
-  background-color: var(--text-color-default);
+  background-color: var(--text-color);
 }
 
 .title {
   cursor: pointer;
-  color: var(--text-additional-color-default);
+  color: var(--text-additional-color);
   font-size: 25px;
   font-weight: 600;
 }
 
 .active {
-  color: var(--highlighted-color-default);
+  color: var(--highlighted-color);
 }

@@ -37,7 +37,7 @@
 }
 
 .description {
-  color: var(--text-additional-color-default);
+  color: var(--text-additional-color);
   font-size: 32px;
   font-weight: 400;
   margin: 15px 0
@@ -51,7 +51,7 @@
   display: flex;
   font-weight: 600;
   font-size: 40px;
-  color: var(--text-color-default)
+  color: var(--text-color)
 }
 
 .featuresList {

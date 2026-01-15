@@ -6,7 +6,7 @@
 
   padding: 20px;
 
-  background: var(--main-color-default);
+  background: var(--main-color);
 
   box-shadow: $box-shadow;
   border-radius: $border-radius;
@@ -14,7 +14,7 @@
 
 .icon {
   border-radius: $border-radius;
-  background-color: var(--body-background-default);
+  background-color: var(--body-background);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,13 +27,13 @@
 }
 
 .title {
-  color: var(--text-color-default);
+  color: var(--text-color);
   font-size: 40px;
   font-weight: 600;
 }
 
 .text {
-  color: var(--text-additional-color-default);
+  color: var(--text-additional-color);
   font-size: 20px;
   font-weight: 500;
 }

@@ -4,7 +4,7 @@
   position: relative;
   border-radius: $border-radius;
   padding: 20px;
-  background: var(--main-color-default);
+  background: var(--main-color);
   box-shadow: $box-shadow;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@
 
 .icon {
   border-radius: $border-radius;
-  background-color: var(--body-background-default);
+  background-color: var(--body-background);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,7 +43,7 @@
 }
 
 .title {
-  color: var(--text-color-default);
+  color: var(--text-color);
   font-size: 28px;
   font-weight: 600;
   line-height: 1.2;
@@ -51,7 +51,7 @@
 }
 
 .text {
-  color: var(--text-additional-color-default);
+  color: var(--text-additional-color);
   font-size: 18px;
   font-weight: 500;
   line-height: 1.4;

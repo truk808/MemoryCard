@@ -10,6 +10,7 @@ import {cardTagReducer} from "../../entities/cardTag/model/slice";
 import {publicationReducer} from "../../entities/publication/model/slice";
 import {trainingTableReducer} from "../../features/statistics/trainingTable/model/slice";
 import {linearGraphReducer} from "../../features/statistics/linearGraph/model/slice";
+import {themeReducer} from "../../shared/model/theme/slice";
 
 export const store = configureStore({
     reducer: {
@@ -24,6 +25,7 @@ export const store = configureStore({
         publication: publicationReducer,
         trainingTable: trainingTableReducer,
         linearGraph: linearGraphReducer,
+        theme: themeReducer,
     },
 });
 

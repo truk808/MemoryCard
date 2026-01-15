@@ -3,8 +3,8 @@
 .input {
   padding: 10px;
   margin: 20px 0;
-  color: var(--text-color-default);
-  background: var(--main-color-default);
+  color: var(--text-color);
+  background: var(--main-color);
   border-radius: 15px;
   box-shadow: $box-shadow;
 }
@@ -14,7 +14,7 @@
   margin: 20px 0;
   width: 100%;
   min-height: 80px;
-  background: var(--main-color-default);
+  background: var(--main-color);
   border-radius: 15px;
   box-shadow: $box-shadow;
   border: none;
@@ -23,8 +23,8 @@
 .imageUpload {
   padding: 10px;
   margin: 12px 0;
-  color: var(--text-color-default);
-  background: var(--main-color-default);
+  color: var(--text-color);
+  background: var(--main-color);
   border-radius: 15px;
   box-shadow: $box-shadow;
 }
@@ -33,8 +33,8 @@
   height: 300px;
   padding: 10px;
   margin: 12px 0;
-  color: var(--text-color-default);
-  background: var(--main-color-default);
+  color: var(--text-color);
+  background: var(--main-color);
   border-radius: 15px;
   box-shadow: $box-shadow;
 }

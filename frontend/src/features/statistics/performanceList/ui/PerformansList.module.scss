@@ -6,12 +6,12 @@
   width: 100%;
   max-width: 830px;
   border-radius: $border-radius;
-  background: var(--main-color-default);
+  background: var(--main-color);
   box-shadow: $box-shadow;
 }
 
 .title {
-  color: var(--text-color-default);
+  color: var(--text-color);
   font-size: 27px;
   font-weight: 600;
 }
@@ -21,7 +21,7 @@
 }
 
 .item {
-  color: var(--text-color-default);
+  color: var(--text-color);
   font-size: 24px;
   font-weight: 400;
   display: flex;

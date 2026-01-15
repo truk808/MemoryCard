@@ -4,17 +4,21 @@ import {Notification} from "./Notifications";
 import {Profile} from "./Profile";
 import styles from './Header.module.scss'
 import {NavBar} from "../../../features";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../app/store";
 import {useLocation} from "react-router-dom";
-import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../../shared";
+import {GlobalSvgSelector, LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../../shared";
+import {toggleTheme} from "../../../shared/model/theme/slice";
 
+// переделать
 export const Header = () => {
     const isLogin =  useLocation().pathname === LOGIN_ROUTE
     const isRegistration =  useLocation().pathname === REGISTRATION_ROUTE
     const isAuth = useSelector((state: RootState) => state.user.isAuth)
 
     const selectIsAuth = isAuth && !(isLogin || isRegistration)
+
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -26,6 +30,9 @@ export const Header = () => {
                             <NavBar/>
                         </div>
                         <div className={styles.header_notificationsProfile}>
+                            <div onClick={() => dispatch(toggleTheme())}>
+                                <GlobalSvgSelector svgName={'change-theme'}/>
+                            </div>
                             <Notification/>
                             <Profile/>
                         </div>

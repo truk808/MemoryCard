@@ -7,9 +7,9 @@
   word-wrap: break-word;
   font-size: 25px;
   font-weight: 400;
-  color: var(--text-color-default);
+  color: var(--text-color);
 
   ::placeholder {
-    color: var(--text-additional-color-default);
+    color: var(--text-additional-color);
   }
 }

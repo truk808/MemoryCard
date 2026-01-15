@@ -8,7 +8,7 @@
 
 .uploadButton {
   padding: 10px 16px;
-  background-color: var(--highlighted-color-default);
+  background-color: var(--highlighted-color);
   color: #fff;
   border-radius: 6px;
   cursor: pointer;
@@ -18,7 +18,7 @@
 }
 
 .uploadButton:hover {
-  background-color: var(--highlighted-color-default);
+  background-color: var(--highlighted-color);
 }
 
 .preview {

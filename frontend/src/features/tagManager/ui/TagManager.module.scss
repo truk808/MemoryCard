@@ -3,8 +3,8 @@
 .input {
   padding: 10px;
   margin: 20px 0;
-  color: var(--text-color-default);
-  background: var(--main-color-default);
+  color: var(--text-color);
+  background: var(--main-color);
   border-radius: 15px;
   box-shadow: $box-shadow;
 }
@@ -19,8 +19,8 @@
 
 .list {
   margin: 20px 0;
-  color: var(--text-color-default);
-  background: var(--main-color-default);
+  color: var(--text-color);
+  background: var(--main-color);
   border-radius: 15px;
   box-shadow: $box-shadow;
 

@@ -1,5 +1,5 @@
 .header {
-  background-color: var(--main-color-default);
+  background-color: var(--main-color);
   display: flex;
   margin: 0 0 5px 0;
   align-items: center;
@@ -50,5 +50,5 @@
   font-weight: bold;
   font-style: normal;
   font-size: 50px;
-  color: var(--text-color-default);
+  color: var(--text-color);
 }

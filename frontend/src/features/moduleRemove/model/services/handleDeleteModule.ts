@@ -1,7 +1,7 @@
 import {Dispatch} from "react";
 import {UnknownAction} from "@reduxjs/toolkit";
-import {removeModule} from "../../../../entities/module/model/slice";
-import {deleteModule} from "../../../../shared";
+import {deleteModule} from "../../../../shared/api";
+import {removeModule} from "../../../../entities/module";
 
 export const handleDeleteModule =
     (dispatch: Dispatch<UnknownAction>, moduleId: number) => {

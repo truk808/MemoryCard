@@ -1,8 +1,9 @@
-import { addModule, changeModule } from "../../../entities/module/model/slice";
-import { addModuleCard, removeModuleCard } from "../../../entities/moduleCard/model/slice";
-import { addCardToModule, createModule, ManagerMode, removeCardFromModule, updateModule } from "../../../shared";
+import { addModule, changeModule } from "../../../entities/module";
+import { addModuleCard, removeModuleCard } from "../../../entities/moduleCard";
 import { AppDispatch } from "../../../app/store";
 import { ModuleForm } from "./useModuleManager";
+import {ManagerMode} from "../../../shared/types";
+import {addCardToModule, createModule, removeCardFromModule, updateModule} from "../../../shared/api";
 
 export const saveModule = async (
     dispatch: AppDispatch,

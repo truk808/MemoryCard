@@ -1,7 +1,8 @@
 import React, {FC, useEffect, useMemo} from 'react';
 import styles from './TagManager.module.scss'
-import {BaseManagerProps, FormModalLayout, Input} from "../../../shared";
 import {TagForm, useTagManager} from "../model/useTagManager";
+import {BaseManagerProps} from "../../../shared/types";
+import {FormModalLayout, Input} from "../../../shared/ui";
 
 export const TagManager: FC<BaseManagerProps<TagForm>> = ({
                                                                isOpen = false,

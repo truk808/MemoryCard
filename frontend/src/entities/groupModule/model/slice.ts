@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {GroupModule} from "../../../shared";
+import {GroupModule} from "./types";
 
 interface GroupModuleState {
     groupModules: GroupModule[];

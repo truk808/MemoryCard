@@ -1,19 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {EntityType, Status} from "./type";
-import {Group} from "../../../shared";
+import {Publication} from "./types";
  // переделать
-export interface Publication {
-    id: number;
-    entityType: EntityType,
-    entityId: number,
-    authorUserId: number,
-    status: Status,
-    downloadCount: number,
-    name: string ,
-    description: string  ,
-    img: File | null,
-    userId: number,
-}
 
 interface PublicationState {
     publications: Publication[];

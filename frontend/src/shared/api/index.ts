@@ -39,3 +39,7 @@ export {getTagsByCard} from './сardTagApi'
 export {removeTagFromCard} from './сardTagApi'
 
 export {getProgressByModule} from './linearGraphApi'
+
+export {bootstrapUserData} from './bootstrapApi'
+
+export {getTrainingByModule} from './trainApi'

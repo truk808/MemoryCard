@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Button, Modal } from "../../../../shared";
+import { Button, Modal } from "../../../../shared/ui";
 import { NavLink } from "react-router-dom";
 import styles from "./ModalResult.module.scss";
 

@@ -1,9 +1,10 @@
 import { Dispatch } from "react";
 import { UnknownAction } from "@reduxjs/toolkit";
-import {addTagToCard, createCard, ManagerMode, removeTagFromCard, updateCard} from "../../../shared";
-import { addCard, changeCard } from "../../../entities/card/model/slice";
-import { addCardTag, removeCardTag } from "../../../entities/cardTag/model/slice";
+import { addCard, changeCard } from "../../../entities/card";
+import { addCardTag, removeCardTag } from "../../../entities/cardTag";
 import { CardForm } from "./useCardManager";
+import {addTagToCard, createCard, removeTagFromCard, updateCard} from "../../../shared/api";
+import {ManagerMode} from "../../../shared/types";
 
 export const saveCard = async (
     dispatch: Dispatch<UnknownAction>,

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './DictionaryPage.module.scss'
-import {DictionarySection} from "../../../widgets";
+import {DictionarySection} from "../../../widgets/dictionarySection";
 
 export const DictionaryPage = () => {
 

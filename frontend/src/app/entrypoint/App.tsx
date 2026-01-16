@@ -1,20 +1,18 @@
 import React, {useEffect, useState} from 'react';
+import {AppDispatch, RootState} from "../store";
+import {useDispatch, useSelector} from "react-redux";
 import '../styles/index.scss'
 import '../../shared/styles/variables.scss';
 import {Header} from "../../widgets/header";
-import AppRouter from "../routes/AppRouter";
-import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../store";
-import {check} from "../../shared/api/userApi";
-import {setAuth, setUser} from "../../entities/user/model/slise";
-import {bootstrapUserData} from "../../shared/api/bootstrapApi";
-import {setGroups} from "../../entities/group/model/slice";
-import {setModules} from "../../entities/module/model/slice";
-import {setCards} from "../../entities/card/model/slice";
-import {setTags} from "../../entities/tag/model/slice";
-import {setGroupModules} from "../../entities/groupModule/model/slice";
-import {setCardTags} from "../../entities/cardTag/model/slice";
-import {setModuleCards} from "../../entities/moduleCard/model/slice";
+import {setAuth, setUser} from "../../entities/user";
+import {setGroups} from "../../entities/group";
+import {setGroupModules} from "../../entities/groupModule";
+import {setModules} from "../../entities/module";
+import {setModuleCards} from "../../entities/moduleCard";
+import {setCards} from "../../entities/card";
+import {setCardTags} from "../../entities/cardTag";
+import {setTags} from "../../entities/tag";
+import {bootstrapUserData, check} from "../../shared/api";
 
 const App = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -74,9 +72,9 @@ const App = () => {
     return (
         <>
             <Header/>
-            <div className="container">
-                <AppRouter/>
-            </div>
+            {/*<div className="container">*/}
+            {/*    <AppRouter/>*/}
+            {/*</div>*/}
 
         </>
     );

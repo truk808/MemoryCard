@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {Module} from "../../../shared";
+import {Module} from "./types";
 
 interface ModuleState {
     modules: Module[];

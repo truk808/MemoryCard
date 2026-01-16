@@ -1,9 +1,7 @@
 import React, {useEffect, useMemo} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {selectAllGroups} from "../../../../entities";
 import {RootState} from "../../../../app/store";
-import {getGroupsByUser} from "../../../../shared";
-import {setGroups} from "../../../../entities/group/model/slice";
+import {selectAllGroups} from "../../../../entities/group/model/selectors";
 
 export function useGroupsListSectionLogic() {
     const dispatch = useDispatch();

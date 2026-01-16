@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import styles from './FormModalLayout.module.scss'
-import {Button, Modal} from "../../index";
+import {Modal} from "../modal/Modal";
+import {Button} from "../button/Button";
 
 interface ItemManagerProps{
     isOpen: boolean;

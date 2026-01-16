@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './MainPage.module.scss';
-import {GroupsListSection, ModulesListSection} from "../../../widgets";
+import {GroupsListSection} from "../../../widgets/groupsListSection";
+import {ModulesListSection} from "../../../widgets/modulesListSection";
 
 export const MainPage = () => {
     return (

@@ -1,5 +1,5 @@
 import {RootState} from "../../../app/store";
-import {getItemById, getItems, getItemsByEntityIds} from "../../../shared";
+import {getItemById, getItems, getItemsByEntityIds} from "../../../shared/lib/selectors";
 
 export const selectModuleState = (state: RootState) => state.module.modules;
 

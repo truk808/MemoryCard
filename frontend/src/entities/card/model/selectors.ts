@@ -1,5 +1,5 @@
 import {RootState} from "../../../app/store";
-import {getItemById, getItems, getItemsByEntityIds} from "../../../shared";
+import {getItemById, getItems, getItemsByEntityIds} from "../../../shared/lib/selectors";
 
 export const selectCardState = (state: RootState) => state.card.cards;
 

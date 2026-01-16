@@ -1,6 +1,5 @@
 import React from 'react';
-import {GroupSection} from "../../../widgets";
-import {useLocation} from "react-router-dom";
+import {GroupSection} from "../../../widgets/gruopSections";
 
 export const GroupPage = () => {
 

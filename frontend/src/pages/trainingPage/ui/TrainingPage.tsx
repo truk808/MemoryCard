@@ -1,9 +1,8 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { TrainingSession } from "../../../features/training/ui/TrainingSession";
-import {selectCardsByModuleIds} from "../../../entities/training/model/selectors";
-import {useEffect} from "react";
-import {Card} from "../../../shared";
+import {selectCardsByModuleIds} from "../../../entities/training";
+import {Card} from "../../../entities/card";
 
 // переделать
 export function TrainingPage() {

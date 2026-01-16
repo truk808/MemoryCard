@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 import styles from "./Module.module.scss";
 import { NavLink } from "react-router-dom";
-import { Module, MODULE_ROUTE } from "../../../../shared";
 import * as Icons from "@heroicons/react/24/outline";
+import {Module} from "../../model/types";
+import {MODULE_ROUTE} from "../../../../shared/routes/const";
 
 interface ModuleCardProps {
     module: Module;

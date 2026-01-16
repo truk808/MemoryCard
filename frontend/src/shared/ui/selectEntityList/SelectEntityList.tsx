@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo} from 'react';
 import styles from './SelectEntityList.module.scss'
-import {CheckButton, Search} from "../../index";
+import {Search} from "../search/Search";
+import {CheckButton} from "../checkButton/CheckButton";
 
 interface SelectEntityListProps<T> {
     items: T[];

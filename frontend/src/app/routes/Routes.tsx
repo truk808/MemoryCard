@@ -7,7 +7,7 @@ import {
     PROFILE_ROUTE, REGISTRATION_ROUTE,
     SOCIETY_ROUTES,
     TRAINING_ROUTE
-} from "../../shared";
+} from "../../shared/routes/const";
 import ProfilePage from "../../pages/profilePage/ui/ProfilePage";
 
 export const authRoutes = [

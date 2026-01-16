@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './TrainModeList.module.scss'
 import {TrainModeButton} from "../trainModeButton/TrainModeButton";
 import {NavLink} from "react-router-dom";
-import {TRAINING_ROUTE} from "../../../../shared";
+import {TRAINING_ROUTE} from "../../../../shared/routes/const";
 
 type Props = {
     moduleIds: number[]

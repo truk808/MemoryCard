@@ -1,10 +1,8 @@
 import {useDispatch, useSelector} from "react-redux";
-import {selectAllTags} from "../../../entities";
-import {BaseManagerProps, getTags, getTagsByUser, Tag, useItemForm} from "../../../shared";
-import {setTags} from "../../../entities/tag/model/slice";
 import {removeTag, saveTag} from "./services";
-import {useEffect} from "react";
-import {RootState} from "../../../app/store";
+import {selectAllTags, Tag} from "../../../entities/tag";
+import {BaseManagerProps} from "../../../shared/types";
+import {useItemForm} from "../../../shared/hooks";
 
 export type TagForm = Partial<Pick<Tag, 'id' | 'name'>> & {
     name: string;

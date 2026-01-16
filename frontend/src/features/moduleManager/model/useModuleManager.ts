@@ -1,7 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
-import {selectAllCards} from "../../../entities";
-import {BaseManagerProps, Module, useItemForm} from "../../../shared";
 import {saveModule} from "./services";
+import {Module} from "../../../entities/module";
+import {selectAllCards} from "../../../entities/card";
+import {useItemForm} from "../../../shared/hooks";
+import {BaseManagerProps} from "../../../shared/types";
 
 export const initModuleForm: ModuleForm = {
     name: "",

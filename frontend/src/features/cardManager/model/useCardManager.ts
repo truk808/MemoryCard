@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {selectAllTags} from "../../../entities";
-import {BaseManagerProps, Card, useItemForm} from "../../../shared";
 import {saveCard} from "./services";
+import {Card} from "../../../entities/card";
+import {selectAllTags} from "../../../entities/tag";
+import {useItemForm} from "../../../shared/hooks";
+import { BaseManagerProps } from '../../../shared/types';
 
 export type CardForm = Partial<Pick<Card, 'id' | 'term' | 'meaning' | 'level' | 'example_sentence'>> & {
     selectedTagIds: number[];

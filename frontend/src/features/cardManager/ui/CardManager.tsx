@@ -1,7 +1,7 @@
 import React, {FC, useEffect} from "react";
 import styles from "../../groupManager/ui/GroupManager.module.scss";
-import {FormModalLayout, Input, SelectEntityList, TextArea} from "../../../shared";
 import {CardManagerProps, useCardManager} from "../model/useCardManager";
+import {FormModalLayout, Input, SelectEntityList, TextArea} from "../../../shared/ui";
 
 export const CardManager: FC<CardManagerProps> = ({
                                                       isOpen = false,

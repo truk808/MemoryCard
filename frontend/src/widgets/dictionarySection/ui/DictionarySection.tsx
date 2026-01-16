@@ -1,18 +1,14 @@
 import React from "react";
 import styles from "./DictionarySection.module.scss";
-import { useDictionaryLogic } from "../model/hooks/useDictionaryLogic";
-import { CardManager, TagManager } from "../../../features";
-import { TermCard } from "../../../entities";
-import {
-    Button,
-    CardList,
-    Search,
-    Section,
-} from "../../../shared";
+import { useDictionaryLogic } from "../model/useDictionaryLogic";
+import { TermCard } from "../../../entities/card";
+import {Button, CardList, Search, Section,} from "../../../shared/ui";
 import { handleDeleteCard } from "../../../features/cardRemove/model/services/handleDeleteCard";
 import { useDispatch } from "react-redux";
 import { Dropdown } from "../../../shared/ui/dropdown/Dropdown";
 import { ToggleButton } from "../../../shared/ui/toggleButton/ToggleButton";
+import {TagManager} from "../../../features/tagManager/ui/TagManager";
+import {CardManager} from "../../../features/cardManager/ui/CardManager";
 
 export const DictionarySection = () => {
     const dispatch = useDispatch();

@@ -4,13 +4,13 @@ import {groupModuleReducer} from "../../entities/groupModule/model/slice";
 import {moduleReducer} from "../../entities/module/model/slice";
 import {moduleCardReducer} from "../../entities/moduleCard/model/slice";
 import {cardReducer} from "../../entities/card/model/slice";
-import {userReducer} from "../../entities/user/model/slise";
 import {tagReducer} from "../../entities/tag/model/slice";
 import {cardTagReducer} from "../../entities/cardTag/model/slice";
 import {publicationReducer} from "../../entities/publication/model/slice";
 import {trainingTableReducer} from "../../features/statistics/trainingTable/model/slice";
 import {linearGraphReducer} from "../../features/statistics/linearGraph/model/slice";
 import {themeReducer} from "../../shared/model/theme/slice";
+import {userReducer} from "../../entities/user/model/slice";
 
 export const store = configureStore({
     reducer: {

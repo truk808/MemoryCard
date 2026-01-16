@@ -1,9 +1,7 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {selectAllGroups, selectAllModules} from "../../../../entities";
-import {getGroupsByUser, getModulesByUser} from "../../../../shared";
 import {RootState} from "../../../../app/store";
-import {setModules} from "../../../../entities/module/model/slice";
+import {selectAllModules} from "../../../../entities/module";
 
 export function useModulesListSectionLogic() {
     const dispatch = useDispatch();

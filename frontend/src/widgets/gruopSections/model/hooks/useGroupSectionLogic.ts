@@ -1,12 +1,13 @@
 import {useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {selectGroupById, selectModulesByGroupId} from "../../../../entities";
 import {RootState} from "../../../../app/store";
-import {getRelatedIdsByEntityId} from "../../../../shared/lib/getItemIdsByEntityId";
+import {getRelatedIdsByEntityId} from "../../../../shared/utils";
 import React, {use, useEffect, useMemo} from "react";
-import {getProgressByModule} from "../../../../shared";
 import {setProgress} from "../../../../features/statistics/linearGraph/model/slice";
 import {createPublication} from "../../../../shared/api/communityApi";
+import {selectGroupById} from "../../../../entities/group";
+import {selectModulesByGroupId} from "../../../../entities/module";
+import {getProgressByModule} from "../../../../shared/api";
 
 export function useGroupSectionLogic() {
     const user = useSelector((state: RootState) => state.user);

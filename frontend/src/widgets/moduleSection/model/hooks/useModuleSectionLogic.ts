@@ -1,14 +1,16 @@
 import React, {useEffect, useMemo} from "react";
 import {useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {selectAllTags, selectCardsByTagId, selectModuleById} from "../../../../entities";
 import {RootState} from "../../../../app/store";
-import {getRelatedIdsByEntityId} from "../../../../shared/lib/getItemIdsByEntityId";
-import {selectAllCardTags} from "../../../../entities/cardTag/model/selectors";
-import {CardWithTags, getProgressByModule} from "../../../../shared";
-import {setProgress} from "../../../../features/statistics/linearGraph/model/slice";
-import {getTrainingByModule, getTrainingByUser} from "../../../../shared/api/trainApi";
-import {setSessions} from "../../../../features/statistics/trainingTable/model/slice";
+import {getRelatedIdsByEntityId} from "../../../../shared/utils";
+import {getProgressByModule, getTrainingByModule} from "../../../../shared/api";
+import {selectAllCardTags} from "../../../../entities/cardTag";
+import {setProgress} from "../../../../features/statistics";
+import {setSessions} from "../../../../features/statistics";
+import {selectModuleById} from "../../../../entities/module";
+import {selectCardsByTagId} from "../../../../entities/card";
+import { selectAllTags } from "../../../../entities/tag";
+import {CardWithTags} from "../../../../shared/types/entityTypes";
 
 //переделать
 export function useModuleSectionLogic() {

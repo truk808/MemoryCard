@@ -1,8 +1,9 @@
 import React, {FC, useEffect} from "react";
 import styles from "../../groupManager/ui/GroupManager.module.scss";
-import {BaseManagerProps, FormModalLayout, Input, Module, SelectEntityList} from "../../../shared";
 import {ModuleForm, useModuleManager} from "../model/useModuleManager";
-import {SelectIcon} from "../../../shared/ui/selectIcon/SelectIcon";
+
+import {BaseManagerProps} from "../../../shared/types";
+import {FormModalLayout, Input, SelectEntityList, SelectIcon} from "../../../shared/ui";
 
 export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
                                                                     isOpen = false,

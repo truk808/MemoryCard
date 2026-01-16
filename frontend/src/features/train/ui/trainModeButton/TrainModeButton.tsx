@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import styles from './TrainModeButton.module.scss'
-import {TrainSvgSelector} from "../../../../shared";
+import {TrainSvgSelector} from "../../../../shared/assets";
 
 interface TrainModeButtonProps {
     typeTrainMode: "repetition" | "memorization" | "test" | "match"

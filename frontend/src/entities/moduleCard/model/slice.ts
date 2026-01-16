@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {ModuleCard} from "../../../shared";
+import {ModuleCard} from "./types";
 
 interface ModuleCardState {
     moduleCards:ModuleCard[];

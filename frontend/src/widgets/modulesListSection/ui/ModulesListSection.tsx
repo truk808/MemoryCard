@@ -1,10 +1,8 @@
 import React from 'react';
-import {ModuleManager} from "../../../features";
-import {Button, CardList, Search} from "../../../shared";
-import styles from "./ModuleSection.module.scss";
-import {ModuleCard} from "../../../entities";
-import {Section} from "../../../shared";
 import {useModulesListSectionLogic} from "../model/hooks/useModulesListSectionLogic";
+import {ModuleManager} from "../../../features/moduleManager/ui/ModuleManager";
+import {Button, CardList, Section} from "../../../shared/ui";
+import {ModuleCard} from "../../../entities/module";
 
 export const ModulesListSection = () => {
     const {

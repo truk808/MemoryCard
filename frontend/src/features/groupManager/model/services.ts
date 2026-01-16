@@ -1,8 +1,9 @@
-import {addGroup, changeGroup} from "../../../entities/group/model/slice";
-import {addGroupModule, removeGroupModule} from "../../../entities/groupModule/model/slice";
-import {addModuleToGroup, createGroup, ManagerMode, removeModuleFromGroup, updateGroup} from "../../../shared";
+import {addGroup, changeGroup} from "../../../entities/group";
+import {addGroupModule, removeGroupModule} from "../../../entities/groupModule";
 import {AppDispatch} from "../../../app/store";
 import {GroupForm} from "./useGroupManager";
+import {ManagerMode} from "../../../shared/types";
+import {addModuleToGroup, createGroup, removeModuleFromGroup, updateGroup} from "../../../shared/api";
 
 export const saveGroup = async (
     dispatch: AppDispatch,

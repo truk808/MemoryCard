@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button, LOGIN_ROUTE} from "../../../shared";
 import {useLocation} from "react-router-dom";
-import {Auth} from "../../../features";
+import {LOGIN_ROUTE} from "../../../shared/routes/const";
+import {Auth} from "../../../features/auth";
 
 export const AuthPage = () => {
     const isLogin = useLocation().pathname === LOGIN_ROUTE

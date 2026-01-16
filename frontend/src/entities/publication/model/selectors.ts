@@ -1,5 +1,5 @@
 import {RootState} from "../../../app/store";
-import {getItemById, getItems} from "../../../shared";
+import {getItemById, getItems} from "../../../shared/lib/selectors";
 
 export const selectPublications = (state: RootState) => state.publication.publications;
 

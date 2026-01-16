@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from "./GroupsListSection.module.scss";
 import {useGroupsListSectionLogic} from "../model/hooks/useGroupsListSectionLogic";
-import {GroupManager} from "../../../features";
-import {GroupCard} from "../../../entities";
-import {Button, CardList, Search, Section} from "../../../shared";
+import {GroupManager} from "../../../features/groupManager/ui/GroupManager";
+import {Button, CardList, Section} from "../../../shared/ui";
+import {GroupCard} from "../../../entities/group";
 
 export const GroupsListSection = () => {
     const {

@@ -1,8 +1,9 @@
 import React, {FC} from 'react'
 import styles from './Auth.module.scss'
-import {Button, Input, LOGIN_ROUTE, REGISTRATION_ROUTE} from '../../../shared'
 import {useAuth} from "../model/useAuth";
 import {NavLink} from "react-router-dom";
+import {Button, Input} from "../../../shared/ui";
+import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../../shared/routes/const";
 
 interface AuthProps {
     isLogin: boolean

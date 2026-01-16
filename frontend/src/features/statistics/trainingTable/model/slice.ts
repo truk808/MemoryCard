@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {Module} from "../../../../shared";
+import {Module} from "../../../../entities/module";
 
 export interface TrainingSession {
     id: number;

@@ -1,9 +1,8 @@
 import {useEffect, useMemo, useRef, useState} from "react";
-import {Card} from "../../../../shared";
 import {completeTraining} from "../../../../shared/api/trainApi";
-import {log} from "node:util";
 import {useSelector} from "react-redux";
-import {selectAllModuleCards} from "../../../../entities/moduleCard/model/selectModuleCards";
+import {Card} from "../../../../entities/card";
+import {selectAllModuleCards} from "../../../../entities/moduleCard";
 
 export interface TrainingResult {
     [cardId: number]: boolean;

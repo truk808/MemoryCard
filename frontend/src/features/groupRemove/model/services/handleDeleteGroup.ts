@@ -1,7 +1,7 @@
 import {Dispatch} from "react";
 import {UnknownAction} from "@reduxjs/toolkit";
-import {removeGroup} from "../../../../entities/group/model/slice";
-import {deleteGroup} from "../../../../shared";
+import {deleteGroup} from "../../../../shared/api";
+import {removeGroup} from "../../../../entities/group";
 
 export const handleDeleteGroup =
     (dispatch: Dispatch<UnknownAction>, groupId: number) => {

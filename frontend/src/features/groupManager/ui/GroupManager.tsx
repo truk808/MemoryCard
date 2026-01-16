@@ -1,7 +1,8 @@
 import React, {FC, useEffect} from 'react';
 import styles from './GroupManager.module.scss'
-import {BaseManagerProps, FormModalLayout, ImageUpload, Input, SelectEntityList, TextArea} from "../../../shared";
 import {GroupForm, useGroupManager} from "../model/useGroupManager";
+import {BaseManagerProps} from "../../../shared/types";
+import {FormModalLayout, ImageUpload, Input, SelectEntityList, TextArea} from "../../../shared/ui";
 
 export const GroupManager: FC<BaseManagerProps<GroupForm>> = ({
                                                                   isOpen = false,

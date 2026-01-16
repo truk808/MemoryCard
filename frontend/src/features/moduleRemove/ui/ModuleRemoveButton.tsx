@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
-import {Button} from "../../../shared";
 import {useDispatch} from "react-redux";
 import {handleDeleteModule} from "../model/services/handleDeleteModule";
+import {Button} from "../../../shared/ui";
 
 interface GroupRemoveButtonProps {
     moduleId: number;

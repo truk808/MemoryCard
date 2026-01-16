@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import {Navigate, Route, Routes} from "react-router-dom";
-import {LOGIN_ROUTE, MAIN_ROUTES} from "../../shared";
-import {authRoutes, publicRoutes} from "./Routes";
 import {useSelector} from "react-redux";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {RootState} from "../store";
+import {authRoutes, publicRoutes} from "./Routes";
+import {LOGIN_ROUTE, MAIN_ROUTES} from "../../shared/routes/const";
 
 const AppRouter = () => {
     const isAuth = useSelector((state: RootState) => state.user.isAuth);

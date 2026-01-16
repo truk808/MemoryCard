@@ -1,12 +1,9 @@
 import React from 'react';
-import styles from './SocietySection.module.scss'
-import {CardList, Section, Tabs} from "../../../shared";
-import {GroupCard} from "../../../entities";
-import {useSelector} from "react-redux";
-import {selectAllPublications} from "../../../entities/publication/model/selectors";
 import {useSocietySection} from "../model/useSocietySection";
+import {CardList, Section, Tabs} from "../../../shared/ui";
+import {GroupCard} from "../../../entities/group";
 
-const SocietySection = () => {
+export const SocietySection = () => {
     const {
         publications,
         userPublications,
@@ -43,5 +40,3 @@ const SocietySection = () => {
         </div>
     );
 };
-
-export default SocietySection;

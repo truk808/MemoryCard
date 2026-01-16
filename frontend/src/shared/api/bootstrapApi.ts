@@ -1,5 +1,11 @@
 import { $authHost } from "./axios";
-import {Card, CardTag, Group, GroupModule, Module, ModuleCard, Tag} from "../types";
+import {Group} from "../../entities/group";
+import {Module} from "../../entities/module";
+import {Card} from "../../entities/card";
+import {Tag} from "../../entities/tag";
+import {GroupModule} from "../../entities/groupModule";
+import {ModuleCard} from "../../entities/moduleCard";
+import {CardTag} from "../../entities/cardTag";
 
 export interface BootstrapResponse {
     groups: Group[];

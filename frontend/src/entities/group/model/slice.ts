@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Group} from "../../../shared";
+import {Group} from "./types";
 
 interface GroupState {
     groups: Group[];

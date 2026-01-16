@@ -1,11 +1,8 @@
 import {Repetition} from "./repetition/Repetition";
-import {Match} from "./match/Match";
-import {Test} from "./test/Test";
-import {Memorize} from "./memorize/Memorize";
 import {FC, useEffect, useState} from "react";
 import {useTraining} from "../model/hooks/useTrainingLogic";
 import {ModalResult} from "./modalResult/ModalResult";
-import {Card} from "../../../shared";
+import {Card} from "../../../entities/card";
 
 interface TrainingSessionProps {
     type: string;

@@ -1,9 +1,9 @@
 import {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {AppDispatch, RootState} from "../../../app/store";
-import {login, registration} from "../../../shared/api/userApi";
-import {setAuth} from "../../../entities/user/model/slise";
-import {MAIN_ROUTES} from "../../../shared";
+import {login, registration} from "../../../shared/api";
+import {setAuth} from "../../../entities/user";
+import {MAIN_ROUTES} from "../../../shared/routes/const";
 import {replace, useNavigate} from "react-router-dom";
 // import { login, registration } from '@/shared/api/auth'
 // import { setUser } from '@/entities/user'

@@ -1,18 +1,12 @@
 import React, {useEffect} from 'react';
-import {useGroupSectionLogic} from "../model/hooks/useGroupSectionLogic";
-import {
-    GroupManager,
-    GroupRemoveButton, LinearGraph,
-    PerformanceList,
-    TrainingTable,
-    TrainModeList
-} from "../../../features";
-import {ModuleCard} from "../../../entities";
-import {Button, CardList, MAIN_ROUTES, Section, Tabs} from "../../../shared";
 import {NavLink} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {RootState} from "../../../app/store";
-import {selectTrainingTable} from "../../../features/statistics/trainingTable/model/selectors";
+import {useGroupSectionLogic} from "../model/hooks/useGroupSectionLogic";
+import {ModuleCard} from "../../../entities/module";
+import {GroupManager} from "../../../features/groupManager";
+import {Button, CardList, Section, Tabs} from "../../../shared/ui";
+import {MAIN_ROUTES} from "../../../shared/routes/const";
+import {TrainModeList} from "../../../features/train/ui/trainModeList/TrainModeList";
+import {GroupRemoveButton} from "../../../features/groupRemove/ui/GroupRemoveButton";
 
 export const GroupSection = () => {
     const {

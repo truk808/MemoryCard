@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Search.module.scss'
-import {GlobalSvgSelector, Input} from "../../../shared";
+import {GlobalSvgSelector} from "../../assets";
+import {Input} from "../input/Input";
 
 interface SearchProps {
     value: string;

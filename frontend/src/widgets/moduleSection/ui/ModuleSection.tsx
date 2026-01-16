@@ -1,12 +1,15 @@
 import React from 'react';
-import {TermCard} from "../../../entities";
-import {ModuleManager, ModuleRemoveButton, TrainModeList, LinearGraph, TrainingTable} from "../../../features";
-import {Button, CardList, MAIN_ROUTES, Section, Tabs} from "../../../shared";
+import {RootState} from "../../../app/store";
 import {useModuleSectionLogic} from "../model/hooks/useModuleSectionLogic";
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {selectTrainingTable} from "../../../features/statistics/trainingTable/model/selectors";
-import {RootState} from "../../../app/store";
+import {LinearGraph, selectTrainingTable, TrainingTable} from "../../../features/statistics";
+import {ModuleManager} from "../../../features/moduleManager/ui/ModuleManager";
+import {Button, CardList, Section, Tabs} from "../../../shared/ui";
+import {MAIN_ROUTES} from "../../../shared/routes/const";
+import {ModuleRemoveButton} from "../../../features/moduleRemove";
+import {TrainModeList} from "../../../features/train";
+import {TermCard} from "../../../entities/card";
 
 export const ModuleSection = () => {
     const {

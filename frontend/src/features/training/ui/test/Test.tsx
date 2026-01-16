@@ -1,6 +1,8 @@
 import React, {FC, useState} from 'react';
 import styles from './Test.module.scss';
-import {Card, GlobalSvgSelector, Input} from '../../../../shared';
+import {Card} from "../../../../entities/card";
+import {Input} from "../../../../shared/ui";
+import {GlobalSvgSelector} from "../../../../shared/assets";
 
 interface TestProps {
     currentCard: Card

@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
-import styles from './GroupCard.module.scss';
 import { NavLink } from 'react-router-dom';
-import {GlobalSvgSelector, Group, GROUP_ROUTE, TruncatedText} from '../../../../shared';
+import styles from './GroupCard.module.scss';
+import {GROUP_ROUTE} from "../../../../shared/routes/const";
+import {TruncatedText} from "../../../../shared/ui";
+import {GlobalSvgSelector} from "../../../../shared/assets";
+import {Group} from "../../model/types";
 
 type GroupCardProps = {
     group: Group;

@@ -1,0 +1,23 @@
+
+h1, .heading-xl {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+}
+
+.text-base {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+.text-md {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+.text-muted {
+  color: var(--text-additional-color);
+}

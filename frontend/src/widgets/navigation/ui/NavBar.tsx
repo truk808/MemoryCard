@@ -7,7 +7,7 @@ export const NavBar = () => {
     const pathname = useLocation().pathname;
 
     return (
-        <nav className={styles.nav}>
+        <nav className={`${styles.nav}`}>
             {navItems.map((item: NavItem) => (
                 <NavLink to={item.href} className={pathname === item.href ? styles.active : ''}>
                     {item.name}

@@ -1,21 +1,21 @@
+@import "../../../app/styles/typography";
+
 .nav {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  column-gap: 18px;
-  font-weight: 500;
-  font-size: 31px;
-
+  gap: clamp(8px, 2vw, 24px);
+  a {
+    text-decoration: none;
+    color: var(--text-additional-color);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    transition: color 0.2s ease;
+  }
 }
 
-a {
-  color: var(--text-additional-color)
-}
-
-.active {
+a.active {
   color: var(--highlighted-color);
 }
+
 
 .active::after  {
   content: "";
@@ -24,4 +24,11 @@ a {
   height: 2px;
   background-color: var(--highlighted-color);
   margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+
+  }
 }

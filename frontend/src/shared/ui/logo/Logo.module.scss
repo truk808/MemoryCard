@@ -1,20 +1,35 @@
 .logo {
+  gap: 5px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  column-gap: 25px;
 }
 
-.logo_icon {
+.logo__icon {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 75px;
+  width: 10vw;
+  max-width: 75px;
+  min-width: 40px;
+
+  svg {
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
+    fill: var(--body-background);
+    //stroke: var(--body-background);
+    stroke-width: 2px;
+  }
 }
 
-.logo_text {
-  font-weight: bold;
-  font-style: normal;
-  font-size: 50px;
+.logo__text {
   color: var(--text-color);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+@media (max-width: 768px) {
+  .logo__text {
+    display: none;
+  }
 }

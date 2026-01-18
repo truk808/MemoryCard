@@ -5,12 +5,12 @@ import {GlobalSvgSelector} from "../../assets";
 export const Logo = () => {
     return (
         <div className={[styles.logo, styles.container].join(' ')}>
-            <div className={styles.logo_icon}>
+            <div className={styles.logo__icon}>
                 <GlobalSvgSelector svgName={'logo'}/>
             </div>
-            <div className={styles.logo_text}>
+            <h1 className={`${styles.logo__text}`}>
                 Memory Card
-            </div>
+            </h1>
         </div>
     );
 };

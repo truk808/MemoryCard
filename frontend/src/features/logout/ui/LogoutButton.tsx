@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import styles from './LogoutButton.module.scss'
 import {setAuth, setUser} from "../../../entities/user";
 import {GlobalSvgSelector} from "../../../shared/assets";
 
@@ -12,7 +13,9 @@ export const LogoutButton = () => {
     };
 
     return (
-        <button onClick={logout}>
+        <button
+            className='medium'
+            onClick={logout}>
             <GlobalSvgSelector svgName="profile" />
         </button>
     );

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {AppDispatch, RootState} from "../store";
 import {useDispatch, useSelector} from "react-redux";
 import '../styles/index.scss'
-import '../../shared/styles/variables.scss';
 import {Header} from "../../widgets/header";
 import {setAuth, setUser} from "../../entities/user";
 import {setGroups} from "../../entities/group";

@@ -1,0 +1,19 @@
+.features {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  column-gap: 4px;
+
+  * {
+    width: clamp(150px, 16vw, 300px);
+  }
+  @media (max-width: 768px) {
+    justify-content: start;
+  }
+  @media (max-width: 500px) {
+    align-items: normal;
+    flex-direction: column;
+  }
+}
+

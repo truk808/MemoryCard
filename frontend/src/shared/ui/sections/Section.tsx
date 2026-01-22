@@ -1,6 +1,7 @@
-import React, {FC, ReactNode} from 'react';
+import React, {FC} from 'react';
 import styles from './Section.module.scss'
 import {GlobalSvgSelector} from "../../assets";
+import {TruncatedText} from "../truncatedText/TruncatedText";
 
 interface SectionBlockProps {
     children: React.ReactNode;
@@ -11,17 +12,19 @@ interface SectionBlockProps {
     setIsShowContent?: (isShow: boolean) => void;
 }
 
-export const Section: FC<SectionBlockProps> = ({children,
+export const Section: FC<SectionBlockProps> = ({
+                                                   children,
                                                    title,
                                                    description,
                                                    features,
-                                                   isShowContent=true,
-                                                   setIsShowContent}) => {
+                                                   isShowContent = true,
+                                                   setIsShowContent
+                                               }) => {
     return (
         <section className={styles.sectionBlock}>
             <div className={styles.sectionBlockInfo}>
                 <div className={styles.top}>
-                    <div className={styles.title}>
+                    <div className={`heading-2xl ${styles.title}`}>
                         {
                             setIsShowContent !== undefined &&
                             <div
@@ -31,7 +34,11 @@ export const Section: FC<SectionBlockProps> = ({children,
                                 <GlobalSvgSelector svgName={'arrow-down'}/>
                             </div>
                         }
-                        {title}
+                        <h2 className={styles.titleText}>
+                            <TruncatedText maxLength={30}>
+                                {title}
+                            </TruncatedText>
+                        </h2>
                     </div>
                     <div className={styles.featuresList}>
                         {

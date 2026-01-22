@@ -1,5 +1,10 @@
+@import "../../../app/styles/variables";
+
 .header {
   background-color: var(--main-color);
+  box-shadow: var(--box-shadow);
+  position: relative;
+  z-index: 1000;
 }
 
 .header__inner {
@@ -12,6 +17,7 @@
   display: flex;
   align-items: center;
   width: 100%;
+  gap: 89px;
 }
 
 .burgerToggle {
@@ -24,6 +30,7 @@
   width: 30px;
   height: 25px;
   cursor: pointer;
+  z-index: 1100;
 }
 
 .burger::before,
@@ -52,9 +59,10 @@
 
 .headerItems {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-left: auto;
-  gap: 40px;
+  flex: 1;
+  z-index: 1050;
 }
 
 .headerAdditional {
@@ -68,7 +76,7 @@
   .burger {
     display: block;
     margin-left: auto;
-    z-index: 2;
+    z-index: 10000;
   }
 
   .headerItems {

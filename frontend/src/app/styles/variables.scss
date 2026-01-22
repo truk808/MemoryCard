@@ -5,18 +5,18 @@ $border-radius: 15px;
   --bp-mobile: 640px;
   --bp-tablet: 768px;
 
-  --icon-size-xs: clamp(10px, 2vw, 20px);
+  --icon-size-xs: clamp(10px, 5vw, 20px);
   --icon-size-md: clamp(20px, 3vw, 35px);
   --icon-size-lg: clamp(35px, 4vw, 50px);
 
   --font-size-base: clamp(0.875rem, 1vw, 1.125rem);    /* 14-18px */
   --font-size-md: clamp(1.125rem, 1.5vw, 1.375rem);    /* 18-22px */
   --font-size-lg: clamp(1.375rem, 2vw, 2rem);        /* 22-32px */
+  --font-size-xl: clamp(1.75rem, 3.5vw, 2.25rem);    /* 32-36px */
+  --font-size-2xl: clamp(1.5rem, 4vw, 2.5rem);      /* 36-40px */
 
   --font-size-xs: clamp(0.75rem, 1vw, 0.875rem);     /* 12-14px */
   --font-size-sm: clamp(0.875rem, 1.1vw, 1rem);      /* 14-16px */
-  --font-size-xl: clamp(1.625rem, 2.5vw, 2.5rem);    /* 26-40px */
-  --font-size-2xl: clamp(2rem, 3vw, 3rem);           /* 32-48px */
   --font-size-3xl: clamp(2.5rem, 4vw, 4rem);         /* 40-64px */
 
   --font-weight-regular: 400;

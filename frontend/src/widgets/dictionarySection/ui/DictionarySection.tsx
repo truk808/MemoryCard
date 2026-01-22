@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./DictionarySection.module.scss";
-import { useDictionaryLogic } from "../model/useDictionaryLogic";
-import { TermCard } from "../../../entities/card";
+import {useDictionaryLogic} from "../model/useDictionaryLogic";
+import {TermCard} from "../../../entities/card";
 import {Button, CardList, Search, Section,} from "../../../shared/ui";
-import { handleDeleteCard } from "../../../features/cardRemove/model/services/handleDeleteCard";
-import { useDispatch } from "react-redux";
-import { Dropdown } from "../../../shared/ui/dropdown/Dropdown";
-import { ToggleButton } from "../../../shared/ui/toggleButton/ToggleButton";
+import {handleDeleteCard} from "../../../features/cardRemove/model/services/handleDeleteCard";
+import {useDispatch} from "react-redux";
+import {Dropdown} from "../../../shared/ui/dropdown/Dropdown";
+import {ToggleButton} from "../../../shared/ui/toggleButton/ToggleButton";
 import {TagManager} from "../../../features/tagManager/ui/TagManager";
 import {CardManager} from "../../../features/cardManager/ui/CardManager";
 
@@ -55,12 +55,14 @@ export const DictionarySection = () => {
             <Section
                 title="Словарь"
                 features={[
-                    <Button key="tag" color="blue" onClick={() => setIsOpenTagManager(true)}>
-                        Тег
-                    </Button>,
-                    <Button key="card" color="blue" onClick={() => setIsOpenCardManager(true)}>
-                        Добавить карточку
-                    </Button>,
+                    <div className={styles.features}>
+                        <Button key="tag" color="blue" onClick={() => setIsOpenTagManager(true)}>
+                            Тег
+                        </Button>
+                        <Button key="card" color="blue" onClick={() => setIsOpenCardManager(true)}>
+                            Добавить карточку
+                        </Button>
+                    </div>
                 ]}
             >
 
@@ -87,17 +89,15 @@ export const DictionarySection = () => {
                                 Без тегов
                             </ToggleButton>
                         </div>
-
-                        <div className={styles.control}>
-                            <Dropdown
-                                items={tagItems}
-                                selectedIds={selectedTagIds}
-                                onChange={setSelectedTagIds}
-                                placeholder="Теги"
-                            />
-                        </div>
                     </div>
-
+                    <div className={styles.control}>
+                        <Dropdown
+                            items={tagItems}
+                            selectedIds={selectedTagIds}
+                            onChange={setSelectedTagIds}
+                            placeholder="Теги"
+                        />
+                    </div>
                 </div>
 
                 <CardList

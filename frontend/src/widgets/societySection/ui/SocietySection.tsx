@@ -21,7 +21,6 @@ export const SocietySection = () => {
                     {[
                         <>
                             <CardList
-                                quantityColumns={3}
                                 items={publications}
                                 renderItem={(group) => <GroupCard onDownload={(id) => onDownload(id)} variant={'publication'} group={group}/>}
                             />
@@ -29,7 +28,6 @@ export const SocietySection = () => {
                         </>,
                         <>
                             <CardList
-                                quantityColumns={3}
                                 items={userPublications}
                                 renderItem={(group) => <GroupCard group={group}/>}
                             />

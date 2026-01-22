@@ -12,6 +12,7 @@ import {setCards} from "../../entities/card";
 import {setCardTags} from "../../entities/cardTag";
 import {setTags} from "../../entities/tag";
 import {bootstrapUserData, check} from "../../shared/api";
+import AppRouter from "../routes/AppRouter";
 
 const App = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -71,10 +72,9 @@ const App = () => {
     return (
         <>
             <Header/>
-            {/*<div className="container">*/}
-            {/*    <AppRouter/>*/}
-            {/*</div>*/}
-
+            <div className="container">
+                <AppRouter/>
+            </div>
         </>
     );
 };

@@ -8,6 +8,7 @@
   border-radius: 12px;
   background-color: var(--main-color);
   box-shadow: $box-shadow;
+  color: var(--text-color);
 }
 
 .trigger {
@@ -22,24 +23,26 @@
 }
 
 .value {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  //overflow: hidden;
+  //white-space: nowrap;
+  //text-overflow: ellipsis;
 }
 
 .arrow {
-  margin-left: 8px;
+  //margin-left: 8px;
   font-size: 10px;
 }
 
 .menu {
+  width: 100%;
+
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
   right: 0;
 
-  background: #fff;
-  border: 1px solid #ccc;
+  background: var(--main-color);
+  border: 1px solid var(--text-color);
   border-radius: 6px;
 
   max-height: 220px;
@@ -72,5 +75,5 @@
 }
 
 .reset:hover {
-  text-decoration: underline;
+  //text-decoration: var(--text-additional-color);
 }

@@ -1,94 +1,141 @@
-@import "../../../../app/styles/variables";
-
-.cardWrapper {
+.card {
   position: relative;
-  width: 600px;
-  height: 280px;
-  border-radius: $border-radius;
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  min-width: 0;
+  //max-width: 100%;
+
+  height: 220px;
+
+  border-radius: 12px;
   overflow: hidden;
+  background-color: var(--main-color);
+  text-decoration: none;
+  color: var(--text-color);
+  box-shadow: var(--box-shadow);
+
+  transition: transform 0.2s ease;
 
   &:hover {
-    .overlay {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: all;
-    }
+    transform: translateY(-2px);
+  }
 
-    .card {
-      filter: brightness(0.4);
-    }
+  .card * {
+    min-width: 0;
   }
 }
 
-.navLink {
-  text-decoration: none;
-  color: inherit;
-}
-
-.card {
+.imageWrapper {
+  flex: 0 0 60%;
+  width: 60%;
   height: 100%;
-  padding: 24px;
-  display: flex;
-  background-color: var(--main-color);
-  border-radius: $border-radius;
-  transition: filter 0.3s ease;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
-.imgWrapper {
+.imagePlaceholder {
+  width: 100%;
   height: 100%;
-  aspect-ratio: 4 / 3;
-  background-size: cover;
-  background-position: center;
-  border-radius: 20%;
-  margin-right: 15px;
+  background: var(--text-color);
+  opacity: 0.3;
 }
 
-.cardInfo {
+.info {
   flex: 1;
+  width: 40%;
+  padding: 12px;
+  display: flex;
+  //flex-direction: column;
+  //justify-content: center;
+  gap: 8px;
+  overflow: hidden;
 }
 
 .title {
-  font-size: 40px;
-  font-weight: 600;
-  color: var(--text-color);
+
 }
 
+.description {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.publication {
+  .overlay {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:hover .overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
 
 .overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-
+  background: rgba(0, 0, 0, 0.65);
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: all 0.3s ease;
+  justify-content: center;
+  transition: opacity 0.25s ease;
 }
 
 .downloadBtn {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  padding: 10px 18px;
 
-  padding: 14px 22px;
-  border-radius: 30px;
-  background-color: var(--accent-color);
-  color: #fff;
-  font-size: 18px;
+  background: #ffffff;
+  color: #000;
+  border-radius: 8px;
+  font-size: 14px;
   font-weight: 500;
-  border: none;
   cursor: pointer;
+  border: none;
 
   svg {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
   }
 
   &:hover {
-    transform: scale(1.05);
+    background: #eaeaea;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 300px;
+    height: 160px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    min-width: 240px;
+    height: 140px;
+  }
+
+  .info {
+    padding: 8px;
   }
 }

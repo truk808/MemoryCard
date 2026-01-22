@@ -7,38 +7,38 @@
   justify-content: center;
   transition: 0.4s;
 
-
+  padding: 5px;
   border-radius: 10px;
-  font-size: 25px;
-  font-weight: 500;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
 }
 
 .blue {
-  border: 2.5px solid blue;
-  color: blue;
+  border: 2.5px solid var(--blue-color);
+  color: var(--blue-color);
 }
 
 .blue:hover {
-  background-color: #0000ff;
-  color: white;
+  background-color: var(--blue-color);
+  color: var(--body-background);
 }
 
 .orange {
-  border: 2.5px solid orange;
-  color: orange;
+  border: 2.5px solid var(--orange-color);
+  color: var(--orange-color);
 }
 
 .orange:hover {
-  background-color: orange;
-  color: white;
+  background-color: var(--orange-color);
+  color: var(--body-background);
 }
 
 .red {
-  border: 2.5px solid red;
-  color: red;
+  border: 2.5px solid var(--red-color);
+  color: var(--red-color);
 }
 
 .red:hover {
-  background-color: red;
-  color: white;
+  background-color: var(--red-color);
+  color: var(--body-background);
 }

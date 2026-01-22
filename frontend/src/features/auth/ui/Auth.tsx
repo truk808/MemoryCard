@@ -49,10 +49,9 @@ export const Auth: FC<AuthProps> = ({isLogin}) => {
 
                 <div className={styles.buttons}>
                     <NavLink to={isLogin ? REGISTRATION_ROUTE : LOGIN_ROUTE}>
-                        <Button color="blue" onClick={() => {
-                        }}>
+                        <span className={styles.clickText}>
                             {isLogin ? 'Зарегистрироваться' : 'Войти'}
-                        </Button>
+                        </span>
                     </NavLink>
 
                     <Button

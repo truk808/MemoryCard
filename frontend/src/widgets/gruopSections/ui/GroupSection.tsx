@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
+import styles from './GroupSection.module.scss'
 import {NavLink} from "react-router-dom";
 import {useGroupSectionLogic} from "../model/hooks/useGroupSectionLogic";
 import {ModuleCard} from "../../../entities/module";
 import {GroupManager} from "../../../features/groupManager";
 import {Button, CardList, Section, Tabs} from "../../../shared/ui";
 import {MAIN_ROUTES} from "../../../shared/routes/const";
-import {TrainModeList} from "../../../features/train/ui/trainModeList/TrainModeList";
+import {TrainModeList} from "../../../features/train";
 import {GroupRemoveButton} from "../../../features/groupRemove/ui/GroupRemoveButton";
 
 export const GroupSection = () => {
@@ -36,9 +37,11 @@ export const GroupSection = () => {
                     title={group.name}
                     description={group.description}
                     features={[
-                        <Button onClick={() => {publish()}} color={'orange'}> Опубликовать </Button>,
-                        <Button onClick={() => setIsOpenGroupManager(true)} color={'blue'}> Редактировать </Button>,
-                        <NavLink to={MAIN_ROUTES}><GroupRemoveButton groupId={groupId}/></NavLink>,
+                        <div className={styles.features}>
+                            <Button onClick={() => {publish()}} color={'orange'}> Опубликовать </Button>,
+                            <Button onClick={() => setIsOpenGroupManager(true)} color={'blue'}> Редактировать </Button>,
+                            <NavLink to={MAIN_ROUTES}><GroupRemoveButton groupId={groupId}/></NavLink>,
+                        </div>
                     ]}
                 >
                     <Tabs titles={['Модули', 'Карточки',]}>

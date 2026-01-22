@@ -14,9 +14,10 @@
 
   cursor: pointer;
   transition: all 0.2s ease;
+  color: var(--text-color);
 }
 
 .active {
   background-color: var(--highlighted-color);
-  color: #fff;
+  color: var(--body-background);
 }

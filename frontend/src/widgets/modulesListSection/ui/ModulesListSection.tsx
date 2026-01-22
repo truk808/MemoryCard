@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './ModulesListSection.module.scss'
 import {useModulesListSectionLogic} from "../model/hooks/useModulesListSectionLogic";
 import {ModuleManager} from "../../../features/moduleManager/ui/ModuleManager";
 import {Button, CardList, Section} from "../../../shared/ui";
@@ -28,9 +29,9 @@ export const ModulesListSection = () => {
                 setIsShowContent={() => setIsModuleSectionOpen(prevState => !prevState)}
                 title="Мои модули"
                 features={[
-                    <Button color="blue" onClick={() => setIsOpenModuleManager(true)}>
-                        Добавить модуль
-                    </Button>,
+                    <div className={styles.button}>
+                        <Button color="blue" onClick={() => setIsOpenModuleManager(true)}>Добавить модуль</Button>,
+                    </div>
                 ]}
             >
                 {isModuleSectionOpen && (

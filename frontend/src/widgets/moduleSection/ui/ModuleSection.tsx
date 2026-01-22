@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './ModuleSection.module.scss'
 import {RootState} from "../../../app/store";
 import {useModuleSectionLogic} from "../model/hooks/useModuleSectionLogic";
 import {NavLink} from "react-router-dom";
@@ -38,17 +39,18 @@ export const ModuleSection = () => {
             <Section
                 title={module.name}
                 features={[
-                    <Button color={'blue'} onClick={() => setIsOpenModuleManager(true)}> Редактировать </Button>,
-                    <NavLink to={MAIN_ROUTES}>
-                        <ModuleRemoveButton moduleId={moduleId}></ModuleRemoveButton>
-                    </NavLink>,
-
+                    <div className={styles.features}>
+                        <Button color={'blue'} onClick={() => setIsOpenModuleManager(true)}> Редактировать </Button>,
+                        <NavLink to={MAIN_ROUTES}>
+                            <ModuleRemoveButton moduleId={moduleId}></ModuleRemoveButton>
+                        </NavLink>,
+                    </div>
                 ]}
             >
                 <Tabs titles={['Карточки', 'Статистика']}>
                     {[
                         <>
-                            <TrainModeList moduleIds={[moduleId]} />
+                            <TrainModeList moduleIds={[moduleId]}/>
                             <CardList
                                 items={cardsWithTags}
                                 renderItem={cardsWithTags => <TermCard onEdit={() => {
@@ -57,8 +59,8 @@ export const ModuleSection = () => {
                             />
                         </>,
                         <>
-                            <LinearGraph graph={graph} />
-                            <TrainingTable sessions={trainTable} />
+                            <LinearGraph graph={graph}/>
+                            <TrainingTable sessions={trainTable}/>
                         </>,
                     ]}
                 </Tabs>

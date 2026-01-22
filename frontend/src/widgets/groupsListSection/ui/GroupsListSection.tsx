@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./GroupsListSection.module.scss";
 import {useGroupsListSectionLogic} from "../model/hooks/useGroupsListSectionLogic";
-import {GroupManager} from "../../../features/groupManager/ui/GroupManager";
+import {GroupManager} from "../../../features/groupManager";
 import {Button, CardList, Section} from "../../../shared/ui";
 import {GroupCard} from "../../../entities/group";
 
@@ -29,19 +29,14 @@ export const GroupsListSection = () => {
                 setIsShowContent={() => setIsGroupSectionOpen(prev => !prev)}
                 title="Мои группы"
                 features={[
-                    <Button color="blue" onClick={() => setIsGroupManagerOpen(true)}>
-                        Добавить группу
-                    </Button>,
+                    <div className={styles.button}>
+                        <Button color="blue" onClick={() => setIsGroupManagerOpen(true)}>Добавить группу</Button>
+                    </div>
                 ]}
             >
                 {isGroupSectionOpen && (
                     <>
-                        {/*переделать*/}
-                        {/*<div className={styles.search}>*/}
-                        {/*    <Search value={searchValue} onChange={setSearchValue}/>*/}
-                        {/*</div>*/}
                         <CardList
-                            quantityColumns={3}
                             items={filteredGroups}
                             renderItem={group => <GroupCard key={group.id} group={group}/>}
                         />

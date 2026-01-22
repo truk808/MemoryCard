@@ -1,4 +1,5 @@
 .logo {
+  //min-width: 180px;
   gap: 5px;
   display: flex;
   justify-content: center;
@@ -17,7 +18,6 @@
     width: var(--icon-size-lg);
     height: var(--icon-size-lg);
     fill: var(--body-background);
-    //stroke: var(--body-background);
     stroke-width: 2px;
   }
 }

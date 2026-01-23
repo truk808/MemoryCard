@@ -70,7 +70,6 @@
 
 - Создание карточки в модуле = сохранение в словарь + добавление в модуль.  
 - Перевод через встроенный API, возможность редактирования перед добавлением.  
-- Статус «выученности» = уровень + история/агрегаты.  
 - Повторение забытых карточек после тренировки.
 
 ---
@@ -88,4 +87,4 @@
 ## Ссылки
 
 - [GitHub репозиторий](https://github.com/truk808/MemoryCard)  
-- [Демо онлайн](https://drive.google.com/file/d/1eRHMKuF7tonWpS1XEXQed8uDUIvEMMWV/view?usp=sharing)
+- [видео-демо онлайн](https://drive.google.com/file/d/1eRHMKuF7tonWpS1XEXQed8uDUIvEMMWV/view?usp=sharing)

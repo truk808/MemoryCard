@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
 import styles from './TermCard.module.scss';
-import { TagBadge } from "../../../tag";
-import {GlobalSvgSelector} from "../../../../shared/assets";
-import {TruncatedText} from '../../../../shared/ui';
+import { TagBadge } from "../../tag";
+import {GlobalSvgSelector} from "../../../shared/assets";
+import {TruncatedText} from '../../../shared/ui';
 
-import {CardWithTags} from "../../../../shared/types/entityTypes";
+import {CardWithTags} from "../../../shared/types/entityTypes";
 
 interface CardProps {
     card: CardWithTags;

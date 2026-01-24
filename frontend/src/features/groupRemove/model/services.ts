@@ -1,9 +1,9 @@
 import {Dispatch} from "react";
 import {UnknownAction} from "@reduxjs/toolkit";
-import {deleteGroup} from "../../../../shared/api";
-import {removeGroup} from "../../../../entities/group";
+import {deleteGroup} from "../../../shared/api";
+import {removeGroup} from "../../../entities/group";
 
-export const handleDeleteGroup =
+export const services =
     (dispatch: Dispatch<UnknownAction>, groupId: number) => {
 
         const confirmed = window.confirm("Удалить группу?");

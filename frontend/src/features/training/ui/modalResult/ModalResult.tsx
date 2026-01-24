@@ -25,14 +25,14 @@ export const ModalResult: FC<ModalResultProps> = ({
     return (
         <Modal closeModal={close} isOpen={isOpen}>
             <div className={styles.container}>
-                <h3 className={styles.title}>Результаты тренировки</h3>
+                <h3 className={`heading-xl ${styles.title}`}>Результаты тренировки</h3>
 
-                <div className={styles.list}>
-                    <h5>Тип: {type}</h5>
-                    <h5>Карточек: {cardsCount}</h5>
-                    <h5>Ошибок: {wrongCount}</h5>
-                    <h5>Время: {duration} сек</h5>
-                    <h5>Дата: {date}</h5>
+                <div className={`text-base ${styles.list}`}>
+                    <h5><strong>Тип:</strong> {type}</h5>
+                    <h5><strong>Карточек:</strong> {cardsCount}</h5>
+                    <h5><strong>Ошибок:</strong> {wrongCount}</h5>
+                    <h5><strong>Время:</strong> {duration} сек</h5>
+                    <h5><strong>Дата:</strong> {date}</h5>
                 </div>
 
                 <div className={styles.footer}>

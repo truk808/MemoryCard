@@ -1,21 +1,18 @@
 import React from 'react';
 import styles from "./GroupsListSection.module.scss";
-import {useGroupsListSectionLogic} from "../model/hooks/useGroupsListSectionLogic";
+import {useGroupsListSection} from "../model/useGroupsListSectionLogic";
 import {GroupManager} from "../../../features/groupManager";
 import {Button, CardList, Section} from "../../../shared/ui";
 import {GroupCard} from "../../../entities/group";
 
 export const GroupsListSection = () => {
     const {
-        groups,
         isGroupSectionOpen,
         setIsGroupSectionOpen,
         setIsGroupManagerOpen,
-        setSearchValue,
         filteredGroups,
         isGroupManagerOpen,
-        searchValue,
-    } = useGroupsListSectionLogic()
+    } = useGroupsListSection()
 
     return (
         <>

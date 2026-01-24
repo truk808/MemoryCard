@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {useDispatch} from "react-redux";
-import {handleDeleteGroup} from "../model/services/handleDeleteGroup";
+import {services} from "../model/services";
 import {Button} from "../../../shared/ui";
 
 interface GroupRemoveButtonProps {
@@ -11,7 +11,7 @@ export const GroupRemoveButton: FC<GroupRemoveButtonProps> = ({groupId}) => {
     const dispatch = useDispatch();
 
     function onClick() {
-        handleDeleteGroup(dispatch, groupId)
+        services(dispatch, groupId)
     }
 
     return (

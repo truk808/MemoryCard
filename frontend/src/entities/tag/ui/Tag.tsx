@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import styles from './Tag.module.scss'
-import {Tag} from "../../model/types";
+import {Tag} from "../model/types";
 
 interface TagProps {
     tag: Tag;

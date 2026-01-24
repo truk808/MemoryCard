@@ -1,11 +1,9 @@
 import React, {useEffect, useMemo} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../../app/store";
-import {selectAllGroups} from "../../../../entities/group/model/selectors";
+import {RootState} from "../../../app/store";
+import {selectAllGroups} from "../../../entities/group/model/selectors";
 
-export function useGroupsListSectionLogic() {
-    const dispatch = useDispatch();
-    const userId = useSelector((state: RootState) => state.user.user?.id);
+export function useGroupsListSection() {
     const groups = useSelector(selectAllGroups);
 
     const [isGroupSectionOpen, setIsGroupSectionOpen] = React.useState(true);
@@ -18,14 +16,11 @@ export function useGroupsListSectionLogic() {
     }, [groups, searchValue]);
 
     return {
-        // данные
         groups,
         filteredGroups,
-        // сотояния
         isGroupSectionOpen,
         isGroupManagerOpen,
         searchValue,
-        // функции
         setSearchValue,
         setIsGroupSectionOpen,
         setIsGroupManagerOpen,

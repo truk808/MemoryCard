@@ -19,7 +19,7 @@
   margin-bottom: 25px;
 
   * {
-    width: clamp(150px, 16vw, 300px);
+    //width: clamp(150px, 16vw, 300px);
   }
   @media (max-width: 768px) {
     justify-content: start;

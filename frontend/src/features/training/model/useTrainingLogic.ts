@@ -1,8 +1,8 @@
 import {useEffect, useMemo, useRef, useState} from "react";
-import {completeTraining} from "../../../../shared/api/trainApi";
+import {completeTraining} from "../../../shared/api/trainApi";
 import {useSelector} from "react-redux";
-import {Card} from "../../../../entities/card";
-import {selectAllModuleCards} from "../../../../entities/moduleCard";
+import {Card} from "../../../entities/card";
+import {selectAllModuleCards} from "../../../entities/moduleCard";
 
 export interface TrainingResult {
     [cardId: number]: boolean;
@@ -26,12 +26,8 @@ export function useTraining(cards: Card[], type: string, modules: number[]) {
 
     const currentCard = cards[index];
 
-    // console.log(currentCard)
-
     const recordAnswer = (cardId: number, correct: boolean): void => {
         setResults((prev) => ({...prev, [cardId]: correct}));
-        // console.log(cardId);
-        // console.log(results);
     };
 
     const nextCard = (cardId?: number, correct?: boolean) => {

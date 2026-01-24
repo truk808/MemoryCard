@@ -3,7 +3,7 @@ import styles from "./DictionarySection.module.scss";
 import {useDictionaryLogic} from "../model/useDictionaryLogic";
 import {TermCard} from "../../../entities/card";
 import {Button, CardList, Search, Section,} from "../../../shared/ui";
-import {handleDeleteCard} from "../../../features/cardRemove/model/services/handleDeleteCard";
+import {services} from "../../../features/cardRemove/model/services";
 import {useDispatch} from "react-redux";
 import {Dropdown} from "../../../shared/ui/dropdown/Dropdown";
 import {ToggleButton} from "../../../shared/ui/toggleButton/ToggleButton";
@@ -110,7 +110,7 @@ export const DictionarySection = () => {
                                 setEditCard(card);
                                 setIsOpenCardManager(true);
                             }}
-                            onDelete={() => handleDeleteCard(dispatch, card.id)}
+                            onDelete={() => services(dispatch, card.id)}
                         />
                     )}
                 />

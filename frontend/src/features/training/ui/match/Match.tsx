@@ -4,7 +4,7 @@ import styles from './Match.module.scss'
 export const Match = () => {
     return (
         <div>
-
+            Скоро...
         </div>
     );
 };

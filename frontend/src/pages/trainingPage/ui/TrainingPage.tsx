@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { TrainingSession } from "../../../features/training/ui/TrainingSession";
 import {selectCardsByModuleIds} from "../../../entities/training";
@@ -12,11 +12,6 @@ export function TrainingPage() {
     const moduleIds = search.get("modules")
         ?.split(",")
         .map(Number) || [];
-
-    // переделать
-    // const cards = useSelector(selectCardsByModuleIds(moduleIds)).
-    // filter((card): card is Card => card !== undefined).
-    // sort(() => Math.random() - 0.5);
 
     const cards = Array.from(
         new Map(

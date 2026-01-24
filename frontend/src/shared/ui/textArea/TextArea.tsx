@@ -7,7 +7,7 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 export const TextArea: FC<TextAreaProps> = ({...props}) => {
     return (
         <textarea
-            className={styles.textArea}
+            className={`text-base ${styles.textArea}`}
             {...props}
         />
     );

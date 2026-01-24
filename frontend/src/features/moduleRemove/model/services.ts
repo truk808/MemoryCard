@@ -1,9 +1,9 @@
 import {Dispatch} from "react";
 import {UnknownAction} from "@reduxjs/toolkit";
-import {deleteModule} from "../../../../shared/api";
-import {removeModule} from "../../../../entities/module";
+import {deleteModule} from "../../../shared/api";
+import {removeModule} from "../../../entities/module";
 
-export const handleDeleteModule =
+export const services =
     (dispatch: Dispatch<UnknownAction>, moduleId: number) => {
 
         const confirmed = window.confirm("Удалить модуль?");

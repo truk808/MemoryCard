@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import styles from './GroupManager.module.scss'
 import {GroupForm, useGroupManager} from "../model/useGroupManager";
 import {BaseManagerProps} from "../../../shared/types";

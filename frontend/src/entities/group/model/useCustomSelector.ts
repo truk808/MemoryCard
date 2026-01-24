@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../../../../app/store';
+import { RootState, AppDispatch } from '../../../app/store';
 
 export const useGroupSelector = () => {
     const groupsDispatch = useDispatch<AppDispatch>();

@@ -23,7 +23,6 @@ export function useTraining(cards: Card[], type: string, modules: number[]) {
     const [finishResults, setFinishResults] = useState<TrainingPayload>();
 
     const startTime = useRef(Date.now());
-
     const currentCard = cards[index];
 
     const recordAnswer = (cardId: number, correct: boolean): void => {
@@ -43,20 +42,12 @@ export function useTraining(cards: Card[], type: string, modules: number[]) {
         }
     };
 
-
-    const calcLevelChange = (card: Card): number => {
-        const correct = results[card.id];
-        if (correct === undefined) return card.level;
-        return correct
-            ? Math.min(card.level + 1, 3)
-            : Math.max(card.level - 1, 0);
-    };
-
     const moduleCards = useSelector(selectAllModuleCards);
 
     const cardToModule = useMemo(() => {
         const map = new Map<number, number>();
 
+        console.log(moduleCards)
         moduleCards.forEach(mc => {
             map.set(mc.cardId, mc.moduleId);
         });
@@ -66,6 +57,7 @@ export function useTraining(cards: Card[], type: string, modules: number[]) {
 
 
     const finish = (finalResults?: TrainingResult) => {
+
         const duration = Math.floor((Date.now() - startTime.current) / 1000);
         const resultsToUse = finalResults ?? results;
 
@@ -74,6 +66,7 @@ export function useTraining(cards: Card[], type: string, modules: number[]) {
         Object.entries(resultsToUse).forEach(([cardIdStr, correct]) => {
             const cardId = Number(cardIdStr);
             const moduleId = cardToModule.get(cardId);
+            // console.log(cardToModule);
 
             if (!moduleId) return;
 
@@ -88,6 +81,7 @@ export function useTraining(cards: Card[], type: string, modules: number[]) {
         });
 
         Object.entries(cardsByModule).forEach(([moduleId, cards]) => {
+            console.log(moduleId, cards);
             completeTraining({
                 type,
                 modules: [Number(moduleId)],
@@ -107,7 +101,6 @@ export function useTraining(cards: Card[], type: string, modules: number[]) {
         recordAnswer,
         finish,
         results,
-        calcLevelChange,
         helper,
         setHelper,
         isFinish,

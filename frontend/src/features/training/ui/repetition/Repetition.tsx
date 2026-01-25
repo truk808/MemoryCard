@@ -34,7 +34,7 @@ export const Repetition: FC<RepetitionProps> = ({ currentCard, nextCard, recordA
                     onClick={() => setFlipped(prevState => !prevState)}
                 >
                     {isHelper ?
-                        currentCard?.meaning
+                        currentCard?.example_sentence
                         :
                         flipped ?
                             currentCard?.meaning

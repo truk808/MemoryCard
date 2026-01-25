@@ -34,7 +34,6 @@ export function TrainingPage() {
             type={type}
             cards={cards}
             moduleIds={moduleIds}
-            entityType={moduleIds.length > 1 ? 'group' : 'module'}
         />
     );
 }

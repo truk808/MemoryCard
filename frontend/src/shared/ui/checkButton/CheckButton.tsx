@@ -7,7 +7,7 @@ interface CheckButtonProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const CheckButton: FC<CheckButtonProps> = ({title, ...props}) => {
     return (
-        <div className={styles.checkButton}>
+        <div className={`text-base ${styles.checkButton}`}>
             <input
                 className={styles.button}
                 type={'checkbox'}

@@ -20,16 +20,10 @@ export function SelectEntityList<T>({
                                     }: SelectEntityListProps<T>) {
     const [searchValue, setSearchValue] = React.useState('');
 
-    // переделать
     const filteredModules = useMemo(() => {
-        // const normalized = searchValue.toLowerCase();
-        // return items.filter(module => getItemName(module).toLowerCase().includes(normalized));
-        return items
+        const normalized = searchValue.toLowerCase();
+        return items.filter(module => getItemName(module).toLowerCase().includes(normalized));
     }, [items, searchValue]);
-
-    // useEffect(() => {
-    //     console.log('items', items, 'selectedIds', selectedIds)
-    // }, [selectedIds])
 
     return (
         <div className={styles.SelectEntityList}>

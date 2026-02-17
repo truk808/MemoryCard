@@ -22,7 +22,7 @@ export const FormModalLayout: FC<ItemManagerProps> = ({isOpen,
     return (
         <Modal isOpen={isOpen} closeModal={closeModal}>
             <div className={styles.formModalLayout}>
-                <h2 className={styles.title}> {title} </h2>
+                <h2 className={`heading-2xl ${styles.title}`}> {title} </h2>
                 <div className={styles.children}>
                     {children}
                 </div>

@@ -26,7 +26,6 @@ export const useAuth = (isLogin: boolean) => {
                 const response = await registration(email, password, nickname)
             }
             dispatch(setAuth(true))
-            // dispatch(setAuth(true))
             navigate(MAIN_ROUTES, {replace: true})
             window.location.href = window.location.href;
             // window.location.replace(MAIN_ROUTES)

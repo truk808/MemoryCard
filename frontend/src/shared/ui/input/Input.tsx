@@ -7,7 +7,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export const Input: FC<InputProps> = ({...props}) => {
     return (
         <input
-            className={styles.input}
+            className={`text-base ${styles.input}`}
             {...props}
         />
     );

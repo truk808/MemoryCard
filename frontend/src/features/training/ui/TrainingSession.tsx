@@ -1,8 +1,11 @@
 import {Repetition} from "./repetition/Repetition";
 import {FC, useEffect, useState} from "react";
-import {useTraining} from "../model/hooks/useTrainingLogic";
+import {useTraining} from "../model/useTrainingLogic";
 import {ModalResult} from "./modalResult/ModalResult";
 import {Card} from "../../../entities/card";
+import {Test} from "./test/Test";
+import {Memorize} from "./memorize/Memorize";
+import {Match} from "./match/Match";
 
 interface TrainingSessionProps {
     type: string;
@@ -46,35 +49,33 @@ export const  TrainingSession: FC<TrainingSessionProps> = ({type, cards, moduleI
                     cards={training.cards}
                 />
             );
-        // case "test":
-        //     return (
-        //         <Test
-        //             currentCard={training.currentCard}
-        //             nextCard={training.nextCard}
-        //             recordAnswer={training.recordAnswer}
-        //             cards={training.cards}
-        //             setHelper={() => training.setHelper}
-        //             helper={training.helper}
-        //         />
-        //     );
-        // case "match":
-        //     return (
-        //         <Match
-        //             // cards={training.cards}
-        //             // finish={training.finish}
-        //         />
-        //     );
-        // case "memorization":
-        //     return (
-        //         <Memorize
-        //             currentCard={training.currentCard}
-        //             nextCard={training.nextCard}
-        //             recordAnswer={training.recordAnswer}
-        //             cards={training.cards}
-        //             setHelper={() => training.setHelper}
-        //             helper={training.helper}
-        //         />
-        //     );
+        case "test":
+            return (
+                <Test
+                    currentCard={training.currentCard}
+                    nextCard={training.nextCard}
+                    recordAnswer={training.recordAnswer}
+                    cards={training.cards}
+                    setHelper={() => training.setHelper}
+                    helper={training.helper}
+                />
+            );
+        case "match":
+            return (
+                <Match
+                />
+            );
+        case "memorization":
+            return (
+                <Memorize
+                    currentCard={training.currentCard}
+                    nextCard={training.nextCard}
+                    recordAnswer={training.recordAnswer}
+                    cards={training.cards}
+                    setHelper={() => training.setHelper}
+                    helper={training.helper}
+                />
+            );
         default:
             return <div>Неверный тип тренировки</div>;
     }

@@ -1,0 +1,86 @@
+@import '../../../app/styles/variables';
+
+.cardWrapper {
+  position: relative;
+  min-height: 200px;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: $box-shadow;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    .overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  background-color: var(--main-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--text-color);
+}
+
+.cardInfo {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 18px;
+  color: var(--text-additional-color);
+  margin-bottom: auto;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border-radius: $border-radius;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.iconButton {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: var(--accent-color);
+    svg {
+      filter: brightness(0) invert(1);
+    }
+  }
+}

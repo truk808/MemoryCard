@@ -6,18 +6,17 @@ import {Card} from "../../../../entities/card";
 
 interface RepetitionProps {
     currentCard: Card
-    nextCard: (cardId?: number, correct?: boolean) => void,
-    recordAnswer: (cardId: number, correct: boolean) => void ,
+    recordAnswer: (card: Card, correct: boolean) => void ,
     cards: Card[],
     index: number,
 }
 
-export const Repetition: FC<RepetitionProps> = ({ currentCard, nextCard, recordAnswer, index, cards }) => {
+export const Repetition: FC<RepetitionProps> = ({ currentCard, recordAnswer }) => {
     const [flipped, setFlipped] = useState(false);
     const [isHelper, setIsHelper] = useState(false);
 
     const handleKnow = (know: boolean) => {
-        nextCard(currentCard.id, know);
+        recordAnswer(currentCard, know);
     };
 
     return (

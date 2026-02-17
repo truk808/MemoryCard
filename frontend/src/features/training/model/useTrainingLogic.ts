@@ -1,116 +1,74 @@
-import {useEffect, useMemo, useRef, useState} from "react";
-import {completeTraining} from "../../../shared/api/trainApi";
-import {useSelector} from "react-redux";
 import {Card} from "../../../entities/card";
-import {selectAllModuleCards} from "../../../entities/moduleCard";
+import {useSelector} from "react-redux";
+import {selectCardsByModuleIds} from "../../../entities/training";
+import {uniqueAndShuffle} from "../../../shared/utils/uniqueAndShuffle";
+import {use, useEffect, useState} from "react";
 
-export interface TrainingResult {
-    [cardId: number]: boolean;
+type TrainingCard = {
+    card: Card;
+    correct: boolean
 }
 
-export interface TrainingPayload {
-    type: string;
-    modules: number[];
-    cards: { cardId: number; correct: boolean }[];
+type TrainingPayload = {
+    typeTraining: string;
+    moduleIds: number[];
+    cards: TrainingCard[];
     duration: number;
+    date: string;
 }
 
-export function useTraining(cards: Card[], type: string, modules: number[]) {
-    const [index, setIndex] = useState(0);
-    const [results, setResults] = useState<TrainingResult>({});
+export function useTraining(typeTraining: string, moduleIds: number[]) {
+    const rawCards = useSelector(selectCardsByModuleIds(moduleIds));
+    const validCards = rawCards.filter(
+        (card): card is Card => card !== undefined
+    );
+    const cards = uniqueAndShuffle(validCards);
+
+    const [isOpenModal, setIsOpenModal] = useState(false);
+    const [index, setIndex] = useState<number>(0);
     const [helper, setHelper] = useState(false);
-    const [isFinish, setIsFinish] = useState(false);
-    const [finishResults, setFinishResults] = useState<TrainingPayload>();
+    const [currentCard, setCurrentCard] = useState<Card>(cards[0])
+    const [results, setResults] = useState<TrainingPayload | null>(null);
+    const [trainingCards, setTrainingCards] = useState<TrainingCard[]>([]);
+    const startDate = Date.now();
 
-    const startTime = useRef(Date.now());
+    const recordAnswer = (card: Card, correct: boolean) => {
+        setTrainingCards(prev => [
+            ...prev,
+            {card, correct},
+        ])
+        nextCard()
+    }
 
-    const currentCard = cards[index];
-
-    const recordAnswer = (cardId: number, correct: boolean): void => {
-        setResults((prev) => ({...prev, [cardId]: correct}));
-    };
-
-    const nextCard = (cardId?: number, correct?: boolean) => {
-        const newResults = cardId !== undefined && correct !== undefined
-            ? { ...results, [cardId]: correct }
-            : results;
-
-        if (index < cards.length - 1) {
-            setResults(newResults);
-            setIndex(prev => prev + 1);
-        } else {
-            finish(newResults);
+    const nextCard = () => {
+        if(cards.length <= index) {
+            finishTraining()
         }
-    };
+        setIndex(prev => prev + 1)
+        if(currentCard) setCurrentCard(cards[index])
+    }
 
+    const finishTraining = () => {
+        const finishResults = {
+            typeTraining: typeTraining,
+            moduleIds: moduleIds,
+            cards: trainingCards,
+            duration: (Date.now() - startDate) / 100,
+            date: new Date().toLocaleString("ru-RU"),
+        }
 
-    const calcLevelChange = (card: Card): number => {
-        const correct = results[card.id];
-        if (correct === undefined) return card.level;
-        return correct
-            ? Math.min(card.level + 1, 3)
-            : Math.max(card.level - 1, 0);
-    };
-
-    const moduleCards = useSelector(selectAllModuleCards);
-
-    const cardToModule = useMemo(() => {
-        const map = new Map<number, number>();
-
-        moduleCards.forEach(mc => {
-            map.set(mc.cardId, mc.moduleId);
-        });
-
-        return map;
-    }, [moduleCards]);
-
-
-    const finish = (finalResults?: TrainingResult) => {
-        const duration = Math.floor((Date.now() - startTime.current) / 1000);
-        const resultsToUse = finalResults ?? results;
-
-        const cardsByModule: Record<number, { cardId: number; correct: boolean }[]> = {};
-
-        Object.entries(resultsToUse).forEach(([cardIdStr, correct]) => {
-            const cardId = Number(cardIdStr);
-            const moduleId = cardToModule.get(cardId);
-
-            if (!moduleId) return;
-
-            if (!cardsByModule[moduleId]) {
-                cardsByModule[moduleId] = [];
-            }
-
-            cardsByModule[moduleId].push({
-                cardId,
-                correct,
-            });
-        });
-
-        Object.entries(cardsByModule).forEach(([moduleId, cards]) => {
-            completeTraining({
-                type,
-                modules: [Number(moduleId)],
-                cards,
-                duration,
-            });
-        });
-
-        setIsFinish(true);
-    };
+        setResults(finishResults);
+        setIsOpenModal(true)
+    }
 
     return {
         cards,
         currentCard,
         index,
-        nextCard,
-        recordAnswer,
-        finish,
-        results,
-        calcLevelChange,
         helper,
         setHelper,
-        isFinish,
-        finishResults,
-    };
+        isOpenModal,
+        results,
+        recordAnswer,
+    }
 }

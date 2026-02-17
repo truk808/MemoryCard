@@ -11,6 +11,7 @@ interface TrainingSessionProps {
     type: string;
     cards: Card[];
     moduleIds: number[];
+    entityType?: 'module' | 'group'
 }
 
 export const  TrainingSession: FC<TrainingSessionProps> = ({type, cards, moduleIds}) => {

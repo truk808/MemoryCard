@@ -4,10 +4,6 @@ import {Module} from "../../../entities/module";
 import {selectAllCards} from "../../../entities/card";
 import {useItemForm} from "../../../shared/hooks";
 import {BaseManagerProps} from "../../../shared/types";
-import {selectAllTags} from "../../../entities/tag";
-import {useEffect, useMemo, useState} from "react";
-import {CardWithTags} from "../../../shared/types/entityTypes";
-import {selectAllCardTags} from "../../../entities/cardTag";
 
 export const initModuleForm: ModuleForm = {
     name: "",
@@ -21,22 +17,15 @@ export type ModuleForm = Partial<Pick<Module, "id" | 'icon' | "name">> & {
 
 export const useModuleManager = ({isOpen = false, closeModal, mode, item}: BaseManagerProps<ModuleForm>) => {
     const dispatch = useDispatch();
-    const [selectedTagIds, setSelectedTagIds] = useState<number[]>([]);
-    const allCards = useSelector(selectAllCards);
-    const tags = useSelector(selectAllTags)
-    const cardTags = useSelector(selectAllCardTags);
+    const cards = useSelector(selectAllCards);
     const isEditMode = mode === "edit";
 
     const { form, handleChange, resetForm } = useItemForm<ModuleForm>(
         isEditMode && item ? item : initModuleForm
     );
 
-    const tagItems = tags.map(tag => ({
-        id: tag.id,
-        label: tag.name,
-    }), []);
-
     function onSubmit() {
+        // console.log('', form.selectedCardIds)
         saveModule(dispatch, form, mode, item);
         resetForm();
         closeModal();
@@ -50,30 +39,6 @@ export const useModuleManager = ({isOpen = false, closeModal, mode, item}: BaseM
         }
     }
 
-    const cardsWithTags: CardWithTags[] = useMemo(() => {
-        return allCards.map((card) => {
-            const relatedTagIds = cardTags
-                .filter(ct => ct.cardId === card.id)
-                .map(ct => ct.tagId);
-            const cardTagsList = tags.filter(tag => relatedTagIds.includes(tag.id));
-            return {...card, tags: cardTagsList};
-        });
-    }, [allCards, tags, cardTags]);
-
-    const cards = useMemo(() => {
-        if(selectedTagIds.length > 0) {
-            return cardsWithTags.filter(card =>
-                card.tags.some(tag => selectedTagIds.includes(tag.id))
-            );
-        } else {
-            return cardsWithTags;
-        }
-    }, [cardsWithTags, selectedTagIds]);
-
-    useEffect(() => {
-        console.log(cards)
-    }, [cards]);
-
     return {
         cards,
         isEditMode,
@@ -81,8 +46,5 @@ export const useModuleManager = ({isOpen = false, closeModal, mode, item}: BaseM
         handleChange,
         form,
         handleToggleCard,
-        tagItems,
-        setSelectedTagIds,
-        selectedTagIds,
     }
 };

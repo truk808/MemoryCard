@@ -4,7 +4,6 @@ import {ModuleForm, useModuleManager} from "../model/useModuleManager";
 
 import {BaseManagerProps} from "../../../shared/types";
 import {FormModalLayout, Input, SelectEntityList, SelectIcon} from "../../../shared/ui";
-import {Dropdown} from "../../../shared/ui/dropdown/Dropdown";
 
 export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
                                                                     isOpen = false,
@@ -19,9 +18,6 @@ export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
         form,
         handleToggleCard,
         cards,
-        tagItems,
-        setSelectedTagIds,
-        selectedTagIds,
     } = useModuleManager({isOpen, closeModal, mode, item})
 
     return (
@@ -45,12 +41,6 @@ export const ModuleManager: FC<BaseManagerProps<ModuleForm>> = ({
                     onChange={(icon) => handleChange('icon', icon)}
                 />
             </div>
-            <Dropdown
-                items={tagItems}
-                onChange={setSelectedTagIds}
-                selectedIds={selectedTagIds}
-                placeholder={'Теги'}
-            />
             <SelectEntityList
                 items={cards}
                 selectedIds={form.selectedCardIds}

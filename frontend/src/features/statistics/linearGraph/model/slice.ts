@@ -4,7 +4,6 @@ export interface ProgressPoint  {
     id: number;
     user_id: number;
     entity_id: number;
-    entity_type: 'module' | 'group';
     date: string;
     level0: number;
     level1: number;

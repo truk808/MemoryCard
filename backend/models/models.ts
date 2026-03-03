@@ -74,7 +74,6 @@ const TrainingModule = db.define('training_module', {
 const DailyCardStats = db.define('daily_card_stats', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: {type: DataTypes.INTEGER, allowNull: false, field: 'user_id',},
-    entityType: {type: DataTypes.ENUM('module', 'group'), allowNull: false, field: 'entity_type',},
     entityId: {type: DataTypes.INTEGER, allowNull: false, field: 'entity_id',},
     date: {type: DataTypes.DATEONLY, allowNull: false,},
     level0: { type: DataTypes.INTEGER, allowNull: false },
@@ -85,7 +84,6 @@ const DailyCardStats = db.define('daily_card_stats', {
 
 const Publication = db.define('publication', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    entityType: {type: DataTypes.ENUM('group', 'module'), allowNull: false, field: 'entity_type',},
     entityId: {type: DataTypes.INTEGER, allowNull: false, field: 'entity_id',},
     authorUserId: {type: DataTypes.INTEGER, allowNull: false, field: 'author_user_id'},
     status: {type: DataTypes.ENUM('pending', 'approved', 'rejected'), defaultValue: 'approved'},

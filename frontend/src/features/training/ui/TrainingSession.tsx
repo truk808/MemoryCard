@@ -23,6 +23,8 @@ export const  TrainingSession: FC<TrainingSessionProps> = ({type, moduleIds}) =>
         />
     }
 
+
+
     switch (type) {
         case "repetition":
             return (

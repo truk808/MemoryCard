@@ -16,6 +16,7 @@ export const Repetition: FC<RepetitionProps> = ({ currentCard, recordAnswer }) =
     const [isHelper, setIsHelper] = useState(false);
 
     const handleKnow = (know: boolean) => {
+        // console.log('ответ',currentCard, know);
         recordAnswer(currentCard, know);
     };
 

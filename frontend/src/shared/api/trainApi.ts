@@ -1,11 +1,7 @@
 import {$authHost} from "./axios";
+import {TrainingPayload} from "../types/trainingPayload";
 
-export const completeTraining = async (payload: {
-    type: string;
-    modules: number[];
-    cards: { cardId: number; correct: boolean }[];
-    duration: number;
-}) => {
+export const completeTraining = async (payload: TrainingPayload) => {
     const { data } = await $authHost.post('/api/training/complete', payload);
     return data;
 };

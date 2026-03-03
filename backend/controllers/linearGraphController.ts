@@ -29,7 +29,6 @@ class LinearGraphController {
             const progress = await DailyCardStats.findAll({
                 where: {
                     user_id: userId,
-                    entity_type: "module",
                     entity_id: {
                         [Op.in]: moduleIds,
                     },
@@ -42,7 +41,6 @@ class LinearGraphController {
                     "id",
                     "user_id",
                     "entity_id",
-                    "entity_type",
                     "date",
                     "level0",
                     "level1",
@@ -72,7 +70,6 @@ class LinearGraphController {
             const progress = await DailyCardStats.findAll({
                 where: {
                     user_id: userId,
-                    entity_type: "group",
                     entity_id: groupId,
                 },
                 order: [["date", "ASC"]],
@@ -80,7 +77,6 @@ class LinearGraphController {
                     "id",
                     "user_id",
                     "entity_id",
-                    "entity_type",
                     "date",
                     "level0",
                     "level1",

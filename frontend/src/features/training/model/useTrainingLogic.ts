@@ -1,28 +1,25 @@
 import {Card} from "../../../entities/card";
 import {useSelector} from "react-redux";
 import {selectCardsByModuleIds} from "../../../entities/training";
-import {uniqueAndShuffle} from "../../../shared/utils/uniqueAndShuffle";
-import {use, useEffect, useState} from "react";
-
-type TrainingCard = {
-    card: Card;
-    correct: boolean
-}
-
-type TrainingPayload = {
-    typeTraining: string;
-    moduleIds: number[];
-    cards: TrainingCard[];
-    duration: number;
-    date: string;
-}
+import {useEffect, useState} from "react";
+import {TrainingCard, TrainingPayload} from "../../../shared/types/trainingPayload";
+import {completeTraining} from "../../../shared/api/trainApi";
+import {RootState} from "../../../app/store";
 
 export function useTraining(typeTraining: string, moduleIds: number[]) {
-    const rawCards = useSelector(selectCardsByModuleIds(moduleIds));
+    const rawCards = useSelector((state: RootState) => {
+           return selectCardsByModuleIds(state, moduleIds)
+        }
+    );
     const validCards = rawCards.filter(
         (card): card is Card => card !== undefined
     );
-    const cards = uniqueAndShuffle(validCards);
+    const cards = validCards;
+    console.log('useTraining render');
+    // console.log(rawCards)
+    // console.log(cards)
+
+    // console.log('useTraining', cards);
 
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [index, setIndex] = useState<number>(0);
@@ -33,30 +30,29 @@ export function useTraining(typeTraining: string, moduleIds: number[]) {
     const startDate = Date.now();
 
     const recordAnswer = (card: Card, correct: boolean) => {
-        setTrainingCards(prev => [
-            ...prev,
-            {card, correct},
-        ])
-        nextCard()
+        setTrainingCards(prev => {
+            const update = [...prev, {card, correct}]
+            const nextIndex = index + 1;
+            if (cards.length <= nextIndex) {
+                finishTraining(update)
+            } else {
+                setCurrentCard(cards[nextIndex])
+                setIndex(nextIndex)
+            }
+            return update;
+        })
     }
 
-    const nextCard = () => {
-        if(cards.length <= index) {
-            finishTraining()
-        }
-        setIndex(prev => prev + 1)
-        if(currentCard) setCurrentCard(cards[index])
-    }
-
-    const finishTraining = () => {
+    const finishTraining = (finalCards: TrainingCard[]) => {
         const finishResults = {
             typeTraining: typeTraining,
             moduleIds: moduleIds,
-            cards: trainingCards,
+            cards: finalCards,
             duration: (Date.now() - startDate) / 100,
             date: new Date().toLocaleString("ru-RU"),
         }
-
+        console.log('finishResults', finishResults.cards)
+        completeTraining(finishResults)
         setResults(finishResults);
         setIsOpenModal(true)
     }

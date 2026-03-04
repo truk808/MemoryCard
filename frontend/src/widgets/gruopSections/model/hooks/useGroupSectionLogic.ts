@@ -67,7 +67,6 @@ export function useGroupSectionLogic() {
     }, [])
 
     ////переделать
-
     function publish() {
         createPublication(groupId)
     }

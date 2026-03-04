@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from './GroupSection.module.scss'
 import {NavLink} from "react-router-dom";
 import {useGroupSectionLogic} from "../model/hooks/useGroupSectionLogic";
@@ -8,6 +8,7 @@ import {Button, CardList, Section, Tabs} from "../../../shared/ui";
 import {MAIN_ROUTES} from "../../../shared/routes/const";
 import {TrainModeList} from "../../../features/train";
 import {GroupRemoveButton} from "../../../features/groupRemove/ui/GroupRemoveButton";
+import {TermCard} from "../../../entities/card";
 
 export const GroupSection = () => {
     const {
@@ -20,11 +21,12 @@ export const GroupSection = () => {
         isOpenGroupManager,
         publish,
         isOwner,
+        cardsWithTags,
     } = useGroupSectionLogic()
 
     if (!group) return <div>Группа не найдена</div>;
 
-    if(isOwner) {
+    if (isOwner) {
         return (
             <div>
                 <GroupManager
@@ -38,7 +40,9 @@ export const GroupSection = () => {
                     description={group.description}
                     features={[
                         <div className={styles.features}>
-                            <Button onClick={() => {publish()}} color={'orange'}> Опубликовать </Button>,
+                            <Button onClick={() => {
+                                publish()
+                            }} color={'orange'}> Опубликовать </Button>,
                             <Button onClick={() => setIsOpenGroupManager(true)} color={'blue'}> Редактировать </Button>,
                             <NavLink to={MAIN_ROUTES}><GroupRemoveButton groupId={groupId}/></NavLink>,
                         </div>
@@ -48,14 +52,23 @@ export const GroupSection = () => {
                         {[
                             <>
                                 {/*// переделать*/}
-                                <TrainModeList moduleIds={modules.map(module => module.id)} />
+                                <TrainModeList moduleIds={modules.map(module => module.id)}/>
                                 <CardList
                                     items={modules}
                                     renderItem={module => <ModuleCard module={module}/>}
                                 />
                             </>,
                             <>
-
+                                <CardList
+                                    items={cardsWithTags}
+                                    renderItem={cardsWithTags =>
+                                        <TermCard
+                                            onEdit={() => {}}
+                                            onDelete={() => {}}
+                                            card={cardsWithTags}
+                                        />
+                                    }
+                                />
                             </>,
                         ]}
                     </Tabs>
@@ -69,7 +82,8 @@ export const GroupSection = () => {
                     title={group.name}
                     description={group.description}
                     features={[
-                        <Button onClick={() => {}} color={'blue'}> Добавить </Button>,
+                        <Button onClick={() => {
+                        }} color={'blue'}> Добавить </Button>,
                     ]}
                 >
                     <Tabs titles={['Модули', 'Карточки',]}>

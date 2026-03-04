@@ -1,9 +1,14 @@
-export function getRelatedIdsByEntityId<T extends Record<string, number>> (
-    entityId: number,
+export function getRelatedIdsByEntityId<T extends Record<string, number>>(
+    entityIds: number | number[],
     relationList: T[],
     entityKey: keyof T,
     itemKey: keyof T
 ): number[] {
-    return relationList.filter((relation) => relation[entityKey] === entityId)
-        .map((relation) => relation[itemKey]);
+    const idsArray = Array.isArray(entityIds)
+        ? entityIds
+        : [entityIds];
+
+    return relationList
+        .filter(relation => idsArray.includes(relation[entityKey]))
+        .map(relation => relation[itemKey]);
 }

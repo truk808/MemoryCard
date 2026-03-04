@@ -1,9 +1,6 @@
 import React, {FC, useEffect, useMemo} from 'react';
 import styles from './LinearGraph.module.scss'
-import {useSelector} from "react-redux";
-import {selectLinearGraph} from "../model/selectors";
 import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "recharts";
-import {RootState} from "../../../../app/store";
 import {ProgressPoint} from "../model/slice";
 
 interface LinearGraphProps {
@@ -12,7 +9,6 @@ interface LinearGraphProps {
 
 // переделать
 export const LinearGraph: FC<LinearGraphProps> = ({graph}) => {
-
     const data = useMemo(() => {
         return graph.map((item) => ({
             ...item,

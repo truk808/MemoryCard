@@ -15,7 +15,6 @@ export function useTraining(typeTraining: string, moduleIds: number[]) {
         (card): card is Card => card !== undefined
     );
     const cards = validCards;
-    console.log('useTraining render');
     // console.log(rawCards)
     // console.log(cards)
 
@@ -30,18 +29,18 @@ export function useTraining(typeTraining: string, moduleIds: number[]) {
     const startDate = Date.now();
 
     const recordAnswer = (card: Card, correct: boolean) => {
-        setTrainingCards(prev => {
-            const update = [...prev, {card, correct}]
-            const nextIndex = index + 1;
-            if (cards.length <= nextIndex) {
-                finishTraining(update)
-            } else {
-                setCurrentCard(cards[nextIndex])
-                setIndex(nextIndex)
-            }
-            return update;
-        })
-    }
+        const nextIndex = index + 1;
+        const update = [...trainingCards, { card, correct }];
+
+        setTrainingCards(update);
+
+        if (cards.length <= nextIndex) {
+            finishTraining(update);
+        } else {
+            setCurrentCard(cards[nextIndex]);
+            setIndex(nextIndex);
+        }
+    };
 
     const finishTraining = (finalCards: TrainingCard[]) => {
         const finishResults = {
@@ -51,7 +50,7 @@ export function useTraining(typeTraining: string, moduleIds: number[]) {
             duration: (Date.now() - startDate) / 100,
             date: new Date().toLocaleString("ru-RU"),
         }
-        console.log('finishResults', finishResults.cards)
+        console.log('finishResults', finishResults)
         completeTraining(finishResults)
         setResults(finishResults);
         setIsOpenModal(true)

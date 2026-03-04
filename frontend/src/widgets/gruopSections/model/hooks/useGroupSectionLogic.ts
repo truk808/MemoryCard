@@ -8,6 +8,11 @@ import {createPublication} from "../../../../shared/api/communityApi";
 import {selectGroupById} from "../../../../entities/group";
 import {selectModulesByGroupId} from "../../../../entities/module";
 import {getProgressByModule} from "../../../../shared/api";
+import {CardWithTags} from "../../../../shared/types/entityTypes";
+import {mergeCardsWithTags} from "../../../../shared/utils/mergeCardsWithTags";
+import {selectCardsByTagId} from "../../../../entities/card";
+import {selectAllTags} from "../../../../entities/tag";
+import {selectAllCardTags} from "../../../../entities/cardTag";
 
 export function useGroupSectionLogic() {
     const user = useSelector((state: RootState) => state.user);
@@ -19,6 +24,14 @@ export function useGroupSectionLogic() {
     const modules = useSelector(selectModulesByGroupId(moduleIds))
 
     const [isOpenGroupManager, setIsOpenGroupManager] = React.useState(false);
+
+    const moduleCard = useSelector((state: RootState) => state.moduleCard.moduleCards);
+    const cardIds = getRelatedIdsByEntityId(moduleIds, moduleCard, 'moduleId', 'cardId');
+    const termCards = useSelector(selectCardsByTagId(cardIds));
+    console.log(termCards);
+    const tags = useSelector(selectAllTags);
+    const cardTags = useSelector(selectAllCardTags);
+    const cardsWithTags: CardWithTags[] = mergeCardsWithTags(termCards, tags, cardTags);
 
     // @ts-ignore
     const isOwner = user.user.id === group.userId
@@ -70,5 +83,6 @@ export function useGroupSectionLogic() {
         setIsOpenGroupManager,
         publish,
         isOwner,
+        cardsWithTags
     }
 }

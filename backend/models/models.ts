@@ -57,6 +57,7 @@ const GroupModule = db.define('group_module', {
 const Training = db.define('training', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: {type: DataTypes.INTEGER, allowNull: false, field: 'user_id',},
+    //moduleId: {type: DataTypes.INTEGER, allowNull: false, field: 'module_id' },
     type: {type: DataTypes.ENUM('repetition', 'memorization', 'test'), allowNull: false,},
     totalCards: {type: DataTypes.INTEGER, allowNull: false, field: 'total_cards',},
     correctAnswers: {type: DataTypes.INTEGER, allowNull: false, field: 'correct_answers',},

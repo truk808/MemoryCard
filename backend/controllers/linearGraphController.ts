@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import {Op} from "sequelize";
-const {DailyCardStats, Module} = require('../models/models');
+const {DailyCardStats} = require('../models/models');
 
 //переделать
 class LinearGraphController {

@@ -1,20 +1,12 @@
 import {NextFunction, Request, Response} from "express";
-import {CardType, TrainingPayload} from "../types/trainingPayload";
-
-const {
-    Module,
-    GroupModule,
-    Card,
-    Training,
-    TrainingModule,
-    DailyCardStats
-} = require('../models/models');
+import type {Card} from '../types/trainingPayload'
+import {TrainingPayload} from "../types/trainingPayload";
+const {Module, GroupModule, Card, Training, TrainingModule, DailyCardStats} = require('../models/models');
 const sequelize = require('../db');
 
-//переделать
 class TrainingController {
     async completeTraining(req: Request, res: Response, next: NextFunction) {
-        const { typeTraining, moduleIds, cards, duration, date }: TrainingPayload = req.body;
+        const {typeTraining, moduleIds, cards, duration, date}: TrainingPayload = req.body;
         const userId = req.user!.id;
         console.log('      ')
         console.log(cards)
@@ -31,75 +23,57 @@ class TrainingController {
 
                 await card.save();
             }
-            return res.json('sucesses save levels cards')
-            // // --- 2. Сохраняем DailyCardStats для каждого модуля ---
-            // for (const moduleId of moduleIds) {
-            //     let dailyStats = await DailyCardStats.findOne({
-            //         where: { userId, entityId: moduleId, date }
-            //     });
-            //
-            //     // Если нет — создаём
-            //     if (!dailyStats) {
-            //         dailyStats = await DailyCardStats.create({
-            //             userId,
-            //             entityId: moduleId,
-            //             date,
-            //             level0: 0,
-            //             level1: 0,
-            //             level2: 0,
-            //             level3: 0
-            //         });
-            //     }
-            //
-            //     // --- считаем уровни карт ---
-            //     const levelCounts: Record<0|1|2|3, number> = { 0: 0, 1: 0, 2: 0, 3: 0 };
-            //
-            //     // Фильтруем карты по конкретному модулю (если нужна точность)
-            //     const moduleCards = cards.filter(c => c.card.userId === userId);
-            //
-            //     for (const c of moduleCards) {
-            //         const lvl = c.card.level;
-            //         if (lvl >= 0 && lvl <= 3) {
-            //             const key = lvl as 0 | 1 | 2 | 3;
-            //             levelCounts[key] = (levelCounts[key] || 0) + 1;
-            //         }
-            //     }
-            //
-            //     dailyStats.level0 = levelCounts[0];
-            //     dailyStats.level1 = levelCounts[1];
-            //     dailyStats.level2 = levelCounts[2];
-            //     dailyStats.level3 = levelCounts[3];
-            //
-            //     await dailyStats.save();
-            // }
-            //
-            // // --- 3. Сохраняем тренировку ---
-            // const totalCards = cards.length;
-            // const correctAnswers = cards.filter(c => c.correct).length;
-            // const wrongAnswers = totalCards - correctAnswers;
-            //
-            // const training = await Training.create({
-            //     userId,
-            //     type: typeTraining,
-            //     totalCards,
-            //     correctAnswers,
-            //     wrongAnswers,
-            //     durationSeconds: Math.round(duration),
-            //     createdAt: date
-            // });
-            //
-            // // --- 4. Сохраняем связь с модулями ---
-            // for (const moduleId of moduleIds) {
-            //     await TrainingModule.create({
-            //         trainingId: training.id,
-            //         moduleId
-            //     });
-            // }
-            //
+
+            const totalCards = cards.length;
+            const correctAnswers = cards.filter(c => c.correct).length;
+            const wrongAnswers = totalCards - correctAnswers;
+
+            const training = await Training.create({
+                userId,
+                type: typeTraining,
+                totalCards,
+                correctAnswers,
+                wrongAnswers,
+                durationSeconds: Math.round(duration),
+                createdAt: date
+            });
+
+            for (const moduleId of moduleIds) {
+                await TrainingModule.create({
+                    trainingId: training.id,
+                    moduleId
+                });
+            }
+
+            for (const moduleId of moduleIds) {
+                const cards = await Card.findAll({
+                    include: [{
+                        model: Module,
+                        where: { id: moduleId },
+                        through: { attributes: [] }
+                    }]
+                });
+
+                const level0 = cards.filter((c: Card) => c.level === 0).length;
+                const level1 = cards.filter((c: Card) => c.level === 1).length;
+                const level2 = cards.filter((c: Card) => c.level === 2).length;
+                const level3 = cards.filter((c: Card) => c.level === 3).length;
+
+                const dailyStats = await DailyCardStats.create({
+                    userId,
+                    entityId: moduleId,
+                    date,
+                    level0,
+                    level1,
+                    level2,
+                    level3
+                });
+            }
+            return res.json({ message: 'Training completed' });
             // return res.json({ message: 'Training completed', trainingId: training.id });
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ message: 'Error completing training' });
+            return res.status(500).json({message: 'Error completing training'});
         }
     }
 

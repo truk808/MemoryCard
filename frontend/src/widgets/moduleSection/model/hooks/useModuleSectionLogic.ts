@@ -11,6 +11,7 @@ import {selectModuleById} from "../../../../entities/module";
 import {selectCardsByTagId} from "../../../../entities/card";
 import { selectAllTags } from "../../../../entities/tag";
 import {CardWithTags} from "../../../../shared/types/entityTypes";
+import {mergeCardsWithTags} from "../../../../shared/utils/mergeCardsWithTags";
 
 //переделать
 export function useModuleSectionLogic() {
@@ -26,18 +27,7 @@ export function useModuleSectionLogic() {
     const tags = useSelector(selectAllTags);
     const cardTags = useSelector(selectAllCardTags);
 
-    const cardsWithTags: CardWithTags[] = termCards.map((card) => {
-        const relatedTagIds = cardTags
-            .filter(ct => ct.cardId === card.id)
-            .map(ct => ct.tagId);
-
-        const cardTagsList = tags.filter(tag => relatedTagIds.includes(tag.id));
-
-        return {
-            ...card,
-            tags: cardTagsList,
-        };
-    });
+    const cardsWithTags: CardWithTags[] = mergeCardsWithTags(termCards, tags, cardTags)
 
     const moduleInfo = useMemo(() => {
         if (module) {
